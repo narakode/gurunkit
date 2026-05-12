@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "vue": "^3.5.34"
@@ -15,8 +16,19 @@
     "@types/node": "^24.12.3",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/tsconfig": "^0.9.1",
+    "eslint": "^10.3.0",
+    "eslint-plugin-vue": "^10.9.1",
+    "globals": "^17.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.4",
+    "prettier": "3.8.3",
     "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.3",
     "vite": "^8.0.12",
     "vue-tsc": "^3.2.8"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,css,md}": "prettier --write",
+    "*.{vue,js,ts}": "eslint --cache --fix"
   }
 }
