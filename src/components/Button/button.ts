@@ -1,9 +1,15 @@
 import { h, type SetupContext } from 'vue';
 
-export function Button(props: object, context: SetupContext) {
+type ButtonProps = {
+  classList?: {
+    base?: string;
+  };
+};
+
+export function Button(props: ButtonProps, context: SetupContext) {
   return h(
     'button',
-    { ...context.attrs },
+    { ...context.attrs, class: props.classList?.base },
     {
       default: context.slots.default,
     },
