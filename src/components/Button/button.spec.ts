@@ -56,38 +56,77 @@ describe('class list', () => {
     );
   });
 
-  test('has default color class list (light)', () => {
-    const classList = {
-      colors: {
-        light: 'bg-red-900 text-white',
-      },
-    };
-    const wrapper = mount(Button, {
-      props: {
-        classList,
-      },
+  describe('color', () => {
+    test('has default color class list (light)', () => {
+      const classList = {
+        colors: {
+          light: 'bg-red-900 text-white',
+        },
+      };
+      const wrapper = mount(Button, {
+        props: {
+          classList,
+        },
+      });
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.colors.light.split(' ')),
+      );
     });
 
-    expect(wrapper.find('button').classes()).toEqual(
-      expect.arrayContaining(classList.colors.light.split(' ')),
-    );
+    test('has color class list', () => {
+      const classList = {
+        colors: {
+          primary: 'bg-blue-900 text-white',
+        },
+      };
+      const wrapper = mount(Button, {
+        props: {
+          classList,
+          color: 'primary',
+        },
+      });
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.colors.primary.split(' ')),
+      );
+    });
   });
 
-  test('has color class list', () => {
-    const classList = {
-      colors: {
-        primary: 'bg-blue-900 text-white',
-      },
-    };
-    const wrapper = mount(Button, {
-      props: {
-        classList,
-        color: 'primary',
-      },
+  describe('size', () => {
+    test('has default size class list (md)', () => {
+      const classList = {
+        sizes: {
+          md: 'bg-red-900 text-white',
+        },
+      };
+      const wrapper = mount(Button, {
+        props: {
+          classList,
+        },
+      });
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.md.split(' ')),
+      );
     });
 
-    expect(wrapper.find('button').classes()).toEqual(
-      expect.arrayContaining(classList.colors.primary.split(' ')),
-    );
+    test('has size class list', () => {
+      const classList = {
+        sizes: {
+          sm: 'bg-blue-900 text-white',
+        },
+      };
+      const wrapper = mount(Button, {
+        props: {
+          classList,
+          size: 'sm',
+        },
+      });
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.sm.split(' ')),
+      );
+    });
   });
 });
