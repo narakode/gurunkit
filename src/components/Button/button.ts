@@ -38,11 +38,21 @@ export function Button(props: ButtonProps, context: SetupContext) {
   const colorClassList: string = colorClassListOptions[props.color ?? 'light'];
   const sizeClassList: string = sizeClassListOptions[props.size ?? 'md'];
 
+  const { class: inheritClass, ...inheritAttrs } = context.attrs;
+  const classList = [
+    inheritClass,
+    props.classList?.base ?? '',
+    colorClassList,
+    sizeClassList,
+  ]
+    .filter((cls) => !!cls)
+    .join(' ');
+
   return h(
     'button',
     {
-      ...context.attrs,
-      class: [props.classList?.base, colorClassList, sizeClassList],
+      ...inheritAttrs,
+      class: classList,
     },
     {
       default: context.slots.default,
