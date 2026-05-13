@@ -1,4 +1,4 @@
-import { h, type SetupContext } from 'vue';
+import { h, type Component, type SetupContext } from 'vue';
 
 type ButtonColor = 'light' | 'primary' | 'error' | 'warning' | 'secondary';
 type ButtonSize = 'sm' | 'md' | 'lg';
@@ -20,6 +20,7 @@ type ButtonProps = {
   };
   color?: ButtonColor;
   size?: ButtonSize;
+  tag?: string | Component;
 };
 
 export function Button(props: ButtonProps, context: SetupContext) {
@@ -49,7 +50,7 @@ export function Button(props: ButtonProps, context: SetupContext) {
     .join(' ');
 
   return h(
-    'button',
+    props.tag ?? 'button',
     {
       ...inheritAttrs,
       class: classList,
