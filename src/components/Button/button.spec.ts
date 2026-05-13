@@ -129,4 +129,14 @@ describe('class list', () => {
       );
     });
   });
+
+  test('inherits HTML class attributes', () => {
+    const wrapper = mount(Button, {
+      attrs: {
+        class: 'w-full',
+      },
+    });
+
+    expect(wrapper.find('button').classes('w-full')).toBeTruthy();
+  });
 });
