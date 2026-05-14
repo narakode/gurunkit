@@ -20,6 +20,10 @@ export default defineConfig({
           { text: 'Components', link: '/components' },
         ],
       },
+      {
+        text: 'Components',
+        items: [{ text: 'Input', link: '/components/input' }],
+      },
     ],
 
     socialLinks: [
