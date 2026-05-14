@@ -20,9 +20,13 @@ type InputProps = {
   };
   color?: InputColor;
   size?: InputSize;
+  modelValue?: string;
+};
+type InputEvents = {
+  'update:modelValue'(newValue: string): void;
 };
 
-export const Input: FunctionalComponent<InputProps, Record<string, null>> = (
+export const Input: FunctionalComponent<InputProps, InputEvents> = (
   props,
   context,
 ) => {
@@ -56,6 +60,9 @@ export const Input: FunctionalComponent<InputProps, Record<string, null>> = (
     {
       ...inheritAttrs,
       class: classList,
+      value: props.modelValue,
+      onInput: (e) =>
+        context.emit('update:modelValue', (e.target as HTMLInputElement).value),
     },
     {
       default: context.slots.default,
@@ -73,4 +80,6 @@ Input.props = {
     type: String as PropType<InputSize>,
     default: 'md',
   },
+  modelValue: String,
 };
+Input.emits = ['update:modelValue'];

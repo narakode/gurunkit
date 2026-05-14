@@ -130,3 +130,15 @@ describe('class list', () => {
     expect(wrapper.find('input').classes('w-full')).toBeTruthy();
   });
 });
+
+test('updates model value', async () => {
+  const wrapper = mount(Input, {
+    props: {
+      modelValue: '',
+      'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
+    },
+  });
+
+  await wrapper.find('input').setValue('test');
+  expect(wrapper.props('modelValue')).toEqual('test');
+});
