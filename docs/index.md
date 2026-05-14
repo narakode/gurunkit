@@ -5,14 +5,14 @@ layout: home
 hero:
   name: 'Bang UI'
   text: 'Vue UI Component Library'
-  tagline: My great project tagline
+  tagline: Simple, rich and customizable Vue UI component library
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Get Started
+      link: /get-started
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Browse Components
+      link: /components
 
 features:
   - title: Feature A
