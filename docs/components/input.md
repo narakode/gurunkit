@@ -29,13 +29,13 @@ import BaseInput from 'bangui/input';
 </script>
 
 <template>
-  <BaseInput />
+  <BaseInput placeholder="Base input" />
 </template>
 ```
 
 Output:
 
-<BaseInput />
+<BaseInput placeholder="Base input" />
 
 ## Base Style
 
@@ -131,9 +131,9 @@ import BaseInput from 'bangui/input';
     :class-list="{
       base: 'w-full border border-gray-300',
       sizes: {
-        sm: 'h-8 px-2',
-        md: 'h-10 px-3',
-        lg: 'h-12 px-4',
+        sm: 'p-2',
+        md: 'p-3',
+        lg: 'p-4',
       },
     }"
     size="md"
@@ -147,9 +147,9 @@ Output:
     :class-list="{
         base: 'w-full border border-gray-300',
         sizes: {
-            sm: 'h-8 px-2',
-            md: 'h-10 px-3',
-            lg: 'h-12 px-4',
+            sm: 'p-2',
+            md: 'p-3',
+            lg: 'p-4',
         }
     }"
     size="md"
