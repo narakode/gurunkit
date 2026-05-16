@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -20,10 +21,18 @@ export default defineConfig({
           { text: 'Components', link: '/components' },
         ],
       },
+      {
+        text: 'Components',
+        items: [{ text: 'Input', link: '/components/input' }],
+      },
     ],
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
     ],
+  },
+  vite: {
+    // @ts-expect-error: VitePress PluginOption type mismatch with @tailwindcss/vite return type
+    plugins: [tailwindcss()],
   },
 });
