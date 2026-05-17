@@ -65,8 +65,8 @@ describe('label', () => {
 
   test('has for attribute', () => {
     const wrapper = mount(Checkbox, {
-      attrs: { id: 'test' },
       props: {
+        id: 'test',
         label: 'Test',
       },
     });

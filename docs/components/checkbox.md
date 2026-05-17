@@ -56,7 +56,7 @@ import { Checkbox as BaseCheckbox } from 'bangui';
 
 Output:
 
-<BaseCheckbox id="checkbox" label="Checkbox" />
+<BaseCheckbox id="test_checkbox" label="Checkbox" />
 
 ## Wrapper Style
 

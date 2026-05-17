@@ -3,6 +3,7 @@ import { h, type FunctionalComponent, type PropType } from 'vue';
 type CheckboxColor = 'light' | 'primary' | 'error' | 'warning' | 'secondary';
 type CheckboxSize = 'sm' | 'md' | 'lg';
 type CheckboxProps = {
+  id?: string;
   label?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- input value needs flexible type
   inputValue?: any;
@@ -51,7 +52,7 @@ export const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
   const colorClassList: string = colorClassListOptions[props.color ?? 'light'];
   const sizeClassList: string = sizeClassListOptions[props.size ?? 'md'];
 
-  const { class: inheritClass, id, ...inheritAttrs } = context.attrs;
+  const { class: inheritClass, ...inheritAttrs } = context.attrs;
   const classList = [
     inheritClass,
     props.classList?.base ?? '',
@@ -70,7 +71,7 @@ export const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
       'input',
       {
         ...inheritAttrs,
-        id,
+        id: props.id,
         type: 'checkbox',
         class: classList,
         value: props.inputValue,
@@ -96,7 +97,7 @@ export const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
     props.label
       ? h(
           'label',
-          { class: props.classList?.label ?? '', for: id },
+          { class: props.classList?.label ?? '', for: props.id },
           props.label,
         )
       : null,
@@ -104,6 +105,7 @@ export const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
 };
 
 Checkbox.props = {
+  id: String,
   label: String,
   inputValue: null,
   classList: Object,
