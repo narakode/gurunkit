@@ -25,7 +25,7 @@ Features:
 
 ```vue
 <script setup>
-import BaseInput from 'bangui/input';
+import { Input as BaseInput } from 'bangui';
 </script>
 
 <template>
@@ -43,7 +43,7 @@ Set base style via `classList.base` props.
 
 ```vue
 <script setup>
-import BaseInput from 'bangui/input';
+import { Input as BaseInput } from 'bangui';
 </script>
 
 <template>
@@ -75,7 +75,7 @@ Set color via `color` props.
 
 ```vue
 <script setup>
-import BaseInput from 'bangui/input';
+import { Input as BaseInput } from 'bangui';
 </script>
 
 <template>
@@ -123,7 +123,7 @@ Set size via `size` props.
 
 ```vue
 <script setup>
-import BaseInput from 'bangui/input';
+import { Input as BaseInput } from 'bangui';
 </script>
 
 <template>
@@ -161,7 +161,7 @@ Add `v-model` directive to bind a value.
 
 ```vue
 <script setup>
-import BaseInput from 'bangui/input';
+import { Input as BaseInput } from 'bangui';
 import { ref } from 'vue';
 
 const name = ref('');
@@ -198,7 +198,7 @@ HTML attributes and events are automatically inherited.
 
 ```vue
 <script setup>
-import BaseInput from 'bangui/input';
+import { Input as BaseInput } from 'bangui';
 
 function onInput(e) {
   console.log(e);
