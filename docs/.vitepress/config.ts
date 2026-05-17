@@ -23,7 +23,10 @@ export default defineConfig({
       },
       {
         text: 'Components',
-        items: [{ text: 'Input', link: '/components/input' }],
+        items: [
+          { text: 'Input', link: '/components/input' },
+          { text: 'Checkbox', link: '/components/checkbox' },
+        ],
       },
     ],
 

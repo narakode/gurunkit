@@ -66,13 +66,6 @@ export const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
     : props.modelValue;
 
   return h('div', { class: props.classList?.wrapper ?? '' }, [
-    props.label
-      ? h(
-          'label',
-          { class: props.classList?.label ?? '', for: id },
-          props.label,
-        )
-      : null,
     h(
       'input',
       {
@@ -100,6 +93,13 @@ export const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
         default: context.slots.default,
       },
     ),
+    props.label
+      ? h(
+          'label',
+          { class: props.classList?.label ?? '', for: id },
+          props.label,
+        )
+      : null,
   ]);
 };
 
