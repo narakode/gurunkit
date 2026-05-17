@@ -51,7 +51,7 @@ export const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
   const colorClassList: string = colorClassListOptions[props.color ?? 'light'];
   const sizeClassList: string = sizeClassListOptions[props.size ?? 'md'];
 
-  const { class: inheritClass, ...inheritAttrs } = context.attrs;
+  const { class: inheritClass, id, ...inheritAttrs } = context.attrs;
   const classList = [
     inheritClass,
     props.classList?.base ?? '',
@@ -67,12 +67,17 @@ export const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
 
   return h('div', { class: props.classList?.wrapper ?? '' }, [
     props.label
-      ? h('label', { class: props.classList?.label ?? '' }, props.label)
+      ? h(
+          'label',
+          { class: props.classList?.label ?? '', for: id },
+          props.label,
+        )
       : null,
     h(
       'input',
       {
         ...inheritAttrs,
+        id,
         type: 'checkbox',
         class: classList,
         value: props.inputValue,

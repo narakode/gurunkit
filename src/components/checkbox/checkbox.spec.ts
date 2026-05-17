@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { Checkbox } from './checkbox';
+import { ref } from 'vue';
 
 describe('base', () => {
   test('renders input type checkbox element', () => {
@@ -60,6 +61,20 @@ describe('label', () => {
 
     expect(label.exists()).toBeTruthy();
     expect(label.text()).toEqual('Test');
+  });
+
+  test('has for attribute', () => {
+    const wrapper = mount(Checkbox, {
+      attrs: { id: 'test' },
+      props: {
+        label: 'Test',
+      },
+    });
+
+    expect(wrapper.find('label').attributes('for')).toEqual('test');
+    expect(wrapper.find('input[type=checkbox]').attributes('id')).toEqual(
+      'test',
+    );
   });
 });
 
