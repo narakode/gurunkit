@@ -73,7 +73,7 @@ describe('class list', () => {
     });
   });
 
-  describe.only('size class list', () => {
+  describe('size class list', () => {
     test('default size', () => {
       const wrapper = mount(Button);
 
@@ -93,5 +93,11 @@ describe('class list', () => {
         expect.arrayContaining(classList.sizes.sm.split(' ')),
       );
     });
+  });
+
+  test('inherits class attributes', () => {
+    const wrapper = mount(Button, { attrs: { class: 'w-full' } });
+
+    expect(wrapper.find('button').classes()).toContain('w-full');
   });
 });
