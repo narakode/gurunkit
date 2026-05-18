@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { mount } from '@vue/test-utils';
-import Button from './button';
+import Button, { classList } from './button';
 
 describe('base', () => {
   test('renders button', () => {
@@ -39,5 +39,35 @@ describe('base', () => {
     await wrapper.find('button').trigger('click');
 
     expect(wrapper.emitted()).toHaveProperty('click');
+  });
+});
+
+describe.only('class list', () => {
+  test('base class list', () => {
+    const wrapper = mount(Button);
+
+    expect(wrapper.find('button').classes()).toEqual(
+      expect.arrayContaining(classList.base.split(' ')),
+    );
+  });
+
+  test('default color class list', () => {
+    const wrapper = mount(Button);
+
+    expect(wrapper.find('button').classes()).toEqual(
+      expect.arrayContaining(classList.colors.primary.split(' ')),
+    );
+  });
+
+  test('selected color class list', () => {
+    const wrapper = mount(Button, {
+      props: {
+        color: 'error',
+      },
+    });
+
+    expect(wrapper.find('button').classes()).toEqual(
+      expect.arrayContaining(classList.colors.error.split(' ')),
+    );
   });
 });
