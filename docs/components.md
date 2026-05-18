@@ -1,3 +1,3 @@
 # Components
 
-- [Input](/components/input)
+- [Button](/components/button)
