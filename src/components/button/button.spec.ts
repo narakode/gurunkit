@@ -42,7 +42,7 @@ describe('base', () => {
   });
 });
 
-describe.only('class list', () => {
+describe('class list', () => {
   test('base class list', () => {
     const wrapper = mount(Button);
 
@@ -51,23 +51,47 @@ describe.only('class list', () => {
     );
   });
 
-  test('default color class list', () => {
-    const wrapper = mount(Button);
+  describe('color class list', () => {
+    test('default color', () => {
+      const wrapper = mount(Button);
 
-    expect(wrapper.find('button').classes()).toEqual(
-      expect.arrayContaining(classList.colors.primary.split(' ')),
-    );
-  });
-
-  test('selected color class list', () => {
-    const wrapper = mount(Button, {
-      props: {
-        color: 'error',
-      },
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.colors.primary.split(' ')),
+      );
     });
 
-    expect(wrapper.find('button').classes()).toEqual(
-      expect.arrayContaining(classList.colors.error.split(' ')),
-    );
+    test('selected color', () => {
+      const wrapper = mount(Button, {
+        props: {
+          color: 'error',
+        },
+      });
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.colors.error.split(' ')),
+      );
+    });
+  });
+
+  describe.only('size class list', () => {
+    test('default size', () => {
+      const wrapper = mount(Button);
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.md.split(' ')),
+      );
+    });
+
+    test('selected size', () => {
+      const wrapper = mount(Button, {
+        props: {
+          size: 'sm',
+        },
+      });
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.sm.split(' ')),
+      );
+    });
   });
 });
