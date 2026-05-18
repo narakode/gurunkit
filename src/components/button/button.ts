@@ -1,4 +1,9 @@
-import { h, type FunctionalComponent, type PropType } from 'vue';
+import {
+  h,
+  type Component,
+  type FunctionalComponent,
+  type PropType,
+} from 'vue';
 
 type ButtonColor = 'primary' | 'success' | 'error' | 'warning' | 'light';
 type ButtonSize = 'sm' | 'md' | 'lg';
@@ -26,16 +31,17 @@ export const classList: {
 type ButtonProps = {
   color?: ButtonColor;
   size?: ButtonSize;
+  tag?: string | Component;
 };
 
 const Button: FunctionalComponent<ButtonProps> = (props, context) =>
   h(
-    'button',
+    props.tag ?? 'button',
     {
       class: [
         classList.base,
-        classList.colors[props?.color ?? 'primary'],
-        classList.sizes[props?.size ?? 'md'],
+        classList.colors[props.color ?? 'primary'],
+        classList.sizes[props.size ?? 'md'],
       ],
       ...context.attrs,
     },
@@ -52,6 +58,10 @@ Button.props = {
   size: {
     type: String as PropType<ButtonProps['size']>,
     default: 'md',
+  },
+  tag: {
+    type: null,
+    default: 'button',
   },
 };
 

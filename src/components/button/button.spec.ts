@@ -101,3 +101,9 @@ describe('class list', () => {
     expect(wrapper.find('button').classes()).toContain('w-full');
   });
 });
+
+test('custom tag', () => {
+  const wrapper = mount(Button, { props: { tag: 'a' } });
+
+  expect(wrapper.find('a').exists()).toBe(true);
+});
