@@ -3,42 +3,40 @@ outline: deep
 ---
 
 <script setup>
-import { Checkbox as BaseCheckbox } from '../../src/components/checkbox/checkbox'
+import { Radio as BaseRadio } from '../../src/components/radio/radio'
 import { ref } from 'vue'
 
 const agree = ref(false)
-const selected = ref(['javascript', 'php']);
+const selected = ref('javascript');
 
 function onChange(e) {
   console.log(e);
 }
 </script>
 
-# Checkbox
+# Radio
 
 Features:
 
 - Label
 - Color
 - Size
-- Single Value
-- Multiple Value
 
 ## Usage
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 </script>
 
 <template>
-  <BaseCheckbox />
+  <BaseRadio input-value="test" />
 </template>
 ```
 
 Output:
 
-<BaseCheckbox />
+<BaseRadio />
 
 ## Label
 
@@ -46,17 +44,17 @@ Add label using `label` and `id` props.
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 </script>
 
 <template>
-  <BaseCheckbox id="checkbox" label="Checkbox" />
+  <BaseRadio id="radio" label="Radio" />
 </template>
 ```
 
 Output:
 
-<BaseCheckbox id="test_checkbox" label="Checkbox" />
+<BaseRadio id="test_checkbox" label="Radio" />
 
 ## Wrapper Style
 
@@ -64,11 +62,11 @@ Set wrapper style via `classList.wrapper` props.
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 </script>
 
 <template>
-  <BaseCheckbox
+  <BaseRadio
     id="wrapper_style"
     label="Wrapper Style"
     :class-list="{
@@ -80,7 +78,7 @@ import { Checkbox as BaseCheckbox } from 'bangui';
 
 Output:
 
-<BaseCheckbox
+<BaseRadio
     id="wrapper_style"
     label="Wrapper Style"
     :class-list="{
@@ -94,11 +92,11 @@ Set label style via `classList.label` props.
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 </script>
 
 <template>
-  <BaseCheckbox
+  <BaseRadio
     id="label_style"
     label="Label Style"
     :class-list="{
@@ -111,7 +109,7 @@ import { Checkbox as BaseCheckbox } from 'bangui';
 
 Output:
 
-<BaseCheckbox
+<BaseRadio
     id="label_style"
     label="Label Style"
     :class-list="{
@@ -122,20 +120,20 @@ Output:
 
 ## Base Style
 
-Set base checkbox style via `classList.base` props.
+Set base radio style via `classList.base` props.
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 </script>
 
 <template>
-  <BaseCheckbox
+  <BaseRadio
     id="base_style"
     label="Base Style"
     :class-list="{
       wrapper: 'flex items-center gap-2',
-      base: 'appearance-none size-4 border bg-white border-gray-300',
+      base: 'appearance-none size-4 border rounded-full bg-white border-gray-300',
     }"
   />
 </template>
@@ -143,12 +141,12 @@ import { Checkbox as BaseCheckbox } from 'bangui';
 
 Output:
 
-<BaseCheckbox
+<BaseRadio
     id="base_style"
     label="Base Style"
     :class-list="{
       wrapper: 'flex items-center gap-2',
-      base: 'appearance-none size-4 border bg-white border-gray-300',
+      base: 'appearance-none size-4 border rounded-full bg-white border-gray-300',
     }"
 />
 
@@ -164,14 +162,14 @@ Set color via `color` props.
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 </script>
 
 <template>
-  <BaseCheckbox
+  <BaseRadio
     :class-list="{
       wrapper: 'flex items-center gap-2',
-      base: 'appearance-none size-4 border checked:bg-blue-600',
+      base: 'appearance-none size-4 border rounded-full checked:bg-blue-600',
       colors: {
         light: 'border-gray-300',
         primary: 'border-blue-300',
@@ -187,10 +185,10 @@ import { Checkbox as BaseCheckbox } from 'bangui';
 
 Output:
 
-<BaseCheckbox
+<BaseRadio
     :class-list="{
         wrapper: 'flex items-center gap-2',
-            base: 'appearance-none size-4 border checked:bg-blue-600',
+            base: 'appearance-none size-4 border rounded-full checked:bg-blue-600',
             colors: {
                 light: 'border-gray-300 checked:bg-blue-600',
                 primary: 'border-blue-300 checked:bg-blue-600',
@@ -214,13 +212,13 @@ Set size via `size` props.
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 </script>
 
 <template>
-  <BaseCheckbox
+  <BaseRadio
     :class-list="{
-      base: 'appearance-none border',
+      base: 'appearance-none border rounded-full',
       sizes: {
         sm: 'size-3',
         md: 'size-4',
@@ -234,9 +232,9 @@ import { Checkbox as BaseCheckbox } from 'bangui';
 
 Output:
 
-<BaseCheckbox
+<BaseRadio
     :class-list="{
-        base: 'appearance-none border',
+        base: 'appearance-none border rounded-full',
         sizes: {
             sm: 'size-3',
             md: 'size-4',
@@ -246,59 +244,29 @@ Output:
     size="md"
 />
 
-## v-model Single Value
+## v-model
 
-Add `v-model` directive to bind a single `boolean` value.
+Add `v-model` directive to bind a value.
 
-```vue
-<script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
-import { ref } from 'vue';
-
-const agree = ref(false);
-</script>
-
-<template>
-  id="vmodel_single"
-  <BaseCheckbox label="Accept terms and conditions" v-model="agree" />
-
-  <p>Agree: {{ agree }}</p>
-</template>
-```
-
-Output:
-
-<BaseCheckbox
-  id="vmodel_single"
-  label="Accept terms and conditions"
-  v-model="agree"
-/>
-
-Agree: {{ agree }}
-
-## v-model Multiple Value
-
-Add `v-model` directive to bind a multiple (`array`) value.
-
-Each checkbox needs to have `inputValue` to provide the checkbox `value`.
+Each radio needs to have `inputValue` to provide the radio `value`.
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 import { ref } from 'vue';
 
-const selected = ref(['javascript', 'php']);
+const selected = ref('javascript');
 </script>
 
 <template>
-  <BaseCheckbox
+  <BaseRadio
     label="Javascript"
     input-value="javascript"
     id="javascript"
     v-model="selected"
   />
-  <BaseCheckbox label="PHP" input-value="php" id="php" v-model="selected" />
-  <BaseCheckbox label="C++" input-value="cpp" id="cpp" v-model="selected" />
+  <BaseRadio label="PHP" input-value="php" id="php" v-model="selected" />
+  <BaseRadio label="C++" input-value="cpp" id="cpp" v-model="selected" />
 
   <p>Selected: {{ selected }}</p>
 </template>
@@ -306,22 +274,22 @@ const selected = ref(['javascript', 'php']);
 
 Output:
 
-<BaseCheckbox
+<BaseRadio
 label="Javascript"
-input-value="javascript"
 id="javascript"
+input-value="javascript"
 v-model="selected"
 />
-<BaseCheckbox
+<BaseRadio
 label="PHP"
-input-value="php"
 id="php"
+input-value="php"
 v-model="selected"
 />
-<BaseCheckbox
+<BaseRadio
 label="C++"
-input-value="cpp"
 id="cpp"
+input-value="cpp"
 v-model="selected"
 />
 
@@ -333,7 +301,7 @@ HTML attributes and events are automatically inherited.
 
 ```vue
 <script setup>
-import { Checkbox as BaseCheckbox } from 'bangui';
+import { Radio as BaseRadio } from 'bangui';
 
 function onChange(e) {
   console.log(e);
@@ -341,13 +309,13 @@ function onChange(e) {
 </script>
 
 <template>
-  <BaseCheckbox id="8" label="Notify Updates" required @change="onChange" />
+  <BaseRadio id="8" label="Notify Updates" required @change="onChange" />
 </template>
 ```
 
 Output:
 
-<BaseCheckbox
+<BaseRadio
 id="8"
 label="Notify Updates"
 required
@@ -366,8 +334,8 @@ required
 | `classList.base`       | `String` | :x:      | `null`  | Base class list       |
 | `classList.colors.{x}` | `String` | :x:      | `null`  | Color name class list |
 | `classList.sizes.{x}`  | `String` | :x:      | `null`  | Size name class list  |
-| `label`                | `String` | :x:      | `null`  | Checbox label         |
-| `inputValue`           | `any`    | :x:      | `null`  | Checbox value         |
+| `label`                | `String` | :x:      | `null`  | Radio label           |
+| `inputValue`           | `any`    | :x:      | `null`  | Radio value           |
 | `color`                | `String` | :x:      | `light` | Selected color        |
 | `size`                 | `String` | :x:      | `md`    | Selected size         |
 | HTML Attributes        | -        | :x:      | -       | All HTML attributes   |
@@ -380,7 +348,6 @@ required
 
 ### V-Model
 
-| Name                       | Value     | Description                 |
-| -------------------------- | --------- | --------------------------- |
-| `default` (single value)   | `boolean` | Bind single `boolean` value |
-| `default` (multiple value) | `any[]`   | Bind multiple (array) value |
+| Name      | Value | Description  |
+| --------- | ----- | ------------ |
+| `default` | `any` | Bind a value |
