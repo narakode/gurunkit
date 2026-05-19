@@ -1,9 +1,4 @@
-import {
-  h,
-  type Component,
-  type FunctionalComponent,
-  type PropType,
-} from 'vue';
+import { h, type FunctionalComponent, type PropType } from 'vue';
 import { type Color, type Size } from '../../common';
 
 export const classList: {
@@ -26,41 +21,38 @@ export const classList: {
   },
 };
 
-type ButtonProps = {
+type InputProps = {
   color?: Color;
   size?: Size;
-  tag?: string | Component;
+  modelValue?: string;
+};
+type InputEvents = {
+  'update:modelValue'(newValue: string): void;
 };
 
-const Button: FunctionalComponent<ButtonProps> = (props, context) =>
-  h(
-    props.tag ?? 'button',
-    {
-      class: [
-        classList.base,
-        classList.colors[props.color ?? 'primary'],
-        classList.sizes[props.size ?? 'md'],
-      ],
-      ...context.attrs,
-    },
-    {
-      default: context.slots.default,
-    },
-  );
+const Input: FunctionalComponent<InputProps, InputEvents> = (props, context) =>
+  h('input', {
+    class: [
+      classList.base,
+      classList.colors[props.color ?? 'primary'],
+      classList.sizes[props.size ?? 'md'],
+    ],
+    ...context.attrs,
+    value: props.modelValue,
+    onInput: (e) =>
+      context.emit('update:modelValue', (e.target as HTMLInputElement).value),
+  });
 
-Button.props = {
+Input.props = {
   color: {
-    type: String as PropType<ButtonProps['color']>,
+    type: String as PropType<InputProps['color']>,
     default: 'primary',
   },
   size: {
-    type: String as PropType<ButtonProps['size']>,
+    type: String as PropType<InputProps['size']>,
     default: 'md',
   },
-  tag: {
-    type: null,
-    default: 'button',
-  },
+  modelValue: String,
 };
 
-export default Button;
+export default Input;
