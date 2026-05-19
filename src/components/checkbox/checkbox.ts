@@ -20,11 +20,13 @@ export const classList: {
   colors: Record<Color, string>;
   sizes: Record<Size, string>;
 } = {
-  wrapper: 'flex gap-2',
-  label: 'font-normal',
-  base: 'appearance-none border rounded',
+  wrapper:
+    "flex items-center gap-2.5 relative after:hidden has-checked:after:block after:content-[''] after:w-2.5 after:h-1.5 after:border-l-2 after:border-b-2 after:border-white after:-rotate-45 after:absolute after:top-1.75 after:left-0.75",
+  label: 'font-normal text-gray-900 dark:text-gray-300',
+  base: 'appearance-none border rounded focus-visible:outline-2 focus:ring-0 focus-visible:outline-offset-2',
   colors: {
-    light: 'border-gray-300 checked:bg-blue-600',
+    light:
+      'border-gray-300 checked:bg-blue-600 checked:border-blue-600 dark:border-gray-600 focus-visible:outline-blue-600',
     primary: 'border-blue-300 checked:bg-blue-600',
     error: 'border-red-300 checked:bg-red-600',
     warning: 'border-yellow-300 checked:bg-yellow-600',
@@ -44,9 +46,6 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
   const id = props.id || useId();
 
   return h('div', { class: classList.wrapper }, [
-    props.label
-      ? h('label', { class: classList.label, for: id }, props.label)
-      : null,
     h('input', {
       id,
       type: 'checkbox',
@@ -72,6 +71,9 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
       },
       ...context.attrs,
     }),
+    props.label
+      ? h('label', { class: classList.label, for: id }, props.label)
+      : null,
   ]);
 };
 

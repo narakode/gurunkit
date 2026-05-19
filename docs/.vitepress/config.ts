@@ -25,6 +25,7 @@ export default defineConfig({
         text: 'Components',
         items: [
           { text: 'Button', link: '/components/button' },
+          { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Input', link: '/components/input' },
         ],
       },
