@@ -102,7 +102,7 @@ import { Input } from 'bangui';
 </script>
 
 <template>
-  <Input class="w-full" />
+  <Input placeholder="Input fullwidth" class="w-full" />
 </template>
 ```
 

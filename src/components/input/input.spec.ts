@@ -46,7 +46,7 @@ describe('class list', () => {
       const wrapper = mount(Input);
 
       expect(wrapper.find('input').classes()).toEqual(
-        expect.arrayContaining(classList.colors.primary.split(' ')),
+        expect.arrayContaining(classList.colors.light.split(' ')),
       );
     });
 
@@ -89,6 +89,9 @@ describe('class list', () => {
     const wrapper = mount(Input, { attrs: { class: 'w-full' } });
 
     expect(wrapper.find('input').classes()).toContain('w-full');
+    expect(wrapper.find('input').classes()).toEqual(
+      expect.arrayContaining(classList.base.split(' ')),
+    );
   });
 });
 

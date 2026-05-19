@@ -32,21 +32,24 @@ type ButtonProps = {
   tag?: string | Component;
 };
 
-const Button: FunctionalComponent<ButtonProps> = (props, context) =>
-  h(
+const Button: FunctionalComponent<ButtonProps> = (props, context) => {
+  const { class: inheritClass, ...inheritAttributes } = context.attrs;
+  return h(
     props.tag ?? 'button',
     {
       class: [
+        inheritClass,
         classList.base,
         classList.colors[props.color ?? 'primary'],
         classList.sizes[props.size ?? 'md'],
       ],
-      ...context.attrs,
+      ...inheritAttributes,
     },
     {
       default: context.slots.default,
     },
   );
+};
 
 Button.props = {
   color: {
