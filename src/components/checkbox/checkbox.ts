@@ -1,9 +1,10 @@
 import { h, type FunctionalComponent, type PropType } from 'vue';
-import type { Color } from '../../common';
+import type { Color, Size } from '../../common';
 
 type CheckboxProps = {
   label?: string;
   color?: Color;
+  size?: Size;
 };
 
 export const classList: {
@@ -11,6 +12,7 @@ export const classList: {
   label: string;
   base: string;
   colors: Record<Color, string>;
+  sizes: Record<Size, string>;
 } = {
   wrapper: 'flex gap-2',
   label: 'font-normal',
@@ -22,6 +24,11 @@ export const classList: {
     warning: 'border-yellow-300 checked:bg-yellow-600',
     success: 'border-green-300 checked:bg-green-600',
   },
+  sizes: {
+    sm: 'size-3',
+    md: 'size-4',
+    lg: 'size-6',
+  },
 };
 
 const Checkbox: FunctionalComponent<CheckboxProps> = (props, context) =>
@@ -29,7 +36,11 @@ const Checkbox: FunctionalComponent<CheckboxProps> = (props, context) =>
     props.label ? h('label', { class: classList.label }, props.label) : null,
     h('input', {
       type: 'checkbox',
-      class: [classList.base, classList.colors[props.color ?? 'light']],
+      class: [
+        classList.base,
+        classList.colors[props.color ?? 'light'],
+        classList.sizes[props.size ?? 'md'],
+      ],
       ...context.attrs,
     }),
   ]);
@@ -39,6 +50,10 @@ Checkbox.props = {
   color: {
     type: String as PropType<CheckboxProps['color']>,
     default: 'light',
+  },
+  size: {
+    type: String as PropType<CheckboxProps['size']>,
+    default: 'md',
   },
 };
 

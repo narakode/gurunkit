@@ -72,7 +72,7 @@ describe('class list', () => {
     expect(wrapper.find('input').classes()).toEqual(classList.base.split(' '));
   });
 
-  describe.only('color', () => {
+  describe('color', () => {
     test('default color', () => {
       const wrapper = mount(Checkbox);
 
@@ -90,6 +90,28 @@ describe('class list', () => {
 
       expect(wrapper.find('input').classes()).toEqual(
         expect.arrayContaining(classList.colors.error.split(' ')),
+      );
+    });
+  });
+
+  describe.only('size', () => {
+    test('default size', () => {
+      const wrapper = mount(Checkbox);
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.md.split(' ')),
+      );
+    });
+
+    test('selected size', () => {
+      const wrapper = mount(Checkbox, {
+        props: {
+          size: 'sm',
+        },
+      });
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.sm.split(' ')),
       );
     });
   });
