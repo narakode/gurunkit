@@ -37,7 +37,7 @@ import { Checkbox } from 'bangui';
 <Checkbox label="Checkbox" />
 :::
 
-<!-- ## Color
+## Color
 
 Set checkbox color using `color` props. Supported values: `primary`, `light`, `error`, `warning`, `success`.
 
@@ -49,22 +49,22 @@ import { Checkbox } from 'bangui';
 </script>
 
 <template>
-  <Checkbox color="primary" placeholder="Primary" />
-  <Checkbox color="warning" placeholder="Warning" />
-  <Checkbox color="error" placeholder="Error" />
-  <Checkbox color="light" placeholder="Light" />
-  <Checkbox color="success" placeholder="Success" />
+  <Checkbox color="primary" label="Primary" />
+  <Checkbox color="warning" label="Warning" />
+  <Checkbox color="error" label="Error" />
+  <Checkbox color="light" label="Light" />
+  <Checkbox color="success" label="Success" />
 </template>
 ```
 
 ::: raw
 
-<div class="flex flex-wrap gap-2">
-<Checkbox color="primary" placeholder="Primary" />
-<Checkbox color="warning" placeholder="Warning" />
-<Checkbox color="error" placeholder="Error" />
-<Checkbox color="light" placeholder="Light" />
-<Checkbox color="success" placeholder="Success" />
+<div class="flex flex-wrap gap-4">
+<Checkbox color="primary" label="Primary" />
+<Checkbox color="warning" label="Warning" />
+<Checkbox color="error" label="Error" />
+<Checkbox color="light" label="Light" />
+<Checkbox color="success" label="Success" />
 </div>
 :::
 
@@ -78,22 +78,22 @@ import { Checkbox } from 'bangui';
 </script>
 
 <template>
-  <Checkbox size="sm" placeholder="Small" />
-  <Checkbox size="md" placeholder="Medium" />
-  <Checkbox size="lg" placeholder="Large" />
+  <Checkbox size="sm" label="Small" />
+  <Checkbox size="md" label="Medium" />
+  <Checkbox size="lg" label="Large" />
 </template>
 ```
 
 ::: raw
 
-<div class="flex flex-col items-start gap-2">
-<Checkbox size="sm" placeholder="Small" />
-<Checkbox size="md" placeholder="Medium" />
-<Checkbox size="lg" placeholder="Large" />
+<div class="flex flex-wrap gap-4">
+<Checkbox size="sm" label="Small" />
+<Checkbox size="md" label="Medium" />
+<Checkbox size="lg" label="Large" />
 </div>
 :::
 
-## Custom Class
+<!-- ## Custom Class
 
 Add custom class using `class` attribute.
 
