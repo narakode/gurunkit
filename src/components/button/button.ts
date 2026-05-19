@@ -4,14 +4,12 @@ import {
   type FunctionalComponent,
   type PropType,
 } from 'vue';
-
-type ButtonColor = 'primary' | 'success' | 'error' | 'warning' | 'light';
-type ButtonSize = 'sm' | 'md' | 'lg';
+import { type Color, type Size } from '../../common';
 
 export const classList: {
   base: string;
-  colors: Record<ButtonColor, string>;
-  sizes: Record<ButtonSize, string>;
+  colors: Record<Color, string>;
+  sizes: Record<Size, string>;
 } = {
   base: 'font-medium cursor-pointer inline-flex items-center justify-center',
   colors: {
@@ -29,26 +27,29 @@ export const classList: {
 };
 
 type ButtonProps = {
-  color?: ButtonColor;
-  size?: ButtonSize;
+  color?: Color;
+  size?: Size;
   tag?: string | Component;
 };
 
-const Button: FunctionalComponent<ButtonProps> = (props, context) =>
-  h(
+const Button: FunctionalComponent<ButtonProps> = (props, context) => {
+  const { class: inheritClass, ...inheritAttributes } = context.attrs;
+  return h(
     props.tag ?? 'button',
     {
       class: [
+        inheritClass,
         classList.base,
         classList.colors[props.color ?? 'primary'],
         classList.sizes[props.size ?? 'md'],
       ],
-      ...context.attrs,
+      ...inheritAttributes,
     },
     {
       default: context.slots.default,
     },
   );
+};
 
 Button.props = {
   color: {

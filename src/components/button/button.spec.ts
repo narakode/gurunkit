@@ -99,6 +99,9 @@ describe('class list', () => {
     const wrapper = mount(Button, { attrs: { class: 'w-full' } });
 
     expect(wrapper.find('button').classes()).toContain('w-full');
+    expect(wrapper.find('button').classes()).toEqual(
+      expect.arrayContaining(classList.base.split(' ')),
+    );
   });
 });
 

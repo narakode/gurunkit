@@ -104,6 +104,24 @@ import { Button } from 'bangui';
 <Button tag="a" href="https://google.com" color="light">Google</Button>
 :::
 
+## Custom Class
+
+Add custom class using `class` attribute.
+
+```vue
+<script setup>
+import { Button } from 'bangui';
+</script>
+
+<template>
+  <Button class="w-full">Button fullwidth</Button>
+</template>
+```
+
+::: raw
+<Button class="w-full">Button fullwidth</Button>
+:::
+
 ## HTML Attributes and Events
 
 HTML attributes and events are automatically inherited.
