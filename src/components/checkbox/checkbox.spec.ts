@@ -49,7 +49,7 @@ describe('label', () => {
   });
 });
 
-describe.only('class list', () => {
+describe('class list', () => {
   test('wrapper class list', () => {
     const wrapper = mount(Checkbox);
 
@@ -70,5 +70,27 @@ describe.only('class list', () => {
     const wrapper = mount(Checkbox);
 
     expect(wrapper.find('input').classes()).toEqual(classList.base.split(' '));
+  });
+
+  describe.only('color', () => {
+    test('default color', () => {
+      const wrapper = mount(Checkbox);
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.colors.light.split(' ')),
+      );
+    });
+
+    test('selected color', () => {
+      const wrapper = mount(Checkbox, {
+        props: {
+          color: 'error',
+        },
+      });
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.colors.error.split(' ')),
+      );
+    });
   });
 });
