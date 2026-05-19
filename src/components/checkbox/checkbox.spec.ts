@@ -149,3 +149,42 @@ describe('class list', () => {
     });
   });
 });
+
+describe('model value', () => {
+  describe('boolean value', () => {
+    test('updates model value', async () => {
+      const wrapper = mount(Checkbox, {
+        props: {
+          modelValue: false,
+          'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
+        },
+      });
+
+      const checkbox = wrapper.find('input');
+
+      expect(checkbox.attributes('checked')).not.toBeDefined();
+
+      await checkbox.setValue(true);
+
+      expect(wrapper.props('modelValue')).toBe(true);
+    });
+
+    test('sync checked', async () => {
+      const wrapper = mount(Checkbox, {
+        props: {
+          modelValue: true,
+        },
+      });
+
+      const checkbox = wrapper.find('input');
+
+      expect(checkbox.attributes('checked')).toBeDefined();
+
+      await wrapper.setProps({
+        modelValue: false,
+      });
+
+      expect(checkbox.attributes('checked')).not.toBeDefined();
+    });
+  });
+});

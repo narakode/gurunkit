@@ -5,6 +5,10 @@ type CheckboxProps = {
   label?: string;
   color?: Color;
   size?: Size;
+  modelValue?: boolean;
+};
+type CheckboxEvents = {
+  'update:modelValue'(e: boolean): void;
 };
 
 export const classList: {
@@ -31,7 +35,10 @@ export const classList: {
   },
 };
 
-const Checkbox: FunctionalComponent<CheckboxProps> = (props, context) => {
+const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
+  props,
+  context,
+) => {
   const { id: inheritId, ...inheritAttrs } = context.attrs;
 
   const id = inheritId || useId();
@@ -43,11 +50,17 @@ const Checkbox: FunctionalComponent<CheckboxProps> = (props, context) => {
     h('input', {
       id,
       type: 'checkbox',
+      checked: props.modelValue,
       class: [
         classList.base,
         classList.colors[props.color ?? 'light'],
         classList.sizes[props.size ?? 'md'],
       ],
+      onChange: (e) =>
+        context.emit(
+          'update:modelValue',
+          (e.target as HTMLInputElement).checked,
+        ),
       ...inheritAttrs,
     }),
   ]);
@@ -63,6 +76,8 @@ Checkbox.props = {
     type: String as PropType<CheckboxProps['size']>,
     default: 'md',
   },
+  modelValue: Boolean,
 };
+Checkbox.emits = ['update:modelValue'];
 
 export default Checkbox;
