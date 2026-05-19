@@ -152,23 +152,6 @@ describe('class list', () => {
 
 describe('model value', () => {
   describe('boolean value', () => {
-    test('updates model value', async () => {
-      const wrapper = mount(Checkbox, {
-        props: {
-          modelValue: false,
-          'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
-        },
-      });
-
-      const checkbox = wrapper.find('input');
-
-      expect(checkbox.attributes('checked')).not.toBeDefined();
-
-      await checkbox.setValue(true);
-
-      expect(wrapper.props('modelValue')).toBe(true);
-    });
-
     test('sync checked', async () => {
       const wrapper = mount(Checkbox, {
         props: {
@@ -185,6 +168,103 @@ describe('model value', () => {
       });
 
       expect(checkbox.attributes('checked')).not.toBeDefined();
+    });
+
+    test('updates model value', async () => {
+      const wrapper = mount(Checkbox, {
+        props: {
+          modelValue: false,
+          'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
+        },
+      });
+
+      const checkbox = wrapper.find('input');
+
+      expect(checkbox.attributes('checked')).not.toBeDefined();
+
+      await checkbox.setValue(true);
+
+      expect(wrapper.props('modelValue')).toBe(true);
+    });
+  });
+
+  describe('array values', () => {
+    test('sync checked', async () => {
+      let selected: string[] = ['first'];
+
+      const first = mount(Checkbox, {
+        props: {
+          inputValue: 'first',
+          modelValue: selected,
+        },
+      });
+      const second = mount(Checkbox, {
+        props: {
+          inputValue: 'second',
+          modelValue: selected,
+        },
+      });
+
+      expect(first.find('input').attributes('checked')).toBeDefined();
+      expect(second.find('input').attributes('checked')).not.toBeDefined();
+
+      selected = ['second'];
+
+      await first.setProps({
+        modelValue: selected,
+      });
+      await second.setProps({
+        modelValue: selected,
+      });
+
+      expect(first.find('input').attributes('checked')).not.toBeDefined();
+      expect(second.find('input').attributes('checked')).toBeDefined();
+    });
+
+    test('updates model value', async () => {
+      let selected: string[] = ['first'];
+
+      const first = mount(Checkbox, {
+        props: {
+          inputValue: 'first',
+          modelValue: selected,
+          'onUpdate:modelValue': (e) => (selected = e as string[]),
+        },
+      });
+      await first.find('input').setValue(false);
+      await first.setProps({
+        modelValue: selected,
+      });
+
+      const second = mount(Checkbox, {
+        props: {
+          inputValue: 'second',
+          modelValue: selected,
+          'onUpdate:modelValue': (e) => (selected = e as string[]),
+        },
+      });
+      await second.find('input').setValue(true);
+      await second.setProps({
+        modelValue: selected,
+      });
+
+      const third = mount(Checkbox, {
+        props: {
+          inputValue: 'third',
+          modelValue: selected,
+          'onUpdate:modelValue': (e) => (selected = e as string[]),
+        },
+      });
+      await third.find('input').setValue(true);
+      await third.setProps({
+        modelValue: selected,
+      });
+
+      expect(first.find('input').attributes('checked')).not.toBeDefined();
+      expect(second.find('input').attributes('checked')).toBeDefined();
+      expect(third.find('input').attributes('checked')).toBeDefined();
+
+      expect(selected).toEqual(['second', 'third']);
     });
   });
 });

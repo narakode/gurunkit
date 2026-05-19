@@ -5,10 +5,11 @@ type CheckboxProps = {
   label?: string;
   color?: Color;
   size?: Size;
-  modelValue?: boolean;
+  inputValue?: string;
+  modelValue?: boolean | any[];
 };
 type CheckboxEvents = {
-  'update:modelValue'(e: boolean): void;
+  'update:modelValue'(e: boolean | any[]): void;
 };
 
 export const classList: {
@@ -50,17 +51,26 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
     h('input', {
       id,
       type: 'checkbox',
-      checked: props.modelValue,
+      checked: Array.isArray(props.modelValue)
+        ? props.modelValue.findIndex((check) => check === props.inputValue) !==
+          -1
+        : props.modelValue,
       class: [
         classList.base,
         classList.colors[props.color ?? 'light'],
         classList.sizes[props.size ?? 'md'],
       ],
-      onChange: (e) =>
+      onChange: (e) => {
+        const checked = (e.target as HTMLInputElement).checked;
         context.emit(
           'update:modelValue',
-          (e.target as HTMLInputElement).checked,
-        ),
+          Array.isArray(props.modelValue)
+            ? checked
+              ? [...props.modelValue, props.inputValue]
+              : props.modelValue.filter((check) => check !== props.inputValue)
+            : checked,
+        );
+      },
       ...inheritAttrs,
     }),
   ]);
@@ -76,7 +86,8 @@ Checkbox.props = {
     type: String as PropType<CheckboxProps['size']>,
     default: 'md',
   },
-  modelValue: Boolean,
+  inputValue: String,
+  modelValue: [Boolean, Array],
 };
 Checkbox.emits = ['update:modelValue'];
 
