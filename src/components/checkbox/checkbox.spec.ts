@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { mount } from '@vue/test-utils';
-import Checkbox from './checkbox';
+import Checkbox, { classList } from './checkbox';
 
 describe('base', () => {
   test('renders checkbox', () => {
@@ -46,5 +46,29 @@ describe('label', () => {
 
     expect(label.exists()).toBe(true);
     expect(label.text()).toBe('Test');
+  });
+});
+
+describe.only('class list', () => {
+  test('wrapper class list', () => {
+    const wrapper = mount(Checkbox);
+
+    expect(wrapper.find('div').classes()).toEqual(classList.wrapper.split(' '));
+  });
+
+  test('label class list', () => {
+    const wrapper = mount(Checkbox, {
+      props: {
+        label: 'Test',
+      },
+    });
+
+    expect(wrapper.find('label').classes()).toEqual(classList.label.split(' '));
+  });
+
+  test('checkbox class list', () => {
+    const wrapper = mount(Checkbox);
+
+    expect(wrapper.find('input').classes()).toEqual(classList.base.split(' '));
   });
 });
