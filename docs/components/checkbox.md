@@ -192,15 +192,17 @@ const onCheck = () => alert('test');
 <Checkbox id="remember_me" name="remember_me" label="Remember Me" @change="onCheck" />
 :::
 
-<!-- ## API
+## API
 
 ### Props
 
-| Name                | Type                                              | Required | Default   | Description     |
-| ------------------- | ------------------------------------------------- | -------- | --------- | --------------- |
-| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Button color    |
-| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Button size     |
-| All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes |
+| Name                | Type                                              | Required | Default   | Description          |
+| ------------------- | ------------------------------------------------- | -------- | --------- | -------------------- |
+| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Checkbox color       |
+| `inputValue`        | `string`                                          | :x:      | `null`    | Checkbox input value |
+| `label`             | `string`                                          | :x:      | `null`    | Checkbox label       |
+| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Checkbox size        |
+| All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes      |
 
 ### Events
 
@@ -210,6 +212,6 @@ const onCheck = () => alert('test');
 
 ### Model Value
 
-| Name      | Type     | Description  |
-| --------- | -------- | ------------ |
-| `default` | `string` | Bind a value | -->
+| Name      | Type                | Description                   |
+| --------- | ------------------- | ----------------------------- |
+| `default` | `string` or `any[]` | Bind a boolean or array value |
