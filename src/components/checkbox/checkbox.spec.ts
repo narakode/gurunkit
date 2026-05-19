@@ -49,11 +49,40 @@ describe('label', () => {
   });
 });
 
+describe('id', () => {
+  test('has default id', () => {
+    const wrapper = mount(Checkbox, {
+      props: {
+        label: 'Test',
+      },
+    });
+
+    const id = wrapper.find('input').attributes('id');
+
+    expect(id).toBeDefined();
+    expect(wrapper.find('label').attributes('for')).toEqual(id);
+  });
+
+  test('sets id', () => {
+    const wrapper = mount(Checkbox, {
+      props: {
+        id: 'test',
+        label: 'Test',
+      },
+    });
+
+    expect(wrapper.find('input').attributes('id')).toEqual('test');
+    expect(wrapper.find('label').attributes('for')).toEqual('test');
+  });
+});
+
 describe('class list', () => {
   test('wrapper class list', () => {
     const wrapper = mount(Checkbox);
 
-    expect(wrapper.find('div').classes()).toEqual(classList.wrapper.split(' '));
+    expect(wrapper.find('div').classes()).toEqual(
+      expect.arrayContaining(classList.wrapper.split(' ')),
+    );
   });
 
   test('label class list', () => {
@@ -63,13 +92,17 @@ describe('class list', () => {
       },
     });
 
-    expect(wrapper.find('label').classes()).toEqual(classList.label.split(' '));
+    expect(wrapper.find('label').classes()).toEqual(
+      expect.arrayContaining(classList.label.split(' ')),
+    );
   });
 
   test('checkbox class list', () => {
     const wrapper = mount(Checkbox);
 
-    expect(wrapper.find('input').classes()).toEqual(classList.base.split(' '));
+    expect(wrapper.find('input').classes()).toEqual(
+      expect.arrayContaining(classList.base.split(' ')),
+    );
   });
 
   describe('color', () => {
@@ -94,7 +127,7 @@ describe('class list', () => {
     });
   });
 
-  describe.only('size', () => {
+  describe('size', () => {
     test('default size', () => {
       const wrapper = mount(Checkbox);
 

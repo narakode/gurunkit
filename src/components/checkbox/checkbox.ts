@@ -1,4 +1,4 @@
-import { h, type FunctionalComponent, type PropType } from 'vue';
+import { h, useId, type FunctionalComponent, type PropType } from 'vue';
 import type { Color, Size } from '../../common';
 
 type CheckboxProps = {
@@ -31,19 +31,27 @@ export const classList: {
   },
 };
 
-const Checkbox: FunctionalComponent<CheckboxProps> = (props, context) =>
-  h('div', { class: classList.wrapper }, [
-    props.label ? h('label', { class: classList.label }, props.label) : null,
+const Checkbox: FunctionalComponent<CheckboxProps> = (props, context) => {
+  const { id: inheritId, ...inheritAttrs } = context.attrs;
+
+  const id = inheritId || useId();
+
+  return h('div', { class: classList.wrapper }, [
+    props.label
+      ? h('label', { class: classList.label, for: id }, props.label)
+      : null,
     h('input', {
+      id,
       type: 'checkbox',
       class: [
         classList.base,
         classList.colors[props.color ?? 'light'],
         classList.sizes[props.size ?? 'md'],
       ],
-      ...context.attrs,
+      ...inheritAttrs,
     }),
   ]);
+};
 
 Checkbox.props = {
   label: String,
