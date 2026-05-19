@@ -35,7 +35,7 @@ describe('label', () => {
     expect(wrapper.find('label').exists()).toBe(false);
   });
 
-  test('renders label when exists', () => {
+  test('renders label by props', async () => {
     const wrapper = mount(Checkbox, {
       props: {
         label: 'Test',
@@ -46,6 +46,10 @@ describe('label', () => {
 
     expect(label.exists()).toBe(true);
     expect(label.text()).toBe('Test');
+
+    await wrapper.setProps({ label: 'Update label' });
+
+    expect(label.text()).toBe('Update label');
   });
 });
 
@@ -63,7 +67,7 @@ describe('id', () => {
     expect(wrapper.find('label').attributes('for')).toEqual(id);
   });
 
-  test('sets id', () => {
+  test('sets id from props', async () => {
     const wrapper = mount(Checkbox, {
       props: {
         id: 'test',
@@ -72,7 +76,16 @@ describe('id', () => {
     });
 
     expect(wrapper.find('input').attributes('id')).toEqual('test');
-    expect(wrapper.find('label').attributes('for')).toEqual('test');
+
+    const label = wrapper.find('label');
+
+    expect(label.attributes('for')).toEqual('test');
+
+    await wrapper.setProps({
+      id: 'update_test',
+    });
+
+    expect(label.attributes('for')).toEqual('update_test');
   });
 });
 
@@ -114,7 +127,7 @@ describe('class list', () => {
       );
     });
 
-    test('selected color', () => {
+    test('selected color', async () => {
       const wrapper = mount(Checkbox, {
         props: {
           color: 'error',
@@ -123,6 +136,14 @@ describe('class list', () => {
 
       expect(wrapper.find('input').classes()).toEqual(
         expect.arrayContaining(classList.colors.error.split(' ')),
+      );
+
+      await wrapper.setProps({
+        color: 'success',
+      });
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.colors.success.split(' ')),
       );
     });
   });
@@ -136,7 +157,7 @@ describe('class list', () => {
       );
     });
 
-    test('selected size', () => {
+    test('selected size', async () => {
       const wrapper = mount(Checkbox, {
         props: {
           size: 'sm',
@@ -145,6 +166,14 @@ describe('class list', () => {
 
       expect(wrapper.find('input').classes()).toEqual(
         expect.arrayContaining(classList.sizes.sm.split(' ')),
+      );
+
+      await wrapper.setProps({
+        size: 'lg',
+      });
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.lg.split(' ')),
       );
     });
   });

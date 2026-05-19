@@ -7,6 +7,7 @@ type CheckboxProps = {
   size?: Size;
   inputValue?: string;
   modelValue?: boolean | any[];
+  id?: string;
 };
 type CheckboxEvents = {
   'update:modelValue'(e: boolean | any[]): void;
@@ -40,9 +41,7 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
   props,
   context,
 ) => {
-  const { id: inheritId, ...inheritAttrs } = context.attrs;
-
-  const id = inheritId || useId();
+  const id = props.id || useId();
 
   return h('div', { class: classList.wrapper }, [
     props.label
@@ -71,7 +70,7 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
             : checked,
         );
       },
-      ...inheritAttrs,
+      ...context.attrs,
     }),
   ]);
 };
@@ -88,6 +87,7 @@ Checkbox.props = {
   },
   inputValue: String,
   modelValue: [Boolean, Array],
+  id: String,
 };
 Checkbox.emits = ['update:modelValue'];
 
