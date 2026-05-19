@@ -6,9 +6,10 @@ outline: deep
 import Checkbox from '../../src/components/checkbox/checkbox'
 import { ref } from 'vue'
 
-const name = ref('')
+const agree = ref(true);
+const selected = ref(['javascript'])
 
-const onInput = () => alert('test');
+const onCheck = () => alert('test');
 </script>
 
 # Checkbox
@@ -35,6 +36,24 @@ import { Checkbox } from 'bangui';
 
 ::: raw
 <Checkbox label="Checkbox" />
+:::
+
+## Without Label
+
+`label` is optional.
+
+```vue
+<script setup>
+import { Checkbox } from 'bangui';
+</script>
+
+<template>
+  <Checkbox />
+</template>
+```
+
+::: raw
+<Checkbox />
 :::
 
 ## Color
@@ -93,46 +112,59 @@ import { Checkbox } from 'bangui';
 </div>
 :::
 
-<!-- ## Custom Class
-
-Add custom class using `class` attribute.
-
-```vue
-<script setup>
-import { Checkbox } from 'bangui';
-</script>
-
-<template>
-  <Checkbox placeholder="Checkbox fullwidth" class="w-full" />
-</template>
-```
-
-::: raw
-<Checkbox placeholder="Checkbox fullwidth" class="w-full" />
-:::
-
 ## V-Model
 
-Bind a value using `v-model`.
+### Boolean Value
+
+Bind a single boolean value using `v-model`.
 
 ```vue
 <script setup>
 import { Checkbox } from 'bangui';
 import { ref } from 'vue';
 
-const name = ref('');
+const agree = ref(true);
 </script>
 
 <template>
-  <Checkbox placeholder="Enter your name" v-model="name" />
+  <Checkbox label="Agree" v-model="agree" />
 </template>
 ```
 
 ::: raw
-<Checkbox placeholder="Enter your name" v-model="name" />
+<Checkbox label="Agree" v-model="agree" />
 :::
 
-Your name: {{ name }}
+Agree: {{ agree }}
+
+### Array Value
+
+Bind a multiple value (array) using `v-model`.
+
+Specify each checkbox value using `input-value` props.
+
+```vue
+<script setup>
+import { Checkbox } from 'bangui';
+import { ref } from 'vue';
+
+const selected = ref(['javascript', 'php', 'cpp']);
+</script>
+
+<template>
+  <Checkbox label="Javascript" input-value="javascript" v-model="selected" />
+  <Checkbox label="PHP" input-value="php" v-model="selected" />
+  <Checkbox label="CPP" input-value="cpp" v-model="selected" />
+</template>
+```
+
+::: raw
+<Checkbox label="Javascript" input-value="javascript" v-model="selected" />
+<Checkbox label="PHP" input-value="php" v-model="selected" />
+<Checkbox label="CPP" input-value="cpp" v-model="selected" />
+:::
+
+Selected: {{ selected }}
 
 ## HTML Attributes and Events
 
@@ -141,20 +173,26 @@ HTML attributes and events are automatically inherited.
 ```vue
 <script setup>
 import { Checkbox } from 'bangui';
+import { ref } from 'vue';
 
-const onInput = () => alert('test');
+const onCheck = () => alert('test');
 </script>
 
 <template>
-  <Checkbox type="password" placeholder="Show Alert" @checkbox="onInput" />
+  <Checkbox
+    id="remember_me"
+    name="remember_me"
+    label="Remember Me"
+    @change="onCheck"
+  />
 </template>
 ```
 
 ::: raw
-<Checkbox type="password" placeholder="Show Alert" @checkbox="onInput" />
+<Checkbox id="remember_me" name="remember_me" label="Remember Me" @change="onCheck" />
 :::
 
-## API
+<!-- ## API
 
 ### Props
 

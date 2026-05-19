@@ -50,6 +50,7 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
 
   return h('div', { class: classList.wrapper }, [
     h('input', {
+      ...context.attrs,
       id,
       type: 'checkbox',
       checked: Array.isArray(props.modelValue)
@@ -72,7 +73,6 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
             : checked,
         );
       },
-      ...context.attrs,
     }),
     props.label
       ? h('label', { class: classList.label, for: id }, props.label)
