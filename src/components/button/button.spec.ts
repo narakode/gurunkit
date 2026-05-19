@@ -60,7 +60,7 @@ describe('class list', () => {
       );
     });
 
-    test('selected color', () => {
+    test('selected color', async () => {
       const wrapper = mount(Button, {
         props: {
           color: 'error',
@@ -69,6 +69,14 @@ describe('class list', () => {
 
       expect(wrapper.find('button').classes()).toEqual(
         expect.arrayContaining(classList.colors.error.split(' ')),
+      );
+
+      await wrapper.setProps({
+        color: 'success',
+      });
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.colors.success.split(' ')),
       );
     });
   });
@@ -82,7 +90,7 @@ describe('class list', () => {
       );
     });
 
-    test('selected size', () => {
+    test('selected size', async () => {
       const wrapper = mount(Button, {
         props: {
           size: 'sm',
@@ -91,6 +99,14 @@ describe('class list', () => {
 
       expect(wrapper.find('button').classes()).toEqual(
         expect.arrayContaining(classList.sizes.sm.split(' ')),
+      );
+
+      await wrapper.setProps({
+        size: 'lg',
+      });
+
+      expect(wrapper.find('button').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.lg.split(' ')),
       );
     });
   });

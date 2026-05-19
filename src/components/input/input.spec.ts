@@ -50,7 +50,7 @@ describe('class list', () => {
       );
     });
 
-    test('selected color', () => {
+    test('selected color', async () => {
       const wrapper = mount(Input, {
         props: {
           color: 'error',
@@ -59,6 +59,12 @@ describe('class list', () => {
 
       expect(wrapper.find('input').classes()).toEqual(
         expect.arrayContaining(classList.colors.error.split(' ')),
+      );
+
+      await wrapper.setProps({ color: 'success' });
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.colors.success.split(' ')),
       );
     });
   });
@@ -72,7 +78,7 @@ describe('class list', () => {
       );
     });
 
-    test('selected size', () => {
+    test('selected size', async () => {
       const wrapper = mount(Input, {
         props: {
           size: 'sm',
@@ -81,6 +87,12 @@ describe('class list', () => {
 
       expect(wrapper.find('input').classes()).toEqual(
         expect.arrayContaining(classList.sizes.sm.split(' ')),
+      );
+
+      await wrapper.setProps({ size: 'lg' });
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.lg.split(' ')),
       );
     });
   });
@@ -95,15 +107,27 @@ describe('class list', () => {
   });
 });
 
-test('model value', async () => {
-  const wrapper = mount(Input, {
-    props: {
-      modelValue: '',
-      'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
-    },
+describe('model value', () => {
+  test('sync value', async () => {
+    const wrapper = mount(Input, {
+      props: {
+        modelValue: 'test',
+      },
+    });
+
+    expect(wrapper.find('input').attributes('value')).toEqual('test');
   });
 
-  await wrapper.find('input').setValue('test');
+  test('updates model value', async () => {
+    const wrapper = mount(Input, {
+      props: {
+        modelValue: '',
+        'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
+      },
+    });
 
-  expect(wrapper.props('modelValue')).toEqual('test');
+    await wrapper.find('input').setValue('test');
+
+    expect(wrapper.props('modelValue')).toEqual('test');
+  });
 });
