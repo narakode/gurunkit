@@ -16,8 +16,8 @@ const onInput = () => alert('test');
 Features:
 
 - Color
-- Dark Mode
 - Size
+- Input File
 - Value binding
 
 ## Usage
@@ -89,6 +89,27 @@ import { Input } from 'bangui';
 <Input size="sm" placeholder="Small" />
 <Input size="md" placeholder="Medium" />
 <Input size="lg" placeholder="Large" />
+</div>
+:::
+
+## Input File
+
+Set input file using `type` props with `file` value.
+
+```vue
+<script setup>
+import { Input } from 'bangui';
+</script>
+
+<template>
+  <Input type="file" />
+</template>
+```
+
+::: raw
+
+<div class="flex flex-col items-start gap-2">
+<Input type="file" />
 </div>
 :::
 
