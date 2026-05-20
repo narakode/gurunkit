@@ -1,16 +1,16 @@
 import { h, useId, type FunctionalComponent, type PropType } from 'vue';
 import type { Color, Size } from '../../common';
 
-type CheckboxProps = {
+type RadioProps = {
   label?: string;
   color?: Color;
   size?: Size;
   inputValue?: string;
-  modelValue?: boolean | any[];
+  modelValue?: string;
   id?: string;
 };
-type CheckboxEvents = {
-  'update:modelValue'(e: boolean | any[]): void;
+type RadioEvents = {
+  'update:modelValue'(e?: string): void;
 };
 
 export const classList: {
@@ -20,9 +20,9 @@ export const classList: {
   colors: Record<Color, string>;
   sizes: Record<Size, string>;
 } = {
-  wrapper: 'inline-flex items-center gap-2.5',
+  wrapper: 'inline-flex items-center gap-2',
   label: 'font-normal text-gray-900 dark:text-gray-300',
-  base: "appearance-none relative border focus-visible:outline-2 focus:ring-0 focus-visible:outline-offset-2 after:hidden checked:after:block after:content-[''] after:border-white after:-rotate-45 after:absolute",
+  base: "appearance-none rounded-full relative border focus-visible:outline-2 focus:ring-0 focus-visible:outline-offset-2 after:hidden checked:after:block after:content-[''] after:bg-white after:absolute after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2",
   colors: {
     light:
       'border-gray-300 checked:bg-blue-600 checked:border-blue-600 dark:border-gray-600 focus-visible:outline-blue-600',
@@ -36,13 +36,13 @@ export const classList: {
       'border-green-300 checked:bg-green-600 checked:border-green-600 dark:border-green-600 focus-visible:outline-green-600',
   },
   sizes: {
-    sm: 'size-3 rounded-sm after:w-1.5 after:border-l-1 after:border-b-1 after:h-1 after:top-0.5 after:left-0.5',
-    md: 'size-4 rounded after:w-2.5 after:border-l-2 after:border-b-2 after:h-1.5 after:top-0.75 after:left-0.5',
-    lg: 'size-6 rounded-md after:w-4 after:border-l-3 after:border-b-3 after:h-2.5 after:top-0.75 after:left-0.75',
+    sm: 'size-3 after:size-1.25',
+    md: 'size-4 after:size-1.75',
+    lg: 'size-6 after:size-3',
   },
 };
 
-const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
+const Radio: FunctionalComponent<RadioProps, RadioEvents> = (
   props,
   context,
 ) => {
@@ -52,26 +52,15 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
     h('input', {
       ...context.attrs,
       id,
-      type: 'checkbox',
-      checked: Array.isArray(props.modelValue)
-        ? props.modelValue.findIndex((check) => check === props.inputValue) !==
-          -1
-        : props.modelValue,
+      type: 'radio',
+      checked: props.modelValue === props.inputValue,
       class: [
         classList.base,
         classList.colors[props.color ?? 'light'],
         classList.sizes[props.size ?? 'md'],
       ],
-      onChange: (e) => {
-        const checked = (e.target as HTMLInputElement).checked;
-        context.emit(
-          'update:modelValue',
-          Array.isArray(props.modelValue)
-            ? checked
-              ? [...props.modelValue, props.inputValue]
-              : props.modelValue.filter((check) => check !== props.inputValue)
-            : checked,
-        );
+      onChange: () => {
+        context.emit('update:modelValue', props.inputValue);
       },
     }),
     props.label
@@ -80,20 +69,20 @@ const Checkbox: FunctionalComponent<CheckboxProps, CheckboxEvents> = (
   ]);
 };
 
-Checkbox.props = {
+Radio.props = {
   label: String,
   color: {
-    type: String as PropType<CheckboxProps['color']>,
+    type: String as PropType<RadioProps['color']>,
     default: 'light',
   },
   size: {
-    type: String as PropType<CheckboxProps['size']>,
+    type: String as PropType<RadioProps['size']>,
     default: 'md',
   },
   inputValue: String,
-  modelValue: [Boolean, Array],
+  modelValue: String,
   id: String,
 };
-Checkbox.emits = ['update:modelValue'];
+Radio.emits = ['update:modelValue'];
 
-export default Checkbox;
+export default Radio;
