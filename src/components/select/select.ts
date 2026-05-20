@@ -3,10 +3,13 @@ import { type Color, type Size } from '../../common';
 
 export const classList: {
   base: string;
+  wrapper: string;
   colors: Record<Color, string>;
   sizes: Record<Size, string>;
 } = {
-  base: 'border focus:outline-0',
+  base: 'appearance-none border focus:outline-0',
+  wrapper:
+    "relative after:block after:content-[''] after:w-2 after:h-2 after:bg-black after:absolute after:top-0 after:right-0",
   colors: {
     primary:
       'bg-white text-blue-700 placeholder-blue-500 border-blue-300 focus:border-blue-600 dark:bg-transparent dark:border-blue-600 dark:focus:border-blue-400 dark:placeholder-blue-600 dark:text-blue-300',
@@ -43,25 +46,32 @@ const Select: FunctionalComponent<SelectProps, SelectEvents> = (
   const { class: inheritClass, type, ...inheritAttributes } = context.attrs;
 
   return h(
-    'select',
-    {
-      type,
-      class: [
-        inheritClass,
-        classList.base,
-        classList.colors[props.color ?? 'light'],
-        classList.sizes[props.size ?? 'md'],
-      ],
-      ...inheritAttributes,
-      value: props.modelValue,
-      onInput: (e) =>
-        context.emit('update:modelValue', (e.target as HTMLInputElement).value),
-    },
-    props.options?.map((option) =>
-      h(
-        'option',
-        { value: typeof option === 'object' ? option.id : option },
-        typeof option === 'object' ? option.name : option,
+    'div',
+    { class: classList.wrapper },
+    h(
+      'select',
+      {
+        type,
+        class: [
+          inheritClass,
+          classList.base,
+          classList.colors[props.color ?? 'light'],
+          classList.sizes[props.size ?? 'md'],
+        ],
+        ...inheritAttributes,
+        value: props.modelValue,
+        onInput: (e) =>
+          context.emit(
+            'update:modelValue',
+            (e.target as HTMLInputElement).value,
+          ),
+      },
+      props.options?.map((option) =>
+        h(
+          'option',
+          { value: typeof option === 'object' ? option.id : option },
+          typeof option === 'object' ? option.name : option,
+        ),
       ),
     ),
   );

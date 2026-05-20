@@ -26,9 +26,9 @@ describe('base', () => {
   test('inherits HTML events', async () => {
     const wrapper = mount(Select);
 
-    await wrapper.find('select').trigger('focus');
+    await wrapper.find('select').trigger('change');
 
-    expect(wrapper.emitted()).toHaveProperty('focus');
+    expect(wrapper.emitted()).toHaveProperty('change');
   });
 });
 
@@ -72,12 +72,26 @@ describe('option', () => {
   });
 });
 
+test('renders wrapper', () => {
+  const wrapper = mount(Select);
+
+  expect(wrapper.find('div').exists()).toBe(true);
+});
+
 describe('class list', () => {
   test('base class list', () => {
     const wrapper = mount(Select);
 
     expect(wrapper.find('select').classes()).toEqual(
       expect.arrayContaining(classList.base.split(' ')),
+    );
+  });
+
+  test('renders wrapper class list', () => {
+    const wrapper = mount(Select);
+
+    expect(wrapper.find('div').classes()).toEqual(
+      expect.arrayContaining(classList.wrapper.split(' ')),
     );
   });
 
