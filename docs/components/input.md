@@ -180,8 +180,8 @@ const onInput = () => alert('test');
 
 | Name                | Type                                              | Required | Default   | Description     |
 | ------------------- | ------------------------------------------------- | -------- | --------- | --------------- |
-| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Button color    |
-| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Button size     |
+| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Input color     |
+| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Input size      |
 | All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes |
 
 ### Events
