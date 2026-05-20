@@ -155,16 +155,28 @@ const onCheck = () => alert('test');
 </script>
 
 <template>
-  <Radio id="period_year" name="period" label="Year" @change="onCheck" />
-  <Radio id="period_month" name="period" label="Month" @change="onCheck" />
+  <Radio
+    id="period_year"
+    input-value="_year"
+    name="period"
+    label="Year"
+    @change="onCheck"
+  />
+  <Radio
+    id="period_month"
+    input-value="month"
+    name="period"
+    label="Month"
+    @change="onCheck"
+  />
 </template>
 ```
 
 ::: raw
 
 <div class="flex gap-4">
-<Radio id="period_year" name="period" label="Year" @change="onCheck" />
-<Radio id="period_month" name="period" label="Month" @change="onCheck" />
+<Radio id="period_year" input-value="_year" name="period" label="Year" @change="onCheck" />
+<Radio id="period_month" input-value="month" name="period" label="Month" @change="onCheck" />
 </div>
 :::
 
