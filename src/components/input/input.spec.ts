@@ -144,7 +144,8 @@ describe('model value', () => {
     const wrapper = mount(Input, {
       props: {
         modelValue: '',
-        'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
+        'onUpdate:modelValue': (e: string) =>
+          wrapper.setProps({ modelValue: e }),
       },
     });
 
