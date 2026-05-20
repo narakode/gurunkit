@@ -97,6 +97,28 @@ describe('class list', () => {
     });
   });
 
+  describe.only('type file class list', () => {
+    test('not applied', () => {
+      const wrapper = mount(Input);
+
+      expect(wrapper.find('input').classes()).not.toEqual(
+        expect.arrayContaining(classList.file.split(' ')),
+      );
+    });
+
+    test('not applied when type file', () => {
+      const wrapper = mount(Input, {
+        attrs: {
+          type: 'file',
+        },
+      });
+
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.file.split(' ')),
+      );
+    });
+  });
+
   test('inherits class attributes', () => {
     const wrapper = mount(Input, { attrs: { class: 'w-full' } });
 

@@ -3,10 +3,12 @@ import { type Color, type Size } from '../../common';
 
 export const classList: {
   base: string;
+  file: string;
   colors: Record<Color, string>;
   sizes: Record<Size, string>;
 } = {
   base: 'border file:bg-gray-100 file:h-full file:text-gray-900 file:border-r focus:outline-0 dark:file:bg-gray-700 dark:file:text-white',
+  file: 'pl-0',
   colors: {
     primary:
       'bg-white text-blue-700 placeholder-blue-500 border-blue-300 file:border-blue-300 focus:border-blue-600 focus:file:border-blue-600 dark:bg-transparent dark:border-blue-600 dark:focus:border-blue-400 dark:focus:file:border-blue-400 dark:placeholder-blue-600 dark:text-blue-300',
@@ -39,12 +41,14 @@ const Input: FunctionalComponent<InputProps, InputEvents> = (
   props,
   context,
 ) => {
-  const { class: inheritClass, ...inheritAttributes } = context.attrs;
+  const { class: inheritClass, type, ...inheritAttributes } = context.attrs;
 
   return h('input', {
+    type,
     class: [
       inheritClass,
       classList.base,
+      type === 'file' ? classList.file : '',
       classList.colors[props.color ?? 'light'],
       classList.sizes[props.size ?? 'md'],
     ],
