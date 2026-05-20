@@ -20,7 +20,7 @@ export const classList: {
   colors: Record<Color, string>;
   sizes: Record<Size, string>;
 } = {
-  wrapper: 'flex items-center gap-2.5',
+  wrapper: 'inline-flex items-center gap-2.5',
   label: 'font-normal text-gray-900 dark:text-gray-300',
   base: "appearance-none relative border focus-visible:outline-2 focus:ring-0 focus-visible:outline-offset-2 after:hidden checked:after:block after:content-[''] after:border-white after:-rotate-45 after:absolute",
   colors: {

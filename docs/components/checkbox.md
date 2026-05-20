@@ -159,9 +159,12 @@ const selected = ref(['javascript', 'php', 'cpp']);
 ```
 
 ::: raw
+
+<div class="flex flex-col gap-2">
 <Checkbox label="Javascript" input-value="javascript" v-model="selected" />
 <Checkbox label="PHP" input-value="php" v-model="selected" />
 <Checkbox label="CPP" input-value="cpp" v-model="selected" />
+</div>
 :::
 
 Selected: {{ selected }}
