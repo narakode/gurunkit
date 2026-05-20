@@ -97,7 +97,7 @@ describe('class list', () => {
     });
   });
 
-  describe.only('type file class list', () => {
+  describe('type file class list', () => {
     test('not applied', () => {
       const wrapper = mount(Input);
 
@@ -144,7 +144,8 @@ describe('model value', () => {
     const wrapper = mount(Input, {
       props: {
         modelValue: '',
-        'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
+        'onUpdate:modelValue': (e: string) =>
+          wrapper.setProps({ modelValue: e }),
       },
     });
 
