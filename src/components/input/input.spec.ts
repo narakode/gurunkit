@@ -97,7 +97,7 @@ describe('class list', () => {
     });
   });
 
-  describe.only('type file class list', () => {
+  describe('type file class list', () => {
     test('not applied', () => {
       const wrapper = mount(Input);
 
