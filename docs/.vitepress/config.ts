@@ -3,10 +3,45 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'Bang UI',
-  description: 'Vue UI Component Library',
+  title: 'Gurun Kit',
+  description: 'Vue UI Component Library Built with Tailwind CSS',
+  head: [
+    [
+      'link',
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/favicon/apple-touch-icon.png',
+      },
+    ],
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon/favicon-32x32.png',
+      },
+    ],
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon/favicon-16x16.png',
+      },
+    ],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search: {
+      provider: 'local',
+    },
+    logo: {
+      src: '/twemoji--desert.svg',
+      alt: 'Gurun Kit - Twemoji Icon',
+    },
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Get Started', link: '/get-started' },
@@ -34,8 +69,11 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+      { icon: 'github', link: 'https://github.com/narakode/gurunkit' },
     ],
+    footer: {
+      copyright: 'Copyright © 2026-present Ibrahim Al Anshor',
+    },
   },
   vite: {
     // @ts-expect-error

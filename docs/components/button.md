@@ -1,5 +1,6 @@
 ---
 outline: deep
+description: Learn how to use Gurun Kit button component
 ---
 
 <script setup>
@@ -20,7 +21,7 @@ Features:
 
 ```vue
 <script setup>
-import { Button } from 'bangui';
+import { Button } from 'gurunkit';
 </script>
 
 <template>
@@ -38,7 +39,7 @@ Set button color using `color` props. Supported values: `primary`, `light`, `err
 
 ```vue
 <script setup>
-import { Button } from 'bangui';
+import { Button } from 'gurunkit';
 </script>
 
 <template>
@@ -67,7 +68,7 @@ Set button size using `size` props. Supported values: `sm`, `md`, `lg`.
 
 ```vue
 <script setup>
-import { Button } from 'bangui';
+import { Button } from 'gurunkit';
 </script>
 
 <template>
@@ -92,7 +93,7 @@ Set button tag using `tag` props. Accepts HTML tag name or Vue component.
 
 ```vue
 <script setup>
-import { Button } from 'bangui';
+import { Button } from 'gurunkit';
 </script>
 
 <template>
@@ -110,7 +111,7 @@ Add custom class using `class` attribute.
 
 ```vue
 <script setup>
-import { Button } from 'bangui';
+import { Button } from 'gurunkit';
 </script>
 
 <template>
@@ -128,7 +129,7 @@ HTML attributes and events are automatically inherited.
 
 ```vue
 <script setup>
-import { Button } from 'bangui';
+import { Button } from 'gurunkit';
 
 const onClick = () => alert('test');
 </script>

@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: 'Bang UI'
-  text: 'Vue UI Component Library'
+  name: 'Gurun Kit'
+  text: 'Vue UI Component Library Built with Tailwind CSS'
   tagline: Simple, rich and customizable Vue UI component library
   actions:
     - theme: brand
@@ -15,10 +15,10 @@ hero:
       link: /components
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 5+ Components
+    details: Everything you need to build Vue apps
+  - title: Simple
+    details: Easy to use and customize
+  - title: Fast
+    details: Built for speed and lightweight performance
 ---

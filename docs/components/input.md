@@ -1,5 +1,6 @@
 ---
 outline: deep
+description: Learn how to use Gurun Kit input component
 ---
 
 <script setup>
@@ -24,7 +25,7 @@ Features:
 
 ```vue
 <script setup>
-import { Input } from 'bangui';
+import { Input } from 'gurunkit';
 </script>
 
 <template>
@@ -44,7 +45,7 @@ It's also supports dark mode, enable it by adding `dark` class to `html` tag.
 
 ```vue
 <script setup>
-import { Input } from 'bangui';
+import { Input } from 'gurunkit';
 </script>
 
 <template>
@@ -73,7 +74,7 @@ Set input size using `size` props. Supported values: `sm`, `md`, `lg`.
 
 ```vue
 <script setup>
-import { Input } from 'bangui';
+import { Input } from 'gurunkit';
 </script>
 
 <template>
@@ -98,7 +99,7 @@ Set input file using `type` props with `file` value.
 
 ```vue
 <script setup>
-import { Input } from 'bangui';
+import { Input } from 'gurunkit';
 </script>
 
 <template>
@@ -119,7 +120,7 @@ Add custom class using `class` attribute.
 
 ```vue
 <script setup>
-import { Input } from 'bangui';
+import { Input } from 'gurunkit';
 </script>
 
 <template>
@@ -137,7 +138,7 @@ Bind a value using `v-model`.
 
 ```vue
 <script setup>
-import { Input } from 'bangui';
+import { Input } from 'gurunkit';
 import { ref } from 'vue';
 
 const name = ref('');
@@ -160,7 +161,7 @@ HTML attributes and events are automatically inherited.
 
 ```vue
 <script setup>
-import { Input } from 'bangui';
+import { Input } from 'gurunkit';
 
 const onInput = () => alert('test');
 </script>

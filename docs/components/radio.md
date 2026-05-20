@@ -1,5 +1,6 @@
 ---
 outline: deep
+description: Learn how to use Gurun Kit radio component
 ---
 
 <script setup>
@@ -24,7 +25,7 @@ Features:
 
 ```vue
 <script setup>
-import { Radio } from 'bangui';
+import { Radio } from 'gurunkit';
 </script>
 
 <template>
@@ -42,7 +43,7 @@ import { Radio } from 'bangui';
 
 ```vue
 <script setup>
-import { Radio } from 'bangui';
+import { Radio } from 'gurunkit';
 </script>
 
 <template>
@@ -62,7 +63,7 @@ It's also supports dark mode, enable it by adding `dark` class to `html` tag.
 
 ```vue
 <script setup>
-import { Radio } from 'bangui';
+import { Radio } from 'gurunkit';
 </script>
 
 <template>
@@ -91,7 +92,7 @@ Set radio size using `size` props. Supported values: `sm`, `md`, `lg`.
 
 ```vue
 <script setup>
-import { Radio } from 'bangui';
+import { Radio } from 'gurunkit';
 </script>
 
 <template>
@@ -118,7 +119,7 @@ Specify each radio value using `input-value` props.
 
 ```vue
 <script setup>
-import { Radio } from 'bangui';
+import { Radio } from 'gurunkit';
 import { ref } from 'vue';
 
 const selected = ref('javascript');
@@ -148,7 +149,7 @@ HTML attributes and events are automatically inherited.
 
 ```vue
 <script setup>
-import { Radio } from 'bangui';
+import { Radio } from 'gurunkit';
 import { ref } from 'vue';
 
 const onCheck = () => alert('test');

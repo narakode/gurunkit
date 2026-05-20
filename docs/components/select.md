@@ -1,5 +1,6 @@
 ---
 outline: deep
+description: Learn how to use Gurun Kit select component
 ---
 
 <script setup>
@@ -23,7 +24,7 @@ Features:
 
 ```vue
 <script setup>
-import { Select } from 'bangui';
+import { Select } from 'gurunkit';
 </script>
 
 <template>
@@ -45,7 +46,7 @@ Or an array of object `{ id: '', name: '' }`. `id` used for the value, `name` us
 
 ```vue
 <script setup>
-import { Select } from 'bangui';
+import { Select } from 'gurunkit';
 </script>
 
 <template>
@@ -73,7 +74,7 @@ It's also supports dark mode, enable it by adding `dark` class to `html` tag.
 
 ```vue
 <script setup>
-import { Select } from 'bangui';
+import { Select } from 'gurunkit';
 </script>
 
 <template>
@@ -102,7 +103,7 @@ Set select size using `size` props. Supported values: `sm`, `md`, `lg`.
 
 ```vue
 <script setup>
-import { Select } from 'bangui';
+import { Select } from 'gurunkit';
 </script>
 
 <template>
@@ -127,7 +128,7 @@ Add custom class using `class` attribute.
 
 ```vue
 <script setup>
-import { Select } from 'bangui';
+import { Select } from 'gurunkit';
 </script>
 
 <template>
@@ -145,7 +146,7 @@ Bind a value using `v-model`.
 
 ```vue
 <script setup>
-import { Select } from 'bangui';
+import { Select } from 'gurunkit';
 import { ref } from 'vue';
 
 const selected = ref('javascript');
@@ -168,7 +169,7 @@ HTML attributes and events are automatically inherited.
 
 ```vue
 <script setup>
-import { Select } from 'bangui';
+import { Select } from 'gurunkit';
 
 const onChange = () => alert('test');
 </script>

@@ -1,5 +1,6 @@
 ---
 outline: deep
+description: Learn how to use Gurun Kit checkbox component
 ---
 
 <script setup>
@@ -26,7 +27,7 @@ Features:
 
 ```vue
 <script setup>
-import { Checkbox } from 'bangui';
+import { Checkbox } from 'gurunkit';
 </script>
 
 <template>
@@ -44,7 +45,7 @@ import { Checkbox } from 'bangui';
 
 ```vue
 <script setup>
-import { Checkbox } from 'bangui';
+import { Checkbox } from 'gurunkit';
 </script>
 
 <template>
@@ -64,7 +65,7 @@ It's also supports dark mode, enable it by adding `dark` class to `html` tag.
 
 ```vue
 <script setup>
-import { Checkbox } from 'bangui';
+import { Checkbox } from 'gurunkit';
 </script>
 
 <template>
@@ -93,7 +94,7 @@ Set checkbox size using `size` props. Supported values: `sm`, `md`, `lg`.
 
 ```vue
 <script setup>
-import { Checkbox } from 'bangui';
+import { Checkbox } from 'gurunkit';
 </script>
 
 <template>
@@ -120,7 +121,7 @@ Bind a single boolean value using `v-model`.
 
 ```vue
 <script setup>
-import { Checkbox } from 'bangui';
+import { Checkbox } from 'gurunkit';
 import { ref } from 'vue';
 
 const agree = ref(true);
@@ -145,7 +146,7 @@ Specify each checkbox value using `input-value` props.
 
 ```vue
 <script setup>
-import { Checkbox } from 'bangui';
+import { Checkbox } from 'gurunkit';
 import { ref } from 'vue';
 
 const selected = ref(['javascript', 'php', 'cpp']);
@@ -175,7 +176,7 @@ HTML attributes and events are automatically inherited.
 
 ```vue
 <script setup>
-import { Checkbox } from 'bangui';
+import { Checkbox } from 'gurunkit';
 import { ref } from 'vue';
 
 const onCheck = () => alert('test');
