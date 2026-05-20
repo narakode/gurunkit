@@ -87,7 +87,7 @@ describe('class list', () => {
     );
   });
 
-  test('renders wrapper class list', () => {
+  test('wrapper class list', () => {
     const wrapper = mount(Select);
 
     expect(wrapper.find('div').classes()).toEqual(
@@ -127,6 +127,9 @@ describe('class list', () => {
     test('default size', () => {
       const wrapper = mount(Select);
 
+      expect(wrapper.find('div').classes()).toEqual(
+        expect.arrayContaining(classList.wrapperSizes.md.split(' ')),
+      );
       expect(wrapper.find('select').classes()).toEqual(
         expect.arrayContaining(classList.sizes.md.split(' ')),
       );
@@ -139,12 +142,18 @@ describe('class list', () => {
         },
       });
 
+      expect(wrapper.find('div').classes()).toEqual(
+        expect.arrayContaining(classList.wrapperSizes.sm.split(' ')),
+      );
       expect(wrapper.find('select').classes()).toEqual(
         expect.arrayContaining(classList.sizes.sm.split(' ')),
       );
 
       await wrapper.setProps({ size: 'lg' });
 
+      expect(wrapper.find('div').classes()).toEqual(
+        expect.arrayContaining(classList.wrapperSizes.lg.split(' ')),
+      );
       expect(wrapper.find('select').classes()).toEqual(
         expect.arrayContaining(classList.sizes.lg.split(' ')),
       );

@@ -5,11 +5,12 @@ export const classList: {
   base: string;
   wrapper: string;
   colors: Record<Color, string>;
+  wrapperSizes: Record<Size, string>;
   sizes: Record<Size, string>;
 } = {
   base: 'appearance-none border focus:outline-0',
   wrapper:
-    "relative after:block after:content-[''] after:w-2 after:h-2 after:bg-black after:absolute after:top-0 after:right-0",
+    "w-fit relative after:block after:content-[''] after:border-l-2 after:border-b-2 after:border-gray-500 after:-rotate-45 has-focus:after:rotate-135 after:absolute after:top-3.25 after:right-3 has-focus:after:top-4.25",
   colors: {
     primary:
       'bg-white text-blue-700 placeholder-blue-500 border-blue-300 focus:border-blue-600 dark:bg-transparent dark:border-blue-600 dark:focus:border-blue-400 dark:placeholder-blue-600 dark:text-blue-300',
@@ -22,9 +23,14 @@ export const classList: {
     light:
       'bg-white text-gray-700 placeholder-gray-400 border-gray-300 focus:border-blue-600 dark:bg-transparent dark:border-gray-600 dark:focus:border-blue-400 dark:placeholder-gray-500 dark:text-gray-300',
   },
+  wrapperSizes: {
+    sm: 'after:size-2',
+    md: 'after:size-2',
+    lg: 'after:size-2',
+  },
   sizes: {
     sm: 'h-8 px-2.5 rounded text-sm',
-    md: 'h-10 px-3 rounded-md',
+    md: 'h-10 pl-3 pr-10 rounded-md',
     lg: 'h-12 px-4 rounded-md text-lg',
   },
 };
@@ -47,7 +53,7 @@ const Select: FunctionalComponent<SelectProps, SelectEvents> = (
 
   return h(
     'div',
-    { class: classList.wrapper },
+    { class: [classList.wrapper, classList.wrapperSizes[props.size ?? 'md']] },
     h(
       'select',
       {
