@@ -1,3 +1,7 @@
+---
+description: Gurun Kit Changelog
+---
+
 <script setup>
 import { version } from '../package.json'
 </script>
