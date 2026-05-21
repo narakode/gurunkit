@@ -2,7 +2,7 @@
 
 Vue UI Component Library Built with Tailwind CSS.
 
-[Read Documentation](https://narakode.id/gurunkit).
+[Read Documentation](https://gurunkit.narakode.id).
 
 ## Requirements
 
