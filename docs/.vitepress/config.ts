@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import tailwindcss from '@tailwindcss/vite';
+import { version } from '../../package.json';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -46,6 +47,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Get Started', link: '/get-started' },
       { text: 'Components', link: '/components' },
+      { text: `v${version}`, link: '/changelog' },
     ],
 
     sidebar: [
