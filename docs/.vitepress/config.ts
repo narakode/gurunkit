@@ -4,7 +4,6 @@ import { version } from '../../package.json';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/gurunkit',
   title: 'Gurun Kit',
   description: 'Vue UI Component Library Built with Tailwind CSS',
   head: [
@@ -13,7 +12,7 @@ export default defineConfig({
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        href: '/gurunkit/favicon/apple-touch-icon.png',
+        href: '/favicon/apple-touch-icon.png',
       },
     ],
     [
@@ -22,7 +21,7 @@ export default defineConfig({
         rel: 'icon',
         type: 'image/png',
         sizes: '32x32',
-        href: '/gurunkit/favicon/favicon-32x32.png',
+        href: '/favicon/favicon-32x32.png',
       },
     ],
     [
@@ -31,7 +30,7 @@ export default defineConfig({
         rel: 'icon',
         type: 'image/png',
         sizes: '16x16',
-        href: '/gurunkit/favicon/favicon-16x16.png',
+        href: '/favicon/favicon-16x16.png',
       },
     ],
   ],
