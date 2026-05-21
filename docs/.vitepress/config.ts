@@ -74,7 +74,7 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/narakode/gurunkit' },
     ],
     footer: {
-      copyright: 'Copyright © 2026-present Ibrahim Al Anshor',
+      copyright: 'Copyright © 2026-present narakode.id',
     },
   },
   vite: {

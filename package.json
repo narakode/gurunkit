@@ -1,8 +1,20 @@
 {
-  "name": "bangui",
-  "private": true,
+  "name": "gurunkit",
   "version": "0.0.0",
+  "author": "Narakode <ibrahimalanshor6@gmail.com> (https://narakode.id)",
+  "keywords": ["vue", "tailwindcss"],
+  "homepage": "https://github.com/narakode/gurunkit",
+  "license": "MIT",
   "type": "module",
+  "files": ["dist"],
+  "main": "./dist/gurun-kit.umd.cjs",
+  "module": "./dist/gurun-kit.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gurun-kit.js",
+      "require": "./dist/gurun-kit.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "test": "vitest",
