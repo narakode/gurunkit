@@ -1,12 +1,12 @@
 {
   "name": "gurunkit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Narakode <ibrahimalanshor6@gmail.com> (https://narakode.id)",
   "keywords": [
     "vue",
     "tailwindcss"
   ],
-  "homepage": "https://github.com/narakode/gurunkit",
+  "homepage": "https://gurunkit.narakode.id",
   "license": "MIT",
   "type": "module",
   "files": [
