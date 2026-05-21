@@ -1,3 +1,5 @@
 @import 'tailwindcss' source('.');
 
 @source '../docs/**/*.md';
+
+@custom-variant dark (&:where(.dark, .dark *));

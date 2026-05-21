@@ -1,5 +1,7 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import Button from './components/button/button';
+import Input from './components/input/input';
+import Checkbox from './components/checkbox/checkbox';
+import Radio from './components/radio/radio';
+import Select from './components/select/select';
 
-createApp(App).mount('#app')
+export { Button, Input, Checkbox, Radio, Select };
