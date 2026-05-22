@@ -1,13 +1,11 @@
 import { h, type FunctionalComponent, type PropType } from 'vue';
 import { type Color, type Size } from '../../common';
 
-type HasFileClassList = Record<'base' | 'file', string>;
-
 export const classList: {
   base: string;
   file: string;
-  colors: Record<Color, HasFileClassList>;
-  sizes: Record<Size, HasFileClassList>;
+  colors: Record<Color, Record<'base' | 'file', string>>;
+  sizes: Record<Size, Record<'base' | 'input' | 'textarea' | 'file', string>>;
 } = {
   base: 'border focus:outline-1',
   file: 'pl-0 file:bg-gray-100 file:h-full file:text-gray-900 file:border-r dark:file:bg-gray-700 dark:file:text-white',
@@ -35,15 +33,21 @@ export const classList: {
   },
   sizes: {
     sm: {
-      base: 'h-8 px-2.5 rounded text-sm',
+      base: 'px-2.5 rounded text-sm',
+      input: 'h-8',
+      textarea: 'min-h-8 py-2',
       file: 'file:text-sm file:px-2.5 file:mr-2.5',
     },
     md: {
-      base: 'h-10 px-3 rounded-md',
+      base: 'px-3 rounded-md',
+      input: 'h-10',
+      textarea: 'min-h-10 py-2',
       file: 'file:px-3 file:mr-3',
     },
     lg: {
-      base: 'h-12 px-4 rounded-md text-lg',
+      base: 'px-4 rounded-md text-lg',
+      input: 'h-12',
+      textarea: 'min-h-12 py-2',
       file: 'file:text-lg file:px-4 file:mr-4',
     },
   },
@@ -53,6 +57,7 @@ type InputProps = {
   color?: Color;
   size?: Size;
   modelValue?: string;
+  tag?: 'input' | 'textarea';
 };
 type InputEvents = {
   'update:modelValue'(newValue: string): void;
@@ -64,7 +69,7 @@ const Input: FunctionalComponent<InputProps, InputEvents> = (
 ) => {
   const { class: inheritClass, type, ...inheritAttributes } = context.attrs;
 
-  return h('input', {
+  return h(props.tag === 'textarea' ? 'textarea' : 'input', {
     type,
     class: [
       inheritClass,
@@ -78,6 +83,9 @@ const Input: FunctionalComponent<InputProps, InputEvents> = (
         : []),
       classList.colors[props.color ?? 'light'].base,
       classList.sizes[props.size ?? 'md'].base,
+      classList.sizes[props.size ?? 'md'][
+        props.tag === 'textarea' ? 'textarea' : 'input'
+      ],
     ],
     ...inheritAttributes,
     value: props.modelValue,
@@ -96,6 +104,10 @@ Input.props = {
     default: 'md',
   },
   modelValue: String,
+  tag: {
+    type: String as PropType<InputProps['tag']>,
+    default: 'input',
+  },
 };
 
 export default Input;
