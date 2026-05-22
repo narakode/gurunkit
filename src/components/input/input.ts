@@ -47,7 +47,7 @@ export const classList: {
     lg: {
       base: 'px-4 rounded-md text-lg',
       input: 'h-12',
-      textarea: 'min-h-12 py-2',
+      textarea: 'min-h-12 py-3',
       file: 'file:text-lg file:px-4 file:mr-4',
     },
   },

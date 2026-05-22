@@ -19,6 +19,7 @@ Features:
 - Color
 - Size
 - Input File
+- Textarea
 - Value binding
 
 ## Usage
@@ -111,6 +112,27 @@ import { Input } from 'gurunkit';
 
 <div class="flex flex-col items-start gap-2">
 <Input type="file" />
+</div>
+:::
+
+## Textarea
+
+Set textarea using `tag` props with `textarea` value.
+
+```vue
+<script setup>
+import { Input } from 'gurunkit';
+</script>
+
+<template>
+  <Input tag="textarea" rows="5" placeholder="Textarea" />
+</template>
+```
+
+::: raw
+
+<div class="flex flex-col items-start gap-2">
+<Input tag="textarea" rows="5" placeholder="Textarea" />
 </div>
 :::
 
