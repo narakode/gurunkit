@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Add outline focus to input and select (#16).
+
+## v0.1.3 - 2026-05-22
+
+### Fixed
+
+- Remove file class list for non file input (#14).
+
 ## [0.1.0] - 2026-05-21
 
 ### Added
