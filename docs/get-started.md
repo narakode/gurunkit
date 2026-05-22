@@ -19,6 +19,18 @@ import Button from '../src/components/button/button'
 npm install gurunkit
 ```
 
+## Add Style
+
+Open your Tailwind CSS file. Register `gurunkit` package to the source paths.
+
+```css
+@import 'tailwindcss';
+
+@source "../node_modules/gurunkit";
+```
+
+[Explicitly registering sources in Tailwind CSS](https://tailwindcss.com/docs/detecting-classes-in-source-files#explicitly-registering-sources).
+
 ## Basic Usage
 
 ```vue
