@@ -46,7 +46,7 @@ describe('class list', () => {
       const wrapper = mount(Input);
 
       expect(wrapper.find('input').classes()).toEqual(
-        expect.arrayContaining(classList.colors.light.split(' ')),
+        expect.arrayContaining(classList.colors.light.base.split(' ')),
       );
     });
 
@@ -58,13 +58,13 @@ describe('class list', () => {
       });
 
       expect(wrapper.find('input').classes()).toEqual(
-        expect.arrayContaining(classList.colors.error.split(' ')),
+        expect.arrayContaining(classList.colors.error.base.split(' ')),
       );
 
       await wrapper.setProps({ color: 'success' });
 
       expect(wrapper.find('input').classes()).toEqual(
-        expect.arrayContaining(classList.colors.success.split(' ')),
+        expect.arrayContaining(classList.colors.success.base.split(' ')),
       );
     });
   });
@@ -74,7 +74,7 @@ describe('class list', () => {
       const wrapper = mount(Input);
 
       expect(wrapper.find('input').classes()).toEqual(
-        expect.arrayContaining(classList.sizes.md.split(' ')),
+        expect.arrayContaining(classList.sizes.md.base.split(' ')),
       );
     });
 
@@ -86,13 +86,13 @@ describe('class list', () => {
       });
 
       expect(wrapper.find('input').classes()).toEqual(
-        expect.arrayContaining(classList.sizes.sm.split(' ')),
+        expect.arrayContaining(classList.sizes.sm.base.split(' ')),
       );
 
       await wrapper.setProps({ size: 'lg' });
 
       expect(wrapper.find('input').classes()).toEqual(
-        expect.arrayContaining(classList.sizes.lg.split(' ')),
+        expect.arrayContaining(classList.sizes.lg.base.split(' ')),
       );
     });
   });
@@ -103,6 +103,12 @@ describe('class list', () => {
 
       expect(wrapper.find('input').classes()).not.toEqual(
         expect.arrayContaining(classList.file.split(' ')),
+      );
+      expect(wrapper.find('input').classes()).not.toEqual(
+        expect.arrayContaining(classList.colors.light.file.split(' ')),
+      );
+      expect(wrapper.find('input').classes()).not.toEqual(
+        expect.arrayContaining(classList.sizes.md.file.split(' ')),
       );
     });
 
@@ -115,6 +121,12 @@ describe('class list', () => {
 
       expect(wrapper.find('input').classes()).toEqual(
         expect.arrayContaining(classList.file.split(' ')),
+      );
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.colors.light.file.split(' ')),
+      );
+      expect(wrapper.find('input').classes()).toEqual(
+        expect.arrayContaining(classList.sizes.md.file.split(' ')),
       );
     });
   });
