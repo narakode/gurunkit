@@ -4,13 +4,21 @@ import Modal, { classlist } from './modal';
 
 describe('wrapper', () => {
   test('renders wrapper', () => {
-    const wrapper = mount(Modal);
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
 
     expect(wrapper.find('[role=dialog]').exists()).toBe(true);
   });
 
   test('class list', () => {
-    const wrapper = mount(Modal);
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
 
     expect(wrapper.find('[role=dialog]').classes()).toEqual(
       expect.arrayContaining(classlist.wrapper.split(' ')),
@@ -20,13 +28,21 @@ describe('wrapper', () => {
 
 describe('content', () => {
   test('renders content', () => {
-    const wrapper = mount(Modal);
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
 
     expect(wrapper.find('[data-test="dialog-content"]').exists()).toBe(true);
   });
 
   test('class list', () => {
-    const wrapper = mount(Modal);
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
 
     expect(wrapper.find('[data-test="dialog-content"]').classes()).toEqual(
       expect.arrayContaining(classlist.content.split(' ')),
@@ -36,7 +52,11 @@ describe('content', () => {
 
 describe('header', () => {
   test('renders header', async () => {
-    const wrapper = mount(Modal);
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
 
     expect(wrapper.find('header').exists()).toBe(false);
 
@@ -49,6 +69,7 @@ describe('header', () => {
     const wrapper = mount(Modal, {
       props: {
         title: 'Test',
+        visible: true,
       },
     });
 
@@ -60,6 +81,7 @@ describe('header', () => {
     const wrapper = mount(Modal, {
       props: {
         title: 'Test',
+        visible: true,
       },
     });
 
@@ -73,6 +95,7 @@ describe('header', () => {
     const wrapper = mount(Modal, {
       props: {
         title: 'Test',
+        visible: true,
       },
     });
 
@@ -90,13 +113,20 @@ describe('header', () => {
 
 describe('body', () => {
   test('renders body', () => {
-    const wrapper = mount(Modal);
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
 
     expect(wrapper.find('[data-test="dialog-body"]').exists()).toBe(true);
   });
 
   test('renders body slot', () => {
     const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
       slots: {
         default: '<p id="test-body"></p>',
       },
@@ -106,7 +136,11 @@ describe('body', () => {
   });
 
   test('classlist', () => {
-    const wrapper = mount(Modal);
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
 
     expect(wrapper.find('[data-test="dialog-body"]').classes()).toEqual(
       expect.arrayContaining(classlist.body.split(' ')),
@@ -116,13 +150,20 @@ describe('body', () => {
 
 describe('footer', () => {
   test('not renders footer', () => {
-    const wrapper = mount(Modal);
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
 
     expect(wrapper.find('footer').exists()).toBe(false);
   });
 
   test('renders footer slot', () => {
     const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
       slots: {
         footer: '<button id="test-footer"></button>',
       },
@@ -134,6 +175,9 @@ describe('footer', () => {
 
   test('classlist', () => {
     const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
       slots: {
         footer: '<button id="test-footer"></button>',
       },
@@ -142,5 +186,35 @@ describe('footer', () => {
     expect(wrapper.find('footer').classes()).toEqual(
       expect.arrayContaining(classlist.footer.split(' ')),
     );
+  });
+});
+
+describe('visible', () => {
+  test('sync visible', async () => {
+    const wrapper = mount(Modal);
+
+    expect(wrapper.find('[role="dialog"]').exists()).toBe(false);
+
+    await wrapper.setProps({
+      visible: true,
+    });
+
+    expect(wrapper.find('[role="dialog"]').exists()).toBe(true);
+  });
+
+  test('close', async () => {
+    const wrapper = mount(Modal, {
+      props: {
+        title: 'Test',
+        visible: true,
+        'onUpdate:visible': (newValue) =>
+          wrapper.setProps({ visible: newValue }),
+      },
+    });
+
+    await wrapper.find('button').trigger('click');
+
+    expect(wrapper.find('[role="dialog"]').exists()).toBe(false);
+    expect(wrapper.emitted()).toHaveProperty('close');
   });
 });
