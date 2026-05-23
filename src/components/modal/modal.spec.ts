@@ -218,3 +218,33 @@ describe('visible', () => {
     expect(wrapper.emitted()).toHaveProperty('close');
   });
 });
+
+describe('click outside', () => {
+  test('closes when click outside content', async () => {
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+        'onUpdate:visible': (newValue) =>
+          wrapper.setProps({ visible: newValue }),
+      },
+    });
+
+    await wrapper.find('[role="dialog"]').trigger('click');
+
+    expect(wrapper.props('visible')).toBe(false);
+  });
+
+  test('not closes when click inside content', async () => {
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+        'onUpdate:visible': (newValue) =>
+          wrapper.setProps({ visible: newValue }),
+      },
+    });
+
+    await wrapper.find('[data-test="dialog-content"]').trigger('click');
+
+    expect(wrapper.props('visible')).toBe(true);
+  });
+});

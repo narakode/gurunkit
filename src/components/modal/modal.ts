@@ -19,36 +19,48 @@ const Modal: FunctionalComponent<
   { 'update:visible'(newValue: boolean): void; close(): void }
 > = (props, ctx) => {
   if (props.visible) {
+    const close = () => {
+      ctx.emit('update:visible', false);
+      ctx.emit('close');
+    };
+
     return h(
       'div',
-      { role: 'dialog', class: classlist.wrapper },
-      h('div', { 'data-test': 'dialog-content', class: classlist.content }, [
-        props.title
-          ? h('header', { class: classlist.header }, [
-              h('h2', { class: classlist.title }, props.title),
-              h(
-                'button',
-                {
-                  'aria-label': 'Close Modal',
-                  class: classlist.close,
-                  onClick: () => {
-                    ctx.emit('update:visible', false);
-                    ctx.emit('close');
+      { role: 'dialog', class: classlist.wrapper, onClick: close },
+      h(
+        'div',
+        {
+          'data-test': 'dialog-content',
+          class: classlist.content,
+          onClick: (e) => {
+            e.stopPropagation();
+          },
+        },
+        [
+          props.title
+            ? h('header', { class: classlist.header }, [
+                h('h2', { class: classlist.title }, props.title),
+                h(
+                  'button',
+                  {
+                    'aria-label': 'Close Modal',
+                    class: classlist.close,
+                    onClick: close,
                   },
-                },
-                h(X),
-              ),
-            ])
-          : null,
-        h(
-          'div',
-          { 'data-test': 'dialog-body', class: classlist.body },
-          ctx.slots.default?.(),
-        ),
-        ctx.slots.footer
-          ? h('footer', { class: classlist.footer }, ctx.slots.footer())
-          : null,
-      ]),
+                  h(X),
+                ),
+              ])
+            : null,
+          h(
+            'div',
+            { 'data-test': 'dialog-body', class: classlist.body },
+            ctx.slots.default?.(),
+          ),
+          ctx.slots.footer
+            ? h('footer', { class: classlist.footer }, ctx.slots.footer())
+            : null,
+        ],
+      ),
     );
   }
 };
