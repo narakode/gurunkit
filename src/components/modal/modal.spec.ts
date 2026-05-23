@@ -1,17 +1,37 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import Modal from './modal';
+import Modal, { classlist } from './modal';
 
-test('renders wrapper', () => {
-  const wrapper = mount(Modal);
+describe('wrapper', () => {
+  test('renders wrapper', () => {
+    const wrapper = mount(Modal);
 
-  expect(wrapper.find('[role=dialog]').exists()).toBe(true);
+    expect(wrapper.find('[role=dialog]').exists()).toBe(true);
+  });
+
+  test('class list', () => {
+    const wrapper = mount(Modal);
+
+    expect(wrapper.find('[role=dialog]').classes()).toEqual(
+      expect.arrayContaining(classlist.wrapper.split(' ')),
+    );
+  });
 });
 
-test('renders content', () => {
-  const wrapper = mount(Modal);
+describe('content', () => {
+  test('renders content', () => {
+    const wrapper = mount(Modal);
 
-  expect(wrapper.find('[data-test="dialog-content"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="dialog-content"]').exists()).toBe(true);
+  });
+
+  test('class list', () => {
+    const wrapper = mount(Modal);
+
+    expect(wrapper.find('[data-test="dialog-content"]').classes()).toEqual(
+      expect.arrayContaining(classlist.content.split(' ')),
+    );
+  });
 });
 
 describe('header', () => {
@@ -48,6 +68,24 @@ describe('header', () => {
     expect(closeButton.exists()).toBe(true);
     expect(closeButton.find('svg').exists()).toBe(true);
   });
+
+  test('class list', () => {
+    const wrapper = mount(Modal, {
+      props: {
+        title: 'Test',
+      },
+    });
+
+    expect(wrapper.find('header').classes()).toEqual(
+      expect.arrayContaining(classlist.header.split(' ')),
+    );
+    expect(wrapper.find('h2').classes()).toEqual(
+      expect.arrayContaining(classlist.title.split(' ')),
+    );
+    expect(wrapper.find('button[aria-label="Close Modal"]').classes()).toEqual(
+      expect.arrayContaining(classlist.close.split(' ')),
+    );
+  });
 });
 
 describe('body', () => {
@@ -66,10 +104,18 @@ describe('body', () => {
 
     expect(wrapper.find('p#test-body').exists()).toBe(true);
   });
+
+  test('classlist', () => {
+    const wrapper = mount(Modal);
+
+    expect(wrapper.find('[data-test="dialog-body"]').classes()).toEqual(
+      expect.arrayContaining(classlist.body.split(' ')),
+    );
+  });
 });
 
 describe('footer', () => {
-  test('not renders footer', async () => {
+  test('not renders footer', () => {
     const wrapper = mount(Modal);
 
     expect(wrapper.find('footer').exists()).toBe(false);
@@ -84,5 +130,17 @@ describe('footer', () => {
 
     expect(wrapper.find('footer').exists()).toBe(true);
     expect(wrapper.find('button#test-footer').exists()).toBe(true);
+  });
+
+  test('classlist', () => {
+    const wrapper = mount(Modal, {
+      slots: {
+        footer: '<button id="test-footer"></button>',
+      },
+    });
+
+    expect(wrapper.find('footer').classes()).toEqual(
+      expect.arrayContaining(classlist.footer.split(' ')),
+    );
   });
 });
