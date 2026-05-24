@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { expect, test } from 'vitest';
-import Table from './table';
+import Table, { type TableColumn } from './table';
+import { h } from 'vue';
 
 test('renders wrapper', () => {
   const wrapper = mount(Table);
@@ -70,6 +71,50 @@ test('renders data', () => {
     });
   });
 });
-test('renders empty item');
-test('renders item');
-test('wrapper overflow');
+test('renders empty item', () => {
+  const columns = [
+    { id: 'id', name: 'No' },
+    { id: 'name', name: 'Name' },
+  ];
+
+  const wrapper = mount(Table, {
+    props: {
+      columns,
+    },
+  });
+
+  expect(wrapper.find('table tbody').exists()).toBe(true);
+
+  const tr = wrapper.findAll('tbody tr');
+
+  expect(tr).toHaveLength(1);
+
+  const td = tr[0].findAll('td');
+
+  expect(td).toHaveLength(1);
+  expect(td[0].attributes('colspan')).toEqual('2');
+  expect(td[0].text()).toEqual('Empty data');
+});
+test('renders item', () => {
+  const columns: TableColumn[] = [
+    { id: 'id', name: 'No' },
+    { id: 'name', name: 'Name', render: ({ item }) => h('p', item.name) },
+  ];
+
+  const wrapper = mount(Table, {
+    props: {
+      columns,
+      data: [{ id: '1', name: 'Test 1' }],
+    },
+  });
+
+  const td = wrapper.findAll('td');
+  const tdName = td[1];
+
+  expect(tdName.html().trim()).toContain('<p>Test 1</p>');
+});
+test('wrapper overflow', () => {
+  const wrapper = mount(Table);
+
+  expect(wrapper.classes()).toContain('overflow-x-auto');
+});
