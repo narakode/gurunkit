@@ -2,13 +2,14 @@ import { h, Transition, type FunctionalComponent } from 'vue';
 import X from '../icons/x.vue';
 
 export const classlist = {
-  wrapper: 'fixed',
-  content: 'bg-white',
-  header: 'border-bottom',
-  title: 'font-bold',
-  close: 'p-2',
+  wrapper:
+    'fixed inset-0 bg-black/50 w-full h-screen z-30 flex items-center justify-center',
+  content: 'bg-white text-gray-900 max-w-screen-md w-full rounded-md shadow',
+  header: 'p-4 border-b border-gray-300 flex items-center justify-between',
+  title: 'font-bold text-lg',
+  close: 'cursor-pointer',
   body: 'p-4',
-  footer: 'p-4',
+  footer: 'p-4 border-t border-gray-300',
 };
 
 const Modal: FunctionalComponent<
@@ -25,7 +26,14 @@ const Modal: FunctionalComponent<
 
   return h(
     Transition,
-    { enterFromClass: 'opacity-0', enterToClass: 'opacity-100' },
+    {
+      enterFromClass: 'opacity-0',
+      enterActiveClass: 'transition transition-all duration-150',
+      enterToClass: 'opacity-100',
+      leaveFromClass: 'opacity-100',
+      leaveActiveClass: 'transition transition-all duration-150',
+      leaveToClass: 'opacity-0',
+    },
     () =>
       !props.visible
         ? undefined
@@ -52,7 +60,7 @@ const Modal: FunctionalComponent<
                           class: classlist.close,
                           onClick: close,
                         },
-                        h(X),
+                        h(X, { class: 'size-5' }),
                       ),
                     ])
                   : null,
