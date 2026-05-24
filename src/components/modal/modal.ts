@@ -1,4 +1,4 @@
-import { h, type FunctionalComponent } from 'vue';
+import { h, Transition, type FunctionalComponent } from 'vue';
 import X from '../icons/x.vue';
 
 export const classlist = {
@@ -18,51 +18,56 @@ const Modal: FunctionalComponent<
   },
   { 'update:visible'(newValue: boolean): void; close(): void }
 > = (props, ctx) => {
-  if (props.visible) {
-    const close = () => {
-      ctx.emit('update:visible', false);
-      ctx.emit('close');
-    };
+  const close = () => {
+    ctx.emit('update:visible', false);
+    ctx.emit('close');
+  };
 
-    return h(
-      'div',
-      { role: 'dialog', class: classlist.wrapper, onClick: close },
-      h(
-        'div',
-        {
-          'data-test': 'dialog-content',
-          class: classlist.content,
-          onClick: (e) => {
-            e.stopPropagation();
-          },
-        },
-        [
-          props.title
-            ? h('header', { class: classlist.header }, [
-                h('h2', { class: classlist.title }, props.title),
-                h(
-                  'button',
-                  {
-                    'aria-label': 'Close Modal',
-                    class: classlist.close,
-                    onClick: close,
-                  },
-                  h(X),
-                ),
-              ])
-            : null,
-          h(
+  return h(
+    Transition,
+    { enterFromClass: 'opacity-0', enterToClass: 'opacity-100' },
+    () =>
+      !props.visible
+        ? undefined
+        : h(
             'div',
-            { 'data-test': 'dialog-body', class: classlist.body },
-            ctx.slots.default?.(),
+            { role: 'dialog', class: classlist.wrapper, onClick: close },
+            h(
+              'div',
+              {
+                'data-test': 'dialog-content',
+                class: classlist.content,
+                onClick: (e) => {
+                  e.stopPropagation();
+                },
+              },
+              [
+                props.title
+                  ? h('header', { class: classlist.header }, [
+                      h('h2', { class: classlist.title }, props.title),
+                      h(
+                        'button',
+                        {
+                          'aria-label': 'Close Modal',
+                          class: classlist.close,
+                          onClick: close,
+                        },
+                        h(X),
+                      ),
+                    ])
+                  : null,
+                h(
+                  'div',
+                  { 'data-test': 'dialog-body', class: classlist.body },
+                  ctx.slots.default?.(),
+                ),
+                ctx.slots.footer
+                  ? h('footer', { class: classlist.footer }, ctx.slots.footer())
+                  : null,
+              ],
+            ),
           ),
-          ctx.slots.footer
-            ? h('footer', { class: classlist.footer }, ctx.slots.footer())
-            : null,
-        ],
-      ),
-    );
-  }
+  );
 };
 
 Modal.props = {

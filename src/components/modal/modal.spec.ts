@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
 import Modal, { classlist } from './modal';
+import { Transition } from 'vue';
 
 describe('wrapper', () => {
   test('renders wrapper', () => {
@@ -23,6 +24,12 @@ describe('wrapper', () => {
     expect(wrapper.find('[role=dialog]').classes()).toEqual(
       expect.arrayContaining(classlist.wrapper.split(' ')),
     );
+  });
+
+  test('render transition', () => {
+    const wrapper = mount(Modal);
+
+    expect(wrapper.findComponent(Transition).exists()).toBe(true);
   });
 });
 
