@@ -65,6 +65,7 @@ export default defineConfig({
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Form Item', link: '/components/form-item' },
           { text: 'Input', link: '/components/input' },
+          { text: 'Modal', link: '/components/modal' },
           { text: 'Radio', link: '/components/radio' },
           { text: 'Select', link: '/components/select' },
         ],
