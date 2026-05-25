@@ -55,6 +55,7 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Get Started', link: '/get-started' },
+          { text: 'Dark Mode', link: '/dark-mode' },
           { text: 'Components', link: '/components' },
         ],
       },
