@@ -68,6 +68,7 @@ export default defineConfig({
           { text: 'Modal', link: '/components/modal' },
           { text: 'Radio', link: '/components/radio' },
           { text: 'Select', link: '/components/select' },
+          { text: 'Table', link: '/components/table' },
         ],
       },
     ],

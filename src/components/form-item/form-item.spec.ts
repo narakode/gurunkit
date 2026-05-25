@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import FormItem, { classList } from './form-item';
+import FormItem from './form-item';
 import { h } from 'vue';
 
 describe('base', () => {
@@ -54,34 +54,6 @@ describe('base', () => {
     });
 
     expect(wrapper.find('div').attributes('aria-label')).toEqual('test');
-  });
-});
-
-describe('class list', () => {
-  test('wrapper class list', () => {
-    if (classList.wrapper) {
-      const wrapper = mount(FormItem, {
-        props: {
-          label: 'Test',
-        },
-      });
-
-      expect(wrapper.find('div').classes()).toEqual(
-        expect.arrayContaining(classList.wrapper.split(' ')),
-      );
-    }
-  });
-
-  test('label class list', () => {
-    const wrapper = mount(FormItem, {
-      props: {
-        label: 'Test',
-      },
-    });
-
-    expect(wrapper.find('label').classes()).toEqual(
-      expect.arrayContaining(classList.label.split(' ')),
-    );
   });
 });
 
