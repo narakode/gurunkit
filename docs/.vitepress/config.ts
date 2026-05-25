@@ -55,6 +55,7 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Get Started', link: '/get-started' },
+          { text: 'Dark Mode', link: '/dark-mode' },
           { text: 'Components', link: '/components' },
         ],
       },
@@ -63,9 +64,13 @@ export default defineConfig({
         items: [
           { text: 'Button', link: '/components/button' },
           { text: 'Checkbox', link: '/components/checkbox' },
+          { text: 'Form Item', link: '/components/form-item' },
           { text: 'Input', link: '/components/input' },
+          { text: 'Modal', link: '/components/modal' },
           { text: 'Radio', link: '/components/radio' },
           { text: 'Select', link: '/components/select' },
+          { text: 'Table', link: '/components/table' },
+          { text: 'Widget', link: '/components/widget' },
         ],
       },
     ],

@@ -166,3 +166,41 @@ describe('model value', () => {
     expect(wrapper.props('modelValue')).toEqual('test');
   });
 });
+
+describe('textarea', () => {
+  test('not renders textarea class', () => {
+    const wrapper = mount(Input);
+
+    expect(wrapper.find('input').classes()).toEqual(
+      expect.arrayContaining(classList.sizes.md.input.split(' ')),
+    );
+    expect(wrapper.find('input').classes()).not.toEqual(
+      expect.arrayContaining(classList.sizes.md.textarea.split(' ')),
+    );
+  });
+
+  test('render textarea', () => {
+    const wrapper = mount(Input, {
+      props: {
+        tag: 'textarea',
+      },
+    });
+
+    expect(wrapper.find('textarea').exists()).toBe(true);
+  });
+
+  test('renders textarea class', () => {
+    const wrapper = mount(Input, {
+      props: {
+        tag: 'textarea',
+      },
+    });
+
+    expect(wrapper.find('textarea').classes()).not.toEqual(
+      expect.arrayContaining(classList.sizes.md.input.split(' ')),
+    );
+    expect(wrapper.find('textarea').classes()).toEqual(
+      expect.arrayContaining(classList.sizes.md.textarea.split(' ')),
+    );
+  });
+});
