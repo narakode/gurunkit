@@ -14,7 +14,7 @@ const Table: FunctionalComponent<{
     { class: 'overflow-x-auto' },
     h(
       'table',
-      { class: 'w-full border border-gray-300 dark:border-gray-600' },
+      { class: 'w-full border border-gray-300 dark:border-gray-700' },
       [
         h(
           'thead',
@@ -25,7 +25,7 @@ const Table: FunctionalComponent<{
                 'th',
                 {
                   class:
-                    'text-left font-bold px-4 py-3 border-b border-gray-300 bg-gray-50 text-gray-900 dark:bg-gray-800 dark:text-white dark:border-gray-600',
+                    'text-left font-bold px-4 py-3 border-b border-gray-300 bg-gray-50 text-gray-900 dark:bg-gray-800 dark:text-white dark:border-gray-700',
                 },
                 column.name,
               ),
@@ -54,7 +54,7 @@ const Table: FunctionalComponent<{
                       'td',
                       {
                         class:
-                          'text-gray-900 px-4 py-3 border-b border-gray-300 dark:text-white dark:border-gray-600',
+                          'text-gray-900 px-4 py-3 border-b border-gray-300 dark:text-white dark:border-gray-700',
                       },
                       column.render
                         ? h(column.render, { item })

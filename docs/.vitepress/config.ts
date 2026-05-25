@@ -69,6 +69,7 @@ export default defineConfig({
           { text: 'Radio', link: '/components/radio' },
           { text: 'Select', link: '/components/select' },
           { text: 'Table', link: '/components/table' },
+          { text: 'Widget', link: '/components/widget' },
         ],
       },
     ],
