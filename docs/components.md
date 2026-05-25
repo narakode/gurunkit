@@ -12,3 +12,4 @@ description: List of available Gurun Kit components
 - [Radio](/components/radio)
 - [Select](/components/select)
 - [Table](/components/table)
+- [Widget](/components/widget)
