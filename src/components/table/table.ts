@@ -8,6 +8,7 @@ export type TableColumn = {
 const Table: FunctionalComponent<{
   columns?: TableColumn[];
   data?: Record<string, any>[];
+  emptyMessage?: string;
 }> = (props) =>
   h(
     'div',
@@ -43,7 +44,7 @@ const Table: FunctionalComponent<{
                     colspan: 2,
                     class: 'text-gray-900 px-4 py-3 dark:text-white',
                   },
-                  'Empty data',
+                  props.emptyMessage,
                 ),
               )
             : props.data?.map((item) =>
@@ -76,6 +77,10 @@ Table.props = {
   data: {
     type: Array,
     default: () => [],
+  },
+  emptyMessage: {
+    type: String,
+    default: 'Empty data',
   },
 };
 
