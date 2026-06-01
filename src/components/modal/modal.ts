@@ -4,9 +4,9 @@ import type { Size } from '../../common';
 
 export const classList: { size: Record<Size, string> } = {
   size: {
-    sm: 'max-w-screen-sm',
-    md: 'max-w-screen-md',
-    lg: 'max-w-screen-lg',
+    sm: 'max-w-md',
+    md: 'max-w-2xl',
+    lg: 'max-w-4xl',
   },
 };
 
