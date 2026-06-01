@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import Modal from './modal';
+import Modal, { classList } from './modal';
 import { Transition } from 'vue';
 
 describe('wrapper', () => {
@@ -19,7 +19,9 @@ describe('wrapper', () => {
 
     expect(wrapper.findComponent(Transition).exists()).toBe(true);
   });
+});
 
+describe('content', () => {
   test('renders content', () => {
     const wrapper = mount(Modal, {
       props: {
@@ -28,6 +30,31 @@ describe('wrapper', () => {
     });
 
     expect(wrapper.find('[data-test="dialog-content"]').exists()).toBe(true);
+  });
+
+  test('default content size', () => {
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+      },
+    });
+
+    expect(wrapper.find('[data-test="dialog-content"]').classes()).toEqual(
+      expect.arrayContaining(classList.size.md.split(' ')),
+    );
+  });
+
+  test('set content size', () => {
+    const wrapper = mount(Modal, {
+      props: {
+        visible: true,
+        size: 'lg',
+      },
+    });
+
+    expect(wrapper.find('[data-test="dialog-content"]').classes()).toEqual(
+      expect.arrayContaining(classList.size.lg.split(' ')),
+    );
   });
 });
 
