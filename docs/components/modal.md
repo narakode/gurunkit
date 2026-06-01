@@ -11,6 +11,7 @@ import { ref } from 'vue'
 const visible1 = ref(false)
 const visible2 = ref(false)
 const visible3 = ref(false)
+const visible4 = ref(false)
 </script>
 
 # Modal
@@ -20,6 +21,7 @@ Modal is a component that dipslays a popup dialog.
 Features:
 
 - Modal
+- Size
 - Parts (header, body, footer)
 - Transition
 - Close on click outside
@@ -117,14 +119,40 @@ Modal Body
 </Modal>
 :::
 
+## Size
+
+Set input size using `size` props. Supported values: `sm`, `md`, `lg`. Default to `md`.
+
+```vue
+<script setup>
+import { Modal, Button } from 'gurunkit';
+import { ref } from 'vue';
+
+const visible = ref(false);
+</script>
+
+<template>
+  <Button @click="visible = true">Open Modal</Button>
+  <Modal size="sm" v-model:visible="visible"> Modal Body </Modal>
+</template>
+```
+
+::: raw
+<Button @click="visible4 = true">Open Modal</Button>
+<Modal size="sm" v-model:visible="visible4">
+Modal Body
+</Modal>
+:::
+
 ## API
 
 ### Props
 
-| Name      | Type      | Required | Default | Description              |
-| --------- | --------- | -------- | ------- | ------------------------ |
-| `visible` | `boolean` | :x:      | `-`     | Control modal visibility |
-| `title`   | `string`  | :x:      | `-`     | Modal title              |
+| Name      | Type             | Required | Default | Description              |
+| --------- | ---------------- | -------- | ------- | ------------------------ |
+| `visible` | `boolean`        | :x:      | `-`     | Control modal visibility |
+| `title`   | `string`         | :x:      | `-`     | Modal title              |
+| `size`    | `sm`, `md`, `lg` | :x:      | `md`    | Modal size               |
 
 ### Events
 
