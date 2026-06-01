@@ -1,10 +1,20 @@
-import { h, Transition, type FunctionalComponent } from 'vue';
+import { h, Transition, type FunctionalComponent, type PropType } from 'vue';
 import X from '../icons/x.vue';
+import type { Size } from '../../common';
+
+export const classList: { size: Record<Size, string> } = {
+  size: {
+    sm: 'max-w-md',
+    md: 'max-w-2xl',
+    lg: 'max-w-4xl',
+  },
+};
 
 const Modal: FunctionalComponent<
   {
     title?: string;
     visible?: boolean;
+    size?: Size;
   },
   { 'update:visible'(newValue: boolean): void; close(): void }
 > = (props, ctx) => {
@@ -38,8 +48,10 @@ const Modal: FunctionalComponent<
               'div',
               {
                 'data-test': 'dialog-content',
-                class:
-                  'bg-white text-gray-900 max-w-screen-md w-full rounded-md shadow',
+                class: [
+                  'bg-white text-gray-900 w-full rounded-md shadow',
+                  classList.size[props.size ?? 'md'],
+                ],
                 onClick: (e) => {
                   e.stopPropagation();
                 },
@@ -87,6 +99,10 @@ const Modal: FunctionalComponent<
 Modal.props = {
   title: String,
   visible: Boolean,
+  size: {
+    type: String as PropType<Size>,
+    default: 'md',
+  },
 };
 Modal.emits = ['update:visible', 'close'];
 
