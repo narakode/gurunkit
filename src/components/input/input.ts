@@ -1,5 +1,6 @@
 import { h, type FunctionalComponent, type PropType } from 'vue';
 import { type Color, type Size } from '../../common';
+import { formatCurrency, parseCurrency } from '../../utils';
 
 export const classList: {
   base: string;
@@ -58,6 +59,7 @@ type InputProps = {
   size?: Size;
   modelValue?: string;
   tag?: 'input' | 'textarea';
+  currency?: boolean;
 };
 type InputEvents = {
   'update:modelValue'(newValue: string): void;
@@ -88,9 +90,17 @@ const Input: FunctionalComponent<InputProps, InputEvents> = (
       ],
     ],
     ...inheritAttributes,
-    value: props.modelValue,
-    onInput: (e) =>
-      context.emit('update:modelValue', (e.target as HTMLInputElement).value),
+    value: props.currency
+      ? formatCurrency(Number(props.modelValue))
+      : props.modelValue,
+    onInput: (e) => {
+      const value = (e.target as HTMLInputElement).value;
+
+      context.emit(
+        'update:modelValue',
+        props.currency ? parseCurrency(value) : value,
+      );
+    },
   });
 };
 
@@ -108,6 +118,7 @@ Input.props = {
     type: String as PropType<InputProps['tag']>,
     default: 'input',
   },
+  currency: Boolean,
 };
 
 export default Input;

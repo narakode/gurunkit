@@ -8,6 +8,7 @@ import Input from '../../src/components/input/input'
 import { ref } from 'vue'
 
 const name = ref('')
+const price = ref('50000');
 
 const onInput = () => alert('test');
 </script>
@@ -20,6 +21,7 @@ Features:
 - Size
 - Input File
 - Textarea
+- Currency
 - Value binding
 
 ## Usage
@@ -177,6 +179,29 @@ const name = ref('');
 
 Your name: {{ name }}
 
+## Input Currency
+
+Auto formats and parses value as currency when `currency` prop is `true`.
+
+```vue
+<script setup>
+import { Input } from 'gurunkit';
+import { ref } from 'vue';
+
+const price = ref('50000');
+</script>
+
+<template>
+  <Input placeholder="Enter your price" currency v-model="price" />
+</template>
+```
+
+::: raw
+<Input placeholder="Enter your price" currency v-model="price" />
+:::
+
+Your price: {{ price }}
+
 ## HTML Attributes and Events
 
 HTML attributes and events are automatically inherited.
@@ -201,11 +226,12 @@ const onInput = () => alert('test');
 
 ### Props
 
-| Name                | Type                                              | Required | Default   | Description     |
-| ------------------- | ------------------------------------------------- | -------- | --------- | --------------- |
-| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Input color     |
-| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Input size      |
-| All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes |
+| Name                | Type                                              | Required | Default   | Description                          |
+| ------------------- | ------------------------------------------------- | -------- | --------- | ------------------------------------ |
+| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Input color                          |
+| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Input size                           |
+| `currency`          | `boolean`                                         | :x:      | `false`   | Formats and parses value as currency |
+| All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes                      |
 
 ### Events
 
