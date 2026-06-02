@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { mount } from '@vue/test-utils';
 import Input, { classList } from './input';
+import { formatCurrency, parseCurrency } from '../../utils';
 
 describe('base', () => {
   test('renders input', () => {
@@ -202,5 +203,38 @@ describe('textarea', () => {
     expect(wrapper.find('textarea').classes()).toEqual(
       expect.arrayContaining(classList.sizes.md.textarea.split(' ')),
     );
+  });
+});
+
+describe('currency', () => {
+  test('format value', () => {
+    const testNumber = 25000;
+    const wrapper = mount(Input, {
+      props: {
+        currency: true,
+        modelValue: `${testNumber}`,
+      },
+    });
+
+    expect(wrapper.find('input').attributes('value')).toEqual(
+      formatCurrency(testNumber),
+    );
+  });
+  test('update unformatted value', async () => {
+    const testNumber = 25000;
+    const wrapper = mount(Input, {
+      props: {
+        currency: true,
+        modelValue: `${testNumber}`,
+        'onUpdate:modelValue': (newValue) =>
+          wrapper.setProps({ modelValue: newValue }),
+      },
+    });
+
+    const updateNumber = '50,000';
+
+    await wrapper.find('input').setValue(updateNumber);
+
+    expect(wrapper.props('modelValue')).toEqual(parseCurrency(updateNumber));
   });
 });
