@@ -1,7 +1,11 @@
-export function formatCurrency(input: number): string {
-  return new Intl.NumberFormat().format(input);
+export function formatCurrency(input: string | number): string {
+  if (typeof input === 'number') {
+    return new Intl.NumberFormat().format(input);
+  }
+
+  return new Intl.NumberFormat().format(Number(input.replace(/\D/gi, '')));
 }
 
 export function parseCurrency(input: string): string {
-  return input.replace(/\D/gi, '');
+  return `${Number(input.replace(/\D/gi, ''))}`;
 }
