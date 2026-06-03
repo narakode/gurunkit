@@ -9,6 +9,7 @@ description: List of available Gurun Kit components
 - [Form Item](/components/form-item)
 - [Input](/components/input)
 - [Modal](/components/modal)
+- [Pagination](/components/pagination)
 - [Radio](/components/radio)
 - [Select](/components/select)
 - [Table](/components/table)
