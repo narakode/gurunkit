@@ -1,5 +1,10 @@
 import { h, type FunctionalComponent } from 'vue';
 
+export const classList = {
+  active: 'bg-blue-600',
+  inactive: 'bg-gray-50',
+};
+
 const Pagination: FunctionalComponent<
   {
     total: number;
@@ -26,6 +31,7 @@ const Pagination: FunctionalComponent<
       h(
         i === props.active ? 'span' : 'a',
         {
+          class: [props.active === i ? classList.active : classList.inactive],
           'data-page': i,
           onClick: (e) => {
             e.preventDefault();

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import Pagination from './pagination';
+import Pagination, { classList } from './pagination';
 
 test('renders wrapper', () => {
   const wrapper = mount(Pagination, {
@@ -69,8 +69,38 @@ describe('items', () => {
     });
   });
 
-  test('non active class list');
-  test('active class list');
+  describe('class list', () => {
+    test('non active class list', () => {
+      const wrapper = mount(Pagination, {
+        props: {
+          total: 5,
+          active: 1,
+        },
+      });
+
+      expect(wrapper.find('a[data-page="2"]').classes()).toEqual(
+        expect.arrayContaining(classList.inactive.split(' ')),
+      );
+      expect(wrapper.find('span[data-page="1"]').classes()).not.toEqual(
+        expect.arrayContaining(classList.inactive.split(' ')),
+      );
+    });
+    test('active class list', () => {
+      const wrapper = mount(Pagination, {
+        props: {
+          total: 5,
+          active: 1,
+        },
+      });
+
+      expect(wrapper.find('a[data-page="2"]').classes()).not.toEqual(
+        expect.arrayContaining(classList.active.split(' ')),
+      );
+      expect(wrapper.find('span[data-page="1"]').classes()).toEqual(
+        expect.arrayContaining(classList.active.split(' ')),
+      );
+    });
+  });
 });
 
 describe('prev', () => {
