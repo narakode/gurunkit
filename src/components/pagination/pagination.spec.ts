@@ -21,7 +21,7 @@ describe('items', () => {
       },
     });
 
-    expect(wrapper.findAll('nav a')).toHaveLength(total);
+    expect(wrapper.findAll('nav a[data-page]')).toHaveLength(total);
   });
 
   test('renders item link', () => {
@@ -32,7 +32,7 @@ describe('items', () => {
       },
     });
 
-    expect(wrapper.findAll('a').map((a) => a.text())).toEqual([
+    expect(wrapper.findAll('a[data-page]').map((a) => a.text())).toEqual([
       '1',
       '2',
       '3',
@@ -40,19 +40,35 @@ describe('items', () => {
     ]);
   });
 
-  test('renders total items and active span', () => {
-    const wrapper = mount(Pagination, {
-      props: {
-        total: 4,
-        active: 1,
-      },
+  describe('active', () => {
+    test('renders total items and active span', () => {
+      const wrapper = mount(Pagination, {
+        props: {
+          total: 4,
+          active: 1,
+        },
+      });
+
+      expect(wrapper.findAll('a[data-page]')).toHaveLength(3);
+      expect(wrapper.findAll('span')).toHaveLength(1);
     });
 
-    expect(wrapper.findAll('a')).toHaveLength(3);
-    expect(wrapper.findAll('span')).toHaveLength(1);
+    test('updates active onclick', async () => {
+      const wrapper = mount(Pagination, {
+        props: {
+          total: 4,
+          active: 1,
+          'onUpdate:active': (newValue) =>
+            wrapper.setProps({ active: newValue }),
+        },
+      });
+
+      await wrapper.find('a[data-page="2"]').trigger('click');
+
+      expect(wrapper.props('active')).toEqual(2);
+    });
   });
 
-  test('updates active onclick');
   test('non active class list');
   test('active class list');
 });
@@ -80,7 +96,19 @@ describe('prev', () => {
     expect(wrapper.find('a[aria-label="Prev"]').exists()).toBe(true);
   });
 
-  test('updates active onclick');
+  test('updates active onclick', async () => {
+    const wrapper = mount(Pagination, {
+      props: {
+        total: 4,
+        active: 2,
+        'onUpdate:active': (newValue) => wrapper.setProps({ active: newValue }),
+      },
+    });
+
+    await wrapper.find('a[aria-label="Prev"]').trigger('click');
+
+    expect(wrapper.props('active')).toEqual(1);
+  });
 });
 
 describe('next', () => {
@@ -105,5 +133,17 @@ describe('next', () => {
     expect(wrapper.find('a[aria-label="Next"]').exists()).toBe(true);
   });
 
-  test('updates active onclick');
+  test('updates active onclick', async () => {
+    const wrapper = mount(Pagination, {
+      props: {
+        total: 4,
+        active: 2,
+        'onUpdate:active': (newValue) => wrapper.setProps({ active: newValue }),
+      },
+    });
+
+    await wrapper.find('a[aria-label="Next"]').trigger('click');
+
+    expect(wrapper.props('active')).toEqual(3);
+  });
 });
