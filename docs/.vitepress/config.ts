@@ -67,6 +67,7 @@ export default defineConfig({
           { text: 'Form Item', link: '/components/form-item' },
           { text: 'Input', link: '/components/input' },
           { text: 'Modal', link: '/components/modal' },
+          { text: 'Pagination', link: '/components/pagination' },
           { text: 'Radio', link: '/components/radio' },
           { text: 'Select', link: '/components/select' },
           { text: 'Table', link: '/components/table' },
