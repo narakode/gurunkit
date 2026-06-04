@@ -16,7 +16,7 @@ test('renders wrapper', () => {
   expect(wrapper.find('div[data-test="message-wrapper"]').exists()).toBe(true);
 });
 
-describe.only('items', () => {
+describe('items', () => {
   test('renders total items', () => {
     const wrapper = mount(Message);
 
@@ -31,5 +31,4 @@ describe.only('items', () => {
         .map((message) => message.text()),
     ).toEqual(['Test 1', 'Test 2']);
   });
-  test('closes item on duration');
 });
