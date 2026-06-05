@@ -13,7 +13,7 @@ export function useMessage() {
     return items.value;
   }
 
-  function info(message: string, duration: number = 300) {
+  function info(message: string, duration: number = 3000) {
     const id = Date.now();
 
     items.value.push({
