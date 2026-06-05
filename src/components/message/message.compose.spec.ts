@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { useMessage } from './message.compose';
 
-describe.only('useMessage', () => {
+describe('useMessage', () => {
   beforeEach(() => {
     vi.useFakeTimers();
 
@@ -35,7 +35,7 @@ describe.only('useMessage', () => {
 
       expect(getItems()).toHaveLength(1);
 
-      vi.advanceTimersByTime(200);
+      vi.advanceTimersByTime(2000);
 
       expect(getItems()).toHaveLength(1);
     });
@@ -55,28 +55,28 @@ describe.only('useMessage', () => {
 
       info('Test');
 
-      vi.advanceTimersByTime(100);
+      vi.advanceTimersByTime(1000);
 
       info('Test');
 
-      vi.advanceTimersByTime(100);
+      vi.advanceTimersByTime(1000);
 
       expect(getItems()).toHaveLength(2);
 
-      vi.advanceTimersByTime(100);
+      vi.advanceTimersByTime(1000);
 
       expect(getItems()).toHaveLength(1);
 
-      vi.advanceTimersByTime(200);
+      vi.advanceTimersByTime(2000);
 
       expect(getItems()).toHaveLength(0);
     });
     test('closes message custom duration', () => {
       const { getItems, info } = useMessage();
 
-      info('Test', 500);
+      info('Test', 5000);
 
-      vi.advanceTimersByTime(400);
+      vi.advanceTimersByTime(4000);
 
       expect(getItems()).toHaveLength(1);
 

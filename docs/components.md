@@ -8,6 +8,7 @@ description: List of available Gurun Kit components
 - [Checkbox](/components/checkbox)
 - [Form Item](/components/form-item)
 - [Input](/components/input)
+- [Message](/components/message)
 - [Modal](/components/modal)
 - [Pagination](/components/pagination)
 - [Radio](/components/radio)
