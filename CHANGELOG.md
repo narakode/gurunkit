@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-06-06
+
+### Added
+
+- Message component (#29).
+- Pagination component (#28).
+- Input currency variant (#27).
+- Modal size variant (#26).
+- Custom table empty message (#23).
+
+### Fixed
+
+- Select option null not selected (#24).
+
 ## [0.2.0] - 2026-05-25
 
 ### Added
