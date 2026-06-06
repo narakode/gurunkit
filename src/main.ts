@@ -7,6 +7,9 @@ import FormItem from './components/form-item/form-item';
 import Modal from './components/modal/modal';
 import Table from './components/table/table';
 import Widget from './components/widget/widget';
+import Pagination from './components/pagination/pagination';
+import Message from './components/message/message';
+import { useMessage } from './components/message/message.compose';
 
 export {
   Button,
@@ -18,4 +21,7 @@ export {
   Modal,
   Table,
   Widget,
+  Pagination,
+  Message,
+  useMessage,
 };
