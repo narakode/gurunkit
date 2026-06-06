@@ -195,4 +195,21 @@ describe('model value', () => {
 
     expect(wrapper.props('modelValue')).toEqual('2');
   });
+
+  test('null value', async () => {
+    const wrapper = mount(Select, {
+      props: {
+        options: [null, 2, 3],
+        modelValue: null,
+        'onUpdate:modelValue': (e) => wrapper.setProps({ modelValue: e }),
+      },
+    });
+
+    expect(wrapper.find('select').attributes('value')).toEqual('');
+
+    await wrapper.find('select').setValue(2);
+    await wrapper.find('select').setValue('');
+
+    expect(wrapper.props('modelValue')).toEqual(null);
+  });
 });

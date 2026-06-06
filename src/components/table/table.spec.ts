@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { expect, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import Table, { type TableColumn } from './table';
 import { h } from 'vue';
 
@@ -71,30 +71,50 @@ test('renders data', () => {
     });
   });
 });
-test('renders empty item', () => {
-  const columns = [
-    { id: 'id', name: 'No' },
-    { id: 'name', name: 'Name' },
-  ];
 
-  const wrapper = mount(Table, {
-    props: {
-      columns,
-    },
+describe('empty message', () => {
+  test('default empty message', () => {
+    const columns = [
+      { id: 'id', name: 'No' },
+      { id: 'name', name: 'Name' },
+    ];
+
+    const wrapper = mount(Table, {
+      props: {
+        columns,
+      },
+    });
+
+    expect(wrapper.find('table tbody').exists()).toBe(true);
+
+    const tr = wrapper.findAll('tbody tr');
+
+    expect(tr).toHaveLength(1);
+
+    const td = tr[0].findAll('td');
+
+    expect(td).toHaveLength(1);
+    expect(td[0].attributes('colspan')).toEqual('2');
+    expect(td[0].text()).toEqual('Empty data');
   });
 
-  expect(wrapper.find('table tbody').exists()).toBe(true);
+  test('set empty message', () => {
+    const columns = [
+      { id: 'id', name: 'No' },
+      { id: 'name', name: 'Name' },
+    ];
 
-  const tr = wrapper.findAll('tbody tr');
+    const wrapper = mount(Table, {
+      props: {
+        columns,
+        emptyMessage: 'No data',
+      },
+    });
 
-  expect(tr).toHaveLength(1);
-
-  const td = tr[0].findAll('td');
-
-  expect(td).toHaveLength(1);
-  expect(td[0].attributes('colspan')).toEqual('2');
-  expect(td[0].text()).toEqual('Empty data');
+    expect(wrapper.find('td').text()).toEqual('No data');
+  });
 });
+
 test('renders item', () => {
   const columns: TableColumn[] = [
     { id: 'id', name: 'No' },

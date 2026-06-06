@@ -114,11 +114,46 @@ import { h } from 'vue';
 />
 :::
 
+## Empty Message
+
+When the `data` props is empty, an empty message is displayed. Use the `empty-message` prop to customize the message.
+
+```vue
+<script setup>
+import { Table } from 'gurunkit';
+import { h } from 'vue';
+</script>
+
+<template>
+  <Table
+    :columns="[
+      { id: 'name', name: 'Name' },
+      { id: 'email', name: 'Email' },
+    ]"
+    :data="[]"
+    empty-message="Tidak ada data"
+  />
+</template>
+```
+
+::: raw
+
+<Table
+:columns="[
+{ id: 'name', name: 'Name' },
+{ id: 'email', name: 'Email' },
+]"
+:data="[]"
+empty-message="Tidak ada data"
+/>
+:::
+
 ## API
 
 ### Props
 
-| Name      | Type                                                     | Required           | Default | Description   |
-| --------- | -------------------------------------------------------- | ------------------ | ------- | ------------- |
-| `columns` | `{ id: string, name: string, render?: Vue.Component }[]` | :white_check_mark: | `[]`    | Table columns |
-| `data`    | `any[]`                                                  | :x:                | `[]`    | Table data    |
+| Name            | Type                                                     | Required           | Default      | Description                     |
+| --------------- | -------------------------------------------------------- | ------------------ | ------------ | ------------------------------- |
+| `columns`       | `{ id: string, name: string, render?: Vue.Component }[]` | :white_check_mark: | `[]`         | Table columns                   |
+| `data`          | `any[]`                                                  | :x:                | `[]`         | Table data                      |
+| `empty-message` | `string`                                                 | :x:                | `Empty data` | Message show when data is empty |

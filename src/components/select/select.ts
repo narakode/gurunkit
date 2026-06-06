@@ -42,7 +42,7 @@ type SelectProps = {
   options?: any[] | { id: string; name: string }[];
 };
 type SelectEvents = {
-  'update:modelValue'(newValue: string): void;
+  'update:modelValue'(newValue: string | null): void;
 };
 
 const Select: FunctionalComponent<SelectProps, SelectEvents> = (
@@ -65,18 +65,26 @@ const Select: FunctionalComponent<SelectProps, SelectEvents> = (
           classList.sizes[props.size ?? 'md'],
         ],
         ...inheritAttributes,
-        value: props.modelValue,
-        onChange: (e) =>
-          context.emit(
-            'update:modelValue',
-            (e.target as HTMLInputElement).value,
-          ),
+        value: props.modelValue === null ? '' : props.modelValue,
+        onChange: (e) => {
+          const value = (e.target as HTMLInputElement).value;
+          context.emit('update:modelValue', value === '' ? null : value);
+        },
       },
       props.options?.map((option) =>
         h(
           'option',
-          { value: typeof option === 'object' ? option.id : option },
-          typeof option === 'object' ? option.name : option,
+          {
+            value:
+              typeof option === 'object' && option !== null
+                ? option.id === null
+                  ? ''
+                  : option.id
+                : option === null
+                  ? ''
+                  : option,
+          },
+          typeof option === 'object' && option !== null ? option.name : option,
         ),
       ),
     ),
