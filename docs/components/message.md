@@ -50,3 +50,25 @@ const { info } = useMessage();
 ::: raw
 <Button @click="info('Hello world!')">Test Message</Button>
 :::
+
+## Custom Duration
+
+The default message duration is `3s`. To customize it, add second parameter to the `info` method in milliseconds.
+
+```vue
+<script setup>
+import { useMessage, Button } from 'gurunkit';
+
+const { info } = useMessage();
+</script>
+
+<template>
+  <Button @click="info('Short message', 1000)">Short Message</Button>
+  <Button @click="info('Long message', 5000)">Long Message</Button>
+</template>
+```
+
+::: raw
+<Button @click="info('Short message', 1000)" class="mr-2">Short Message</Button>
+<Button @click="info('Long message', 5000)">Long Message</Button>
+:::
