@@ -182,3 +182,37 @@ test('custom tag', () => {
 
   expect(wrapper.find('a').exists()).toBe(true);
 });
+
+describe('loading', () => {
+  test('default value is false', () => {
+    const wrapper = mount(Button);
+
+    expect(wrapper.find('button').attributes('disabled')).toBeUndefined();
+  });
+  test('default not renders spinner', () => {
+    const wrapper = mount(Button);
+
+    expect(wrapper.find('[data-test=spinner]').exists()).toBe(false);
+  });
+
+  describe('when value is true', () => {
+    test('has disabled attributes', () => {
+      const wrapper = mount(Button, {
+        props: {
+          loading: true,
+        },
+      });
+
+      expect(wrapper.find('button').attributes('disabled')).toBeDefined();
+    });
+    test('renders spinner', () => {
+      const wrapper = mount(Button, {
+        props: {
+          loading: true,
+        },
+      });
+
+      expect(wrapper.find('[data-test=spinner]').exists()).toBe(true);
+    });
+  });
+});

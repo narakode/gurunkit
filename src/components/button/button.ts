@@ -5,6 +5,7 @@ import {
   type PropType,
 } from 'vue';
 import { type Color, type Size } from '../../common';
+import Spinner from '../icons/spinner.vue';
 
 type Variant = 'solid' | 'outline';
 
@@ -13,7 +14,7 @@ export const classList: {
   colors: Record<Color, Record<Variant, string>>;
   sizes: Record<Size, string>;
 } = {
-  base: 'font-medium cursor-pointer inline-flex items-center justify-center',
+  base: 'font-medium cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
   colors: {
     primary: {
       solid: 'bg-blue-600 text-white hover:bg-blue-700',
@@ -51,6 +52,7 @@ type ButtonProps = {
   size?: Size;
   tag?: string | Component;
   variant?: Variant;
+  loading?: boolean;
 };
 
 const Button: FunctionalComponent<ButtonProps> = (props, context) => {
@@ -58,6 +60,7 @@ const Button: FunctionalComponent<ButtonProps> = (props, context) => {
   return h(
     props.tag ?? 'button',
     {
+      disabled: props.loading,
       class: [
         inheritClass,
         classList.base,
@@ -67,9 +70,10 @@ const Button: FunctionalComponent<ButtonProps> = (props, context) => {
       ],
       ...inheritAttributes,
     },
-    {
-      default: context.slots.default,
-    },
+    [
+      props.loading ? h(Spinner, { 'data-test': 'spinner' }) : null,
+      context.slots.default ? context.slots.default() : null,
+    ],
   );
 };
 
@@ -89,6 +93,10 @@ Button.props = {
   variant: {
     type: String as PropType<ButtonProps['variant']>,
     default: 'solid',
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 };
 
