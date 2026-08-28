@@ -71,7 +71,11 @@ const Button: FunctionalComponent<ButtonProps> = (props, context) => {
       ...inheritAttributes,
     },
     [
-      props.loading ? h(Spinner, { 'data-test': 'spinner' }) : null,
+      props.loading
+        ? h(Spinner, { 'data-test': 'spinner' })
+        : context.slots.icon
+          ? context.slots.icon()
+          : null,
       context.slots.default ? context.slots.default() : null,
     ],
   );

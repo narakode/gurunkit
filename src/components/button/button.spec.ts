@@ -215,4 +215,28 @@ describe('loading', () => {
       expect(wrapper.find('[data-test=spinner]').exists()).toBe(true);
     });
   });
+
+  describe('icon slots', () => {
+    test('renders icon slot', () => {
+      const wrapper = mount(Button, {
+        slots: {
+          icon: '<span data-test="icon">icon</span>',
+        },
+      });
+
+      expect(wrapper.find('[data-test=icon]').exists()).toBe(true);
+    });
+    test('hidden when loading', () => {
+      const wrapper = mount(Button, {
+        props: {
+          loading: true,
+        },
+        slots: {
+          icon: '<span data-test="icon">icon</span>',
+        },
+      });
+
+      expect(wrapper.find('[data-test=icon]').exists()).toBe(false);
+    });
+  });
 });
