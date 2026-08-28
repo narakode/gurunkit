@@ -16,6 +16,7 @@ Features:
 - Color
 - Variant
 - Size
+- Loading
 - Custom tag
 
 ## Usage
@@ -120,6 +121,24 @@ import { Button } from 'gurunkit';
 </div>
 :::
 
+## Loading
+
+When the button is loading, it becomes disabled and displays a spinner.
+
+```vue
+<script setup>
+import { Button } from 'gurunkit';
+</script>
+
+<template>
+  <Button loading>Loading</Button>
+</template>
+```
+
+::: raw
+<Button loading>Loading</Button>
+:::
+
 ## Custom Tag
 
 Set button tag using `tag` props. Accepts HTML tag name or Vue component.
@@ -180,12 +199,14 @@ const onClick = () => alert('test');
 
 ### Props
 
-| Name                | Type                                              | Required | Default   | Description     |
-| ------------------- | ------------------------------------------------- | -------- | --------- | --------------- |
-| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Button color    |
-| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Button size     |
-| `tag`               | `string` or Vue component                         | :x:      | `null`    | Custom tag      |
-| All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes |
+| Name                | Type                                              | Required | Default   | Description          |
+| ------------------- | ------------------------------------------------- | -------- | --------- | -------------------- |
+| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Button color         |
+| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Button size          |
+| `variant`           | `solid`, `outline`                                | :x:      | `solid`   | Button variant       |
+| `loading`           | `boolean`                                         | :x:      | `false`   | Button loading state |
+| `tag`               | `string` or Vue component                         | :x:      | `null`    | Custom tag           |
+| All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes      |
 
 ### Events
 
