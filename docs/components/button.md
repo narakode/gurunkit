@@ -14,6 +14,7 @@ const onClick = () => alert('test')
 Features:
 
 - Color
+- Variant
 - Size
 - Custom tag
 
@@ -59,6 +60,38 @@ import { Button } from 'gurunkit';
 <Button color="error">Error</Button>
 <Button color="light">Light</Button>
 <Button color="success">Success</Button>
+</div>
+:::
+
+## Variant
+
+Supported variants:
+
+- `solid` (default)
+- `outline`
+
+```vue
+<script setup>
+import { Button } from 'gurunkit';
+</script>
+
+<template>
+  <Button color="primary" variant="solid">Primary Solid</Button>
+  <Button color="warning" variant="solid">Warning Solid</Button>
+  <Button color="error" variant="outline">Error Outline</Button>
+  <Button color="light" variant="outline">Light Outline</Button>
+  <Button color="success" variant="outline">Success Outline</Button>
+</template>
+```
+
+::: raw
+
+<div class="flex flex-wrap gap-2">
+<Button color="primary" variant="solid">Primary Solid</Button>
+<Button color="warning" variant="solid">Warning Solid</Button>
+<Button color="error" variant="outline">Error Outline</Button>
+<Button color="light" variant="outline">Light Outline</Button>
+<Button color="success" variant="outline">Success Outline</Button>
 </div>
 :::
 

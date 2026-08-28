@@ -10,6 +10,34 @@ import { version } from '../package.json'
 
 Current version: {{ version }}
 
+## v0.3.0 - 2026-06-06
+
+### Added
+
+- Message component.
+- Pagination component.
+- Input currency variant.
+- Modal size variant.
+- Custom table empty message.
+
+### Fixed
+
+- Select option null not selected.
+
+## v0.2.0 - 2026-05-25
+
+### Added
+
+- Widget component.
+- Table component.
+- Modal component.
+- Form item component.
+- Input Textarea.
+
+### Fixed
+
+- Add outline focus to input and select.
+
 ## v0.1.3 - 2026-05-22
 
 ### Fixed

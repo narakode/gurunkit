@@ -56,7 +56,7 @@ describe('class list', () => {
       const wrapper = mount(Button);
 
       expect(wrapper.find('button').classes()).toEqual(
-        expect.arrayContaining(classList.colors.primary.split(' ')),
+        expect.arrayContaining(classList.colors.primary.solid.split(' ')),
       );
     });
 
@@ -68,7 +68,7 @@ describe('class list', () => {
       });
 
       expect(wrapper.find('button').classes()).toEqual(
-        expect.arrayContaining(classList.colors.error.split(' ')),
+        expect.arrayContaining(classList.colors.error.solid.split(' ')),
       );
 
       await wrapper.setProps({
@@ -76,7 +76,7 @@ describe('class list', () => {
       });
 
       expect(wrapper.find('button').classes()).toEqual(
-        expect.arrayContaining(classList.colors.success.split(' ')),
+        expect.arrayContaining(classList.colors.success.solid.split(' ')),
       );
     });
   });
@@ -108,6 +108,62 @@ describe('class list', () => {
       expect(wrapper.find('button').classes()).toEqual(
         expect.arrayContaining(classList.sizes.lg.split(' ')),
       );
+    });
+  });
+
+  describe('variant class list', () => {
+    test('default not bordered', () => {
+      const wrapper = mount(Button);
+
+      expect(wrapper.find('button').classes()).not.toContain('border');
+    });
+
+    test('not bordered when variant is solid', () => {
+      const wrapper = mount(Button, {
+        props: {
+          variant: 'solid',
+        },
+      });
+
+      expect(wrapper.find('button').classes()).not.toContain('border');
+    });
+
+    describe('when variant is outline', () => {
+      test('bordered when variant is outline', () => {
+        const wrapper = mount(Button, {
+          props: {
+            variant: 'outline',
+          },
+        });
+
+        expect(wrapper.find('button').classes()).toContain('border');
+      });
+
+      test('doesnt has backgorund class', () => {
+        const wrapper = mount(Button, {
+          props: {
+            variant: 'outline',
+            color: 'error',
+          },
+        });
+
+        expect(wrapper.find('button').classes()).not.toContain(
+          classList.colors.error,
+        );
+      });
+
+      test('has bordered variant class', () => {
+        const wrapper = mount(Button, {
+          props: {
+            variant: 'outline',
+            color: 'error',
+          },
+        });
+
+        expect(wrapper.find('button').classes()).toEqual(
+          expect.arrayContaining(classList.colors.error.outline.split(' ')),
+        );
+      });
     });
   });
 
