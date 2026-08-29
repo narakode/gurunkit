@@ -8,7 +8,7 @@ const Card: FunctionalComponent<{
     {
       'data-test': 'card-content',
       class: [
-        'bg-white text-gray-900 rounded-md dark:bg-gray-800 dark:text-gray-100',
+        'bg-white text-gray-900 rounded-md border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100',
         ctx.attrs.class,
       ],
     },
