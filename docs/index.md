@@ -15,7 +15,7 @@ hero:
       link: /components
 
 features:
-  - title: 11+ Components
+  - title: 13+ Components
     details: Everything you need to build Vue apps
   - title: Simple
     details: Easy to use and customize
