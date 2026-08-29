@@ -9,10 +9,14 @@ import Table from './components/table/table';
 import Widget from './components/widget/widget';
 import Pagination from './components/pagination/pagination';
 import Message from './components/message/message';
+import Alert from './components/alert/alert';
+import Card from './components/card/card';
 import { useMessage } from './components/message/message.compose';
 
 export {
+  Alert,
   Button,
+  Card,
   Input,
   Checkbox,
   Radio,
