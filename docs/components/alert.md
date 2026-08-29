@@ -16,7 +16,6 @@ Features:
 - Color
 - Icon
 - Closable
-- Dark mode
 
 ## Usage
 
@@ -37,6 +36,8 @@ import { Alert } from 'gurunkit';
 ## Color
 
 Set alert color using `color` props. Supported values: `primary`, `light`, `error`, `warning`, `success`.
+
+It's also supports dark mode, enable it by adding `dark` class to `html` tag.
 
 ```vue
 <script setup>
