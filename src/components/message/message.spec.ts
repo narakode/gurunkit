@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, expect, test, vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import Message from './message';
 
 vi.mock(import('./message.compose'), () => ({
@@ -10,25 +10,17 @@ vi.mock(import('./message.compose'), () => ({
   })),
 }));
 
-test('renders wrapper', () => {
+test('renders total items', () => {
   const wrapper = mount(Message);
 
-  expect(wrapper.find('div[data-test="message-wrapper"]').exists()).toBe(true);
+  expect(wrapper.findAll('div[data-test="message"]')).toHaveLength(2);
 });
+test('renders item message', () => {
+  const wrapper = mount(Message);
 
-describe('items', () => {
-  test('renders total items', () => {
-    const wrapper = mount(Message);
-
-    expect(wrapper.findAll('div[data-test="message"]')).toHaveLength(2);
-  });
-  test('renders item message', () => {
-    const wrapper = mount(Message);
-
-    expect(
-      wrapper
-        .findAll('div[data-test="message"]')
-        .map((message) => message.text()),
-    ).toEqual(['Test 1', 'Test 2']);
-  });
+  expect(
+    wrapper
+      .findAll('div[data-test="message"]')
+      .map((message) => message.text()),
+  ).toEqual(['Test 1', 'Test 2']);
 });

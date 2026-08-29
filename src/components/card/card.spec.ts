@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
-import { Card } from './card';
+import Card from './card';
 
 test('renders content', () => {
   const wrapper = mount(Card);
