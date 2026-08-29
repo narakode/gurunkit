@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
 import Modal, { classList } from './modal';
 import { Transition } from 'vue';
+import { Card } from '../card/card';
 
 describe('wrapper', () => {
   test('renders wrapper', () => {
@@ -22,14 +23,14 @@ describe('wrapper', () => {
 });
 
 describe('content', () => {
-  test('renders content', () => {
+  test('renders card', () => {
     const wrapper = mount(Modal, {
       props: {
         visible: true,
       },
     });
 
-    expect(wrapper.find('[data-test="dialog-content"]').exists()).toBe(true);
+    expect(wrapper.findComponent(Card).exists()).toBe(true);
   });
 
   test('default content size', () => {
@@ -39,7 +40,7 @@ describe('content', () => {
       },
     });
 
-    expect(wrapper.find('[data-test="dialog-content"]').classes()).toEqual(
+    expect(wrapper.find('[data-test="card-content"]').classes()).toEqual(
       expect.arrayContaining(classList.size.md.split(' ')),
     );
   });
@@ -52,7 +53,7 @@ describe('content', () => {
       },
     });
 
-    expect(wrapper.find('[data-test="dialog-content"]').classes()).toEqual(
+    expect(wrapper.find('[data-test="card-content"]').classes()).toEqual(
       expect.arrayContaining(classList.size.lg.split(' ')),
     );
   });
@@ -108,7 +109,7 @@ describe('body', () => {
       },
     });
 
-    expect(wrapper.find('[data-test="dialog-body"]').exists()).toBe(true);
+    expect(wrapper.find('[data-test="card-body"]').exists()).toBe(true);
   });
 
   test('renders body slot', () => {
@@ -205,7 +206,7 @@ describe('click outside', () => {
       },
     });
 
-    await wrapper.find('[data-test="dialog-content"]').trigger('click');
+    await wrapper.find('[data-test="card-content"]').trigger('click');
 
     expect(wrapper.props('visible')).toBe(true);
   });

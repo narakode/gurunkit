@@ -1,6 +1,7 @@
 import { h, Transition, type FunctionalComponent, type PropType } from 'vue';
 import X from '../icons/x.vue';
 import type { Size } from '../../common';
+import { Card } from '../card/card';
 
 export const classList: { size: Record<Size, string> } = {
   size: {
@@ -45,52 +46,35 @@ const Modal: FunctionalComponent<
               onClick: close,
             },
             h(
-              'div',
+              Card,
               {
-                'data-test': 'dialog-content',
-                class: [
-                  'bg-white text-gray-900 w-full rounded-md shadow',
-                  classList.size[props.size ?? 'md'],
-                ],
-                onClick: (e) => {
+                title: props.title,
+                class: ['w-full shadow', classList.size[props.size ?? 'md']],
+                onClick: (e: Event) => {
                   e.stopPropagation();
                 },
               },
-              [
-                props.title
-                  ? h(
-                      'header',
-                      {
-                        class:
-                          'p-4 border-b border-gray-300 flex items-center justify-between',
-                      },
-                      [
-                        h('h2', { class: 'font-bold text-lg' }, props.title),
-                        h(
-                          'button',
-                          {
-                            'aria-label': 'Close Modal',
-                            class: 'cursor-pointer',
-                            onClick: close,
-                          },
-                          h(X, { class: 'size-5' }),
-                        ),
-                      ],
-                    )
+              {
+                action: () =>
+                  h(
+                    'button',
+                    {
+                      'aria-label': 'Close Modal',
+                      class: 'cursor-pointer',
+                      onClick: close,
+                    },
+                    h(X, { class: 'size-5' }),
+                  ),
+                default: ctx.slots.default,
+                footer: ctx.slots.footer
+                  ? () =>
+                      h(
+                        'footer',
+                        { class: 'p-4 border-t border-gray-300' },
+                        ctx.slots.footer?.(),
+                      )
                   : null,
-                h(
-                  'div',
-                  { 'data-test': 'dialog-body', class: 'p-4' },
-                  ctx.slots.default?.(),
-                ),
-                ctx.slots.footer
-                  ? h(
-                      'footer',
-                      { class: 'p-4 border-t border-gray-300' },
-                      ctx.slots.footer(),
-                    )
-                  : null,
-              ],
+              },
             ),
           ),
   );

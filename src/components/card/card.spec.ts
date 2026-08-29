@@ -8,6 +8,14 @@ test('renders content', () => {
   expect(wrapper.find('[data-test="card-content"]').exists()).toBe(true);
 });
 
+test('inherits class attributes', () => {
+  const wrapper = mount(Card, { attrs: { class: 'max-w-md' } });
+
+  expect(wrapper.find('[data-test="card-content"]').classes()).toContain(
+    'max-w-md',
+  );
+});
+
 describe('header', () => {
   test('renders header', async () => {
     const wrapper = mount(Card);

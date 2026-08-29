@@ -5,7 +5,10 @@ export const Card: FunctionalComponent<{
 }> = (props, ctx) =>
   h(
     'div',
-    { 'data-test': 'card-content', class: 'bg-white text-gray-900 rounded-md' },
+    {
+      'data-test': 'card-content',
+      class: ['bg-white text-gray-900 rounded-md', ctx.attrs.class],
+    },
     [
       props.title
         ? h(
