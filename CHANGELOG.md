@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-29
+
+### Added
+
+- Alert component (#35).
+- Card component (#34).
+- Button icon (#33).
+- Button loading (#32).
+- Button variant (#31).
+
+### Fixed
+
+- Modal dark mode (#35).
+
 ## [0.3.0] - 2026-06-06
 
 ### Added

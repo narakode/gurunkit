@@ -56,7 +56,7 @@ describe('class list', () => {
       const wrapper = mount(Button);
 
       expect(wrapper.find('button').classes()).toEqual(
-        expect.arrayContaining(classList.colors.primary.split(' ')),
+        expect.arrayContaining(classList.colors.primary.solid.split(' ')),
       );
     });
 
@@ -68,7 +68,7 @@ describe('class list', () => {
       });
 
       expect(wrapper.find('button').classes()).toEqual(
-        expect.arrayContaining(classList.colors.error.split(' ')),
+        expect.arrayContaining(classList.colors.error.solid.split(' ')),
       );
 
       await wrapper.setProps({
@@ -76,7 +76,7 @@ describe('class list', () => {
       });
 
       expect(wrapper.find('button').classes()).toEqual(
-        expect.arrayContaining(classList.colors.success.split(' ')),
+        expect.arrayContaining(classList.colors.success.solid.split(' ')),
       );
     });
   });
@@ -111,6 +111,62 @@ describe('class list', () => {
     });
   });
 
+  describe('variant class list', () => {
+    test('default not bordered', () => {
+      const wrapper = mount(Button);
+
+      expect(wrapper.find('button').classes()).not.toContain('border');
+    });
+
+    test('not bordered when variant is solid', () => {
+      const wrapper = mount(Button, {
+        props: {
+          variant: 'solid',
+        },
+      });
+
+      expect(wrapper.find('button').classes()).not.toContain('border');
+    });
+
+    describe('when variant is outline', () => {
+      test('bordered when variant is outline', () => {
+        const wrapper = mount(Button, {
+          props: {
+            variant: 'outline',
+          },
+        });
+
+        expect(wrapper.find('button').classes()).toContain('border');
+      });
+
+      test('doesnt has backgorund class', () => {
+        const wrapper = mount(Button, {
+          props: {
+            variant: 'outline',
+            color: 'error',
+          },
+        });
+
+        expect(wrapper.find('button').classes()).not.toContain(
+          classList.colors.error,
+        );
+      });
+
+      test('has bordered variant class', () => {
+        const wrapper = mount(Button, {
+          props: {
+            variant: 'outline',
+            color: 'error',
+          },
+        });
+
+        expect(wrapper.find('button').classes()).toEqual(
+          expect.arrayContaining(classList.colors.error.outline.split(' ')),
+        );
+      });
+    });
+  });
+
   test('inherits class attributes', () => {
     const wrapper = mount(Button, { attrs: { class: 'w-full' } });
 
@@ -125,4 +181,62 @@ test('custom tag', () => {
   const wrapper = mount(Button, { props: { tag: 'a' } });
 
   expect(wrapper.find('a').exists()).toBe(true);
+});
+
+describe('loading', () => {
+  test('default value is false', () => {
+    const wrapper = mount(Button);
+
+    expect(wrapper.find('button').attributes('disabled')).toBeUndefined();
+  });
+  test('default not renders spinner', () => {
+    const wrapper = mount(Button);
+
+    expect(wrapper.find('[data-test=spinner]').exists()).toBe(false);
+  });
+
+  describe('when value is true', () => {
+    test('has disabled attributes', () => {
+      const wrapper = mount(Button, {
+        props: {
+          loading: true,
+        },
+      });
+
+      expect(wrapper.find('button').attributes('disabled')).toBeDefined();
+    });
+    test('renders spinner', () => {
+      const wrapper = mount(Button, {
+        props: {
+          loading: true,
+        },
+      });
+
+      expect(wrapper.find('[data-test=spinner]').exists()).toBe(true);
+    });
+  });
+
+  describe('icon slots', () => {
+    test('renders icon slot', () => {
+      const wrapper = mount(Button, {
+        slots: {
+          icon: '<span data-test="icon">icon</span>',
+        },
+      });
+
+      expect(wrapper.find('[data-test=icon]').exists()).toBe(true);
+    });
+    test('hidden when loading', () => {
+      const wrapper = mount(Button, {
+        props: {
+          loading: true,
+        },
+        slots: {
+          icon: '<span data-test="icon">icon</span>',
+        },
+      });
+
+      expect(wrapper.find('[data-test=icon]').exists()).toBe(false);
+    });
+  });
 });

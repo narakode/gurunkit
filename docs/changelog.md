@@ -10,6 +10,20 @@ import { version } from '../package.json'
 
 Current version: {{ version }}
 
+## v0.4.0 - 2026-08-29
+
+### Added
+
+- Alert component.
+- Card component.
+- Button icon.
+- Button loading.
+- Button variant.
+
+### Fixed
+
+- Modal dark mode.
+
 ## v0.3.0 - 2026-06-06
 
 ### Added
