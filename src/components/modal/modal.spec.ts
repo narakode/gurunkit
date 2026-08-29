@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
 import Modal, { classList } from './modal';
 import { Transition } from 'vue';
-import { Card } from '../card/card';
+import Card from '../card/card';
 
 describe('wrapper', () => {
   test('renders wrapper', () => {

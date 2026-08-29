@@ -1,6 +1,6 @@
 import { h, type FunctionalComponent } from 'vue';
 
-export const Card: FunctionalComponent<{
+const Card: FunctionalComponent<{
   title?: string;
 }> = (props, ctx) =>
   h(
@@ -41,3 +41,5 @@ export const Card: FunctionalComponent<{
 Card.props = {
   title: String,
 };
+
+export default Card;

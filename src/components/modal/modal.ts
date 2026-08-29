@@ -1,7 +1,7 @@
 import { h, Transition, type FunctionalComponent, type PropType } from 'vue';
 import X from '../icons/x.vue';
 import type { Size } from '../../common';
-import { Card } from '../card/card';
+import Card from '../card/card';
 
 export const classList: { size: Record<Size, string> } = {
   size: {
@@ -66,14 +66,7 @@ const Modal: FunctionalComponent<
                     h(X, { class: 'size-5' }),
                   ),
                 default: ctx.slots.default,
-                footer: ctx.slots.footer
-                  ? () =>
-                      h(
-                        'footer',
-                        { class: 'p-4 border-t border-gray-300' },
-                        ctx.slots.footer?.(),
-                      )
-                  : null,
+                footer: ctx.slots.footer ? () => ctx.slots.footer?.() : null,
               },
             ),
           ),

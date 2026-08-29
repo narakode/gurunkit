@@ -154,6 +154,13 @@ Modal Body
 | `title`   | `string`         | :x:      | `-`     | Modal title              |
 | `size`    | `sm`, `md`, `lg` | :x:      | `md`    | Modal size               |
 
+### Slots
+
+| Name      | Data | Description         |
+| --------- | ---- | ------------------- |
+| `default` | `-`  | Render modal body   |
+| `footer`  | `-`  | Render modal footer |
+
 ### Events
 
 | Name             | Type      | Description                     |
