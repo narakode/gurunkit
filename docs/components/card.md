@@ -10,8 +10,6 @@ import Button from '../../src/components/button/button'
 
 # Card
 
-Card is a component that dipslays a content in a card.
-
 Features:
 
 - Header
