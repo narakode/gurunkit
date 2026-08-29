@@ -63,6 +63,7 @@ export default defineConfig({
         text: 'Components',
         items: [
           { text: 'Button', link: '/components/button' },
+          { text: 'Card', link: '/components/card' },
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Form Item', link: '/components/form-item' },
           { text: 'Input', link: '/components/input' },
