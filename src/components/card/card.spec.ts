@@ -8,7 +8,7 @@ test('renders content', () => {
   expect(wrapper.find('[data-test="card-content"]').exists()).toBe(true);
 });
 
-describe.only('header', () => {
+describe('header', () => {
   test('renders header', async () => {
     const wrapper = mount(Card);
 
@@ -30,17 +30,55 @@ describe.only('header', () => {
     expect(wrapper.find('h2').text()).toEqual('Test');
   });
 
-  //   test('render close button', () => {
-  //     const wrapper = mount(Card, {
-  //       props: {
-  //         title: 'Test',
-  //         visible: true,
-  //       },
-  //     });
+  test('renders action slot', () => {
+    const wrapper = mount(Card, {
+      props: {
+        title: 'Test',
+      },
+      slots: {
+        action: '<button aria-label="Close">Close</button>',
+      },
+    });
 
-  //     const closeButton = wrapper.find('button[aria-label="Close Card"]');
+    const closeButton = wrapper.find('button[aria-label="Close"]');
 
-  //     expect(closeButton.exists()).toBe(true);
-  //     expect(closeButton.find('svg').exists()).toBe(true);
-  //   });
+    expect(closeButton.exists()).toBe(true);
+  });
+});
+
+describe('body', () => {
+  test('renders body', () => {
+    const wrapper = mount(Card, {});
+
+    expect(wrapper.find('[data-test="card-body"]').exists()).toBe(true);
+  });
+
+  test('renders body slot', () => {
+    const wrapper = mount(Card, {
+      slots: {
+        default: '<p id="test-body"></p>',
+      },
+    });
+
+    expect(wrapper.find('p#test-body').exists()).toBe(true);
+  });
+});
+
+describe('footer', () => {
+  test('not renders footer', () => {
+    const wrapper = mount(Card, {});
+
+    expect(wrapper.find('footer').exists()).toBe(false);
+  });
+
+  test('renders footer slot', () => {
+    const wrapper = mount(Card, {
+      slots: {
+        footer: '<button id="test-footer"></button>',
+      },
+    });
+
+    expect(wrapper.find('footer').exists()).toBe(true);
+    expect(wrapper.find('button#test-footer').exists()).toBe(true);
+  });
 });
