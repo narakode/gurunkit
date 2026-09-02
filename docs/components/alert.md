@@ -5,6 +5,7 @@ description: Learn how to use Gurun Kit button component
 
 <script setup>
 import Alert from '../../src/components/alert/alert'
+import Button from '../../src/components/button/button'
 
 const onClose = () => alert('close')
 </script>
@@ -16,6 +17,7 @@ Features:
 - Color
 - Icon
 - Closable
+- Action
 
 ## Usage
 
@@ -153,6 +155,39 @@ Alert closable
 </Alert>
 :::
 
+## Action
+
+Add the `action` slot to display content at the end of the alert.
+
+> [!WARNING]
+> If `closable` is `true`, the close button will not be rendered.
+
+```vue
+<script setup>
+import { Alert, Button } from 'gurunkit';
+</script>
+
+<template>
+  <Alert color="primary">
+    <template #action>
+      <Button size="sm"> Action </Button>
+    </template>
+    Alert with action
+  </Alert>
+</template>
+```
+
+::: raw
+<Alert color="primary">
+<template #action>
+<Button size="sm">
+Action
+</Button>
+</template>
+Alert with action
+</Alert>
+:::
+
 ## API
 
 ### Props
@@ -164,10 +199,11 @@ Alert closable
 
 ### Slots
 
-| Name      | Data | Description       |
-| --------- | ---- | ----------------- |
-| `default` | `-`  | Render alert text |
-| `icon`    | `-`  | Render alert icon |
+| Name      | Data | Description         |
+| --------- | ---- | ------------------- |
+| `default` | `-`  | Render alert text   |
+| `icon`    | `-`  | Render alert icon   |
+| `action`  | `-`  | Render alert action |
 
 ### Events
 

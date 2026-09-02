@@ -36,17 +36,19 @@ const Alert: FunctionalComponent<
         ? h('div', { class: 'mt-0.75 shrink-0' }, ctx.slots.icon())
         : null,
       ctx.slots.default?.(),
-      props.closable
-        ? h(
-            'button',
-            {
-              class: 'cursor-pointer ml-auto mt-1 shrink-0',
-              'aria-label': 'Close Alert',
-              onClick: () => ctx.emit('close'),
-            },
-            h(X, { class: 'size-4' }),
-          )
-        : null,
+      ctx.slots.action
+        ? h('div', { class: 'ml-auto' }, ctx.slots.action())
+        : props.closable
+          ? h(
+              'button',
+              {
+                class: 'cursor-pointer ml-auto mt-1 shrink-0',
+                'aria-label': 'Close Alert',
+                onClick: () => ctx.emit('close'),
+              },
+              h(X, { class: 'size-4' }),
+            )
+          : null,
     ],
   );
 

@@ -101,3 +101,29 @@ describe('closable', () => {
     expect(wrapper.emitted()).toHaveProperty('close');
   });
 });
+
+describe('action', () => {
+  test('renders action', () => {
+    const wrapper = mount(Alert, {
+      slots: {
+        action: '<button id="action"></button>',
+      },
+    });
+
+    expect(wrapper.find('button#action').exists()).toBe(true);
+  });
+  test('not renders close when action slot exists', () => {
+    const wrapper = mount(Alert, {
+      props: {
+        closable: true,
+      },
+      slots: {
+        action: '<button id="action"></button>',
+      },
+    });
+
+    expect(wrapper.find('button[aria-label="Close Alert"]').exists()).toBe(
+      false,
+    );
+  });
+});
