@@ -4,7 +4,7 @@
     width="1em"
     height="1em"
     viewBox="0 0 24 24"
-    class="animate-spin"
+    class="animate-spin shrink-0 size-4"
   >
     <path d="M0 0h24v24H0z" fill="none" />
     <g fill="currentColor">

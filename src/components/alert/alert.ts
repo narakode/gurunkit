@@ -1,6 +1,7 @@
 import { h, type FunctionalComponent, type PropType } from 'vue';
 import type { Color } from '../../common';
 import X from '../icons/x.vue';
+import Spinner from '../icons/spinner.vue';
 
 export const classList: {
   base: string;
@@ -25,6 +26,7 @@ const Alert: FunctionalComponent<
   {
     color?: Color;
     closable?: boolean;
+    loading?: boolean;
   },
   { close(): void }
 > = (props, ctx) =>
@@ -32,9 +34,11 @@ const Alert: FunctionalComponent<
     'div',
     { class: [classList.base, classList.colors[props.color ?? 'light']] },
     [
-      ctx.slots.icon
-        ? h('div', { class: 'mt-0.75 shrink-0' }, ctx.slots.icon())
-        : null,
+      props.loading
+        ? h(Spinner, { class: 'mt-0.75' })
+        : ctx.slots.icon
+          ? h('div', { class: 'mt-0.75 shrink-0' }, ctx.slots.icon())
+          : null,
       ctx.slots.default?.(),
       ctx.slots.action
         ? h('div', { class: 'ml-auto' }, ctx.slots.action())
@@ -58,6 +62,7 @@ Alert.props = {
     default: 'light',
   },
   closable: Boolean,
+  loading: Boolean,
 };
 
 export default Alert;
