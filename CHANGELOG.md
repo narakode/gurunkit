@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-09-02
+
+### Added
+
+- Alert loading (#37).
+- Alert action slot (#37).
+
 ## [0.4.0] - 2026-08-29
 
 ### Added

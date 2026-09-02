@@ -5,6 +5,7 @@ description: Learn how to use Gurun Kit button component
 
 <script setup>
 import Alert from '../../src/components/alert/alert'
+import Button from '../../src/components/button/button'
 
 const onClose = () => alert('close')
 </script>
@@ -16,6 +17,8 @@ Features:
 - Color
 - Icon
 - Closable
+- Action
+- Loading
 
 ## Usage
 
@@ -153,21 +156,79 @@ Alert closable
 </Alert>
 :::
 
+## Loading
+
+Display a spinner when `loading` props is true.
+
+> [!WARNING]
+> If `loading` is `true`, the icon slot will not be rendered.
+
+```vue
+<script setup>
+import { Alert } from 'gurunkit';
+</script>
+
+<template>
+  <Alert color="primary" loading> Alert loading </Alert>
+</template>
+```
+
+::: raw
+<Alert color="primary" loading>
+Alert loading
+</Alert>
+:::
+
+## Action
+
+Add the `action` slot to display content at the end of the alert.
+
+> [!WARNING]
+> If `closable` is `true`, the close button will not be rendered.
+
+```vue
+<script setup>
+import { Alert, Button } from 'gurunkit';
+</script>
+
+<template>
+  <Alert color="primary">
+    <template #action>
+      <Button size="sm"> Action </Button>
+    </template>
+    Alert with action
+  </Alert>
+</template>
+```
+
+::: raw
+<Alert color="primary">
+<template #action>
+<Button size="sm">
+Action
+</Button>
+</template>
+Alert with action
+</Alert>
+:::
+
 ## API
 
 ### Props
 
-| Name       | Type                                              | Required | Default   | Description            |
-| ---------- | ------------------------------------------------- | -------- | --------- | ---------------------- |
-| `color`    | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Alert color            |
-| `closable` | `boolean`                                         | :x:      | `false`   | Display a close button |
+| Name       | Type                                              | Required | Default   | Description               |
+| ---------- | ------------------------------------------------- | -------- | --------- | ------------------------- |
+| `color`    | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Alert color               |
+| `closable` | `boolean`                                         | :x:      | `false`   | Display a close button    |
+| `loading`  | `boolean`                                         | :x:      | `false`   | Display a loading spinner |
 
 ### Slots
 
-| Name      | Data | Description       |
-| --------- | ---- | ----------------- |
-| `default` | `-`  | Render alert text |
-| `icon`    | `-`  | Render alert icon |
+| Name      | Data | Description         |
+| --------- | ---- | ------------------- |
+| `default` | `-`  | Render alert text   |
+| `icon`    | `-`  | Render alert icon   |
+| `action`  | `-`  | Render alert action |
 
 ### Events
 
