@@ -10,6 +10,13 @@ import { version } from '../package.json'
 
 Current version: {{ version }}
 
+## v0.4.1 - 2026-09-02
+
+### Added
+
+- Alert loading.
+- Alert action slot.
+
 ## v0.4.0 - 2026-08-29
 
 ### Added
