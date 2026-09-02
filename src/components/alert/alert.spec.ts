@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
 import Alert, { classList } from './alert';
+import Spinner from '../icons/spinner.vue';
 
 test('render wrapper', () => {
   const wrapper = mount(Alert);
@@ -99,5 +100,63 @@ describe('closable', () => {
     await button.trigger('click');
 
     expect(wrapper.emitted()).toHaveProperty('close');
+  });
+});
+
+describe('action', () => {
+  test('renders action', () => {
+    const wrapper = mount(Alert, {
+      slots: {
+        action: '<button id="action"></button>',
+      },
+    });
+
+    expect(wrapper.find('button#action').exists()).toBe(true);
+  });
+  test('not renders close when action slot exists', () => {
+    const wrapper = mount(Alert, {
+      props: {
+        closable: true,
+      },
+      slots: {
+        action: '<button id="action"></button>',
+      },
+    });
+
+    expect(wrapper.find('button[aria-label="Close Alert"]').exists()).toBe(
+      false,
+    );
+  });
+});
+
+describe('loading', () => {
+  test('default hidden', () => {
+    const wrapper = mount(Alert);
+
+    expect(wrapper.findComponent(Spinner).exists()).toBe(false);
+  });
+
+  describe('when loading is true', () => {
+    test('renders spinner', () => {
+      const wrapper = mount(Alert, {
+        props: {
+          loading: true,
+        },
+      });
+
+      expect(wrapper.findComponent(Spinner).exists()).toBe(true);
+    });
+    test('not renders icon', () => {
+      const wrapper = mount(Alert, {
+        props: {
+          loading: true,
+        },
+        slots: {
+          icon: '<button id="icon"></button>',
+        },
+      });
+
+      expect(wrapper.find('button#icon').exists()).toBe(false);
+    });
   });
 });
