@@ -215,11 +215,16 @@ const onInput = () => alert('test');
 
 <template>
   <Input type="password" placeholder="Show Alert" @input="onInput" />
+  <Input type="text" disabled placeholder="Disabled Input" />
 </template>
 ```
 
 ::: raw
+
+<div class="flex flex-col items-start gap-y-2">
 <Input type="password" placeholder="Show Alert" @input="onInput" />
+<Input type="text" disabled placeholder="Disabled Input" />
+</div>
 :::
 
 ## API

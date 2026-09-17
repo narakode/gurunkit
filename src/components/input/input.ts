@@ -8,7 +8,7 @@ export const classList: {
   colors: Record<Color, Record<'base' | 'file', string>>;
   sizes: Record<Size, Record<'base' | 'input' | 'textarea' | 'file', string>>;
 } = {
-  base: 'border focus:outline-1',
+  base: 'border focus:outline-1 disabled:bg-gray-50',
   file: 'pl-0 file:bg-gray-100 file:h-full file:text-gray-900 file:border-r dark:file:bg-gray-700 dark:file:text-white',
   colors: {
     primary: {
