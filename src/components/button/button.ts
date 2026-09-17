@@ -37,7 +37,8 @@ export const classList: {
     },
     light: {
       solid: 'bg-white text-gray-700 hover:bg-gray-100',
-      outline: 'border-gray-300 text-gray-900 hover:bg-gray-100',
+      outline:
+        'border-gray-300 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:text-gray-900',
     },
   },
   sizes: {
@@ -70,14 +71,16 @@ const Button: FunctionalComponent<ButtonProps> = (props, context) => {
       ],
       ...inheritAttributes,
     },
-    [
-      props.loading
-        ? h(Spinner, { 'data-test': 'spinner' })
-        : context.slots.icon
-          ? context.slots.icon()
-          : null,
-      context.slots.default ? context.slots.default() : null,
-    ],
+    {
+      default: () => [
+        props.loading
+          ? h(Spinner, { 'data-test': 'spinner' })
+          : context.slots.icon
+            ? context.slots.icon()
+            : null,
+        context.slots.default ? context.slots.default() : null,
+      ],
+    },
   );
 };
 
