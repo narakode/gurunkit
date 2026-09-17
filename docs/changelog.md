@@ -10,6 +10,24 @@ import { version } from '../package.json'
 
 Current version: {{ version }}
 
+## v0.5.0 - 2026-09-17
+
+### Added
+
+- Description list component.
+- Badge component.
+- Input debounce event.
+- Input disabled.
+- Button icon position.
+- Table column value.
+- Pagination change event.
+- Skeleton component.
+
+### Fixed
+
+- Button outline bg color.
+- Pagination bg color.
+
 ## v0.4.1 - 2026-09-02
 
 ### Added

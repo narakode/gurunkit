@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-09-17
+
+### Added
+
+- Description list component (#48).
+- Badge component (#47).
+- Input debounce event (#46).
+- Input disabled (#45).
+- Button icon position (#44).
+- Table column value (#42).
+- Pagination change event (#40).
+- Skeleton component (#39).
+
+### Fixed
+
+- Button outline bg color (#43).
+- Pagination bg color (#41).
+
 ## [0.4.1] - 2026-09-02
 
 ### Added
