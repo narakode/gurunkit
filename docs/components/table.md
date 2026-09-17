@@ -60,6 +60,60 @@ Set table data via the `data` prop. It is should be an array of object with any 
 
 Each object should have a property defined as the `id` in the `columns` prop.
 
+## Custom Column Value
+
+You can render a custom value in specific column by adding a `value` property to the object in the `columns` array.
+
+The `value` property should be a valid function that returns a a `string` and receive an `item` prop containing the rendered item.
+
+```js
+{
+  id: 'name',
+  name: 'Name',
+  value: ({ item }) => `Name: ${item.name}`
+}
+```
+
+Example:
+
+```vue
+<script setup>
+import { Table } from 'gurunkit';
+import { h } from 'vue';
+</script>
+
+<template>
+  <Table
+    :columns="[
+      {
+        id: 'name',
+        name: 'Name',
+        value: ({ item }) => `Name: ${item.name}`,
+      },
+      { id: 'email', name: 'Email' },
+    ]"
+    :data="[
+      { name: 'Josh', email: 'josh@email.com' },
+      { name: 'Admin', email: 'admin@email.com' },
+      { name: 'Lim', email: 'lim@email.com' },
+    ]"
+  />
+</template>
+```
+
+::: raw
+
+<Table
+:columns="[
+{ id: 'name', name: 'Name', value: ({ item }) => `Name: ${item.name}` },
+{ id: 'email', name: 'Email' }]"
+:data="[
+{ name: 'Josh', email: 'josh@email.com' },
+{ name: 'Admin', email: 'admin@email.com' },
+{ name: 'Lim', email: 'lim@email.com' }]"
+/>
+:::
+
 ## Custom Render Column
 
 You can render a custom component in specific column by adding a `render` property to the object in the `columns` array.
@@ -152,8 +206,8 @@ empty-message="Tidak ada data"
 
 ### Props
 
-| Name            | Type                                                     | Required           | Default      | Description                     |
-| --------------- | -------------------------------------------------------- | ------------------ | ------------ | ------------------------------- |
-| `columns`       | `{ id: string, name: string, render?: Vue.Component }[]` | :white_check_mark: | `[]`         | Table columns                   |
-| `data`          | `any[]`                                                  | :x:                | `[]`         | Table data                      |
-| `empty-message` | `string`                                                 | :x:                | `Empty data` | Message show when data is empty |
+| Name            | Type                                                                                        | Required           | Default      | Description                     |
+| --------------- | ------------------------------------------------------------------------------------------- | ------------------ | ------------ | ------------------------------- |
+| `columns`       | `{ id: string, name: string, render?: Vue.Component, value?: ({ item: any }) => string }[]` | :white_check_mark: | `[]`         | Table columns                   |
+| `data`          | `any[]`                                                                                     | :x:                | `[]`         | Table data                      |
+| `empty-message` | `string`                                                                                    | :x:                | `Empty data` | Message show when data is empty |

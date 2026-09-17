@@ -4,6 +4,7 @@ export type TableColumn = {
   id: string;
   name: string;
   render?: Component;
+  value?: (data: { item: Record<string, any> }) => string;
 };
 const Table: FunctionalComponent<{
   columns?: TableColumn[];
@@ -59,7 +60,9 @@ const Table: FunctionalComponent<{
                       },
                       column.render
                         ? h(column.render, { item })
-                        : item[column.id],
+                        : column.value
+                          ? column.value({ item })
+                          : item[column.id],
                     ),
                   ),
                 ),
