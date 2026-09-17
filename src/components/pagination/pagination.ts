@@ -16,6 +16,7 @@ const Pagination: FunctionalComponent<
   },
   {
     'update:active'(newValue: number): void;
+    change(): void;
   }
 > = (props, ctx) => {
   const nextVisible = props?.active && props?.active >= props.total;
@@ -42,6 +43,7 @@ const Pagination: FunctionalComponent<
 
                 if (props.active) {
                   ctx.emit('update:active', props.active - 1);
+                  ctx.emit('change');
                 }
               },
             },
@@ -64,6 +66,7 @@ const Pagination: FunctionalComponent<
               e.preventDefault();
 
               ctx.emit('update:active', i);
+              ctx.emit('change');
             },
           },
           i,
@@ -81,6 +84,7 @@ const Pagination: FunctionalComponent<
 
                 if (props.active) {
                   ctx.emit('update:active', props.active + 1);
+                  ctx.emit('change');
                 }
               },
             },
@@ -97,6 +101,6 @@ Pagination.props = {
   },
   active: Number,
 };
-Pagination.emits = ['update:active'];
+Pagination.emits = ['update:active', 'change'];
 
 export default Pagination;

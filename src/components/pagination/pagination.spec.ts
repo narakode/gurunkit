@@ -177,3 +177,42 @@ describe('next', () => {
     expect(wrapper.props('active')).toEqual(3);
   });
 });
+
+describe('change event', () => {
+  test('emits change onclick links', async () => {
+    const wrapper = mount(Pagination, {
+      props: {
+        total: 4,
+        active: 2,
+      },
+    });
+
+    await wrapper.find('a[data-page="3"]').trigger('click');
+
+    expect(wrapper.emitted()).toHaveProperty('change');
+  });
+  test('emits change onclick links', async () => {
+    const wrapper = mount(Pagination, {
+      props: {
+        total: 4,
+        active: 2,
+      },
+    });
+
+    await wrapper.find('a[aria-label="Prev"]').trigger('click');
+
+    expect(wrapper.emitted()).toHaveProperty('change');
+  });
+  test('emits change onclick links', async () => {
+    const wrapper = mount(Pagination, {
+      props: {
+        total: 4,
+        active: 2,
+      },
+    });
+
+    await wrapper.find('a[aria-label="Next"]').trigger('click');
+
+    expect(wrapper.emitted()).toHaveProperty('change');
+  });
+});

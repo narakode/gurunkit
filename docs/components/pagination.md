@@ -8,6 +8,8 @@ import Pagination from '../../src/components/pagination/pagination'
 import { ref } from 'vue'
 
 const active1 = ref(1)
+const active2 = ref(1)
+const onChangePage = () => alert('page changed')
 </script>
 
 # Pagination
@@ -83,6 +85,32 @@ v-model:active="active1"
 />
 :::
 
+## Change Event
+
+Use the `change` event to detect when the active page changes.
+
+```vue
+<script setup>
+import { Pagination } from 'gurunkit';
+import { ref } from 'vue';
+
+const active = ref(1);
+const onChangePage = () => alert('page changed');
+</script>
+
+<template>
+  <Pagination :total="5" v-model:active="active" @change="onChangePage" />
+</template>
+```
+
+::: raw
+<Pagination
+:total="5"
+v-model:active="active2"
+@change="onChangePage"
+/>
+:::
+
 ## API
 
 ### Props
@@ -97,6 +125,7 @@ v-model:active="active1"
 | Name            | Type     | Description                    |
 | --------------- | -------- | ------------------------------ |
 | `update:active` | `number` | `active` prop value is updated |
+| `change`        | `void`   | `active` prop value is updated |
 
 ### Model Value
 
