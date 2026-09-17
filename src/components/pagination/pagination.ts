@@ -24,7 +24,7 @@ const Pagination: FunctionalComponent<
     'nav',
     {
       class:
-        'border flex w-fit rounded-md border-gray-300 dark:border-gray-700',
+        'bg-white border flex w-fit rounded-md border-gray-300 dark:bg-gray-800 dark:border-gray-700',
     },
     [
       props?.active && props?.active < 2
