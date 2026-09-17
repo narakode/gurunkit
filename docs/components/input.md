@@ -11,6 +11,7 @@ const name = ref('')
 const price = ref('50000');
 
 const onInput = () => alert('test');
+const onSearch = () => alert('searching')
 </script>
 
 # Input
@@ -23,6 +24,7 @@ Features:
 - Textarea
 - Currency
 - Value binding
+- Debounce input
 
 ## Usage
 
@@ -202,6 +204,30 @@ const price = ref('50000');
 
 Your price: {{ price }}
 
+## Debounce Input
+
+The debounced input is emitted through the `input-debounce` event after 300ms.
+
+```vue
+<script setup>
+import { Input } from 'gurunkit';
+
+const onSearch = () => alert('searching');
+</script>
+
+<template>
+  <Input
+    placeholder="Search something"
+    type="search"
+    @input-debounce="onSearch"
+  />
+</template>
+```
+
+::: raw
+<Input placeholder="Search something" name="blhhh" type="search" @input-debounce="onSearch" />
+:::
+
 ## HTML Attributes and Events
 
 HTML attributes and events are automatically inherited.
@@ -214,7 +240,7 @@ const onInput = () => alert('test');
 </script>
 
 <template>
-  <Input type="password" placeholder="Show Alert" @input="onInput" />
+  <Input type="text" placeholder="Show Alert" @input="onInput" />
   <Input type="text" disabled placeholder="Disabled Input" />
 </template>
 ```
@@ -222,7 +248,7 @@ const onInput = () => alert('test');
 ::: raw
 
 <div class="flex flex-col items-start gap-y-2">
-<Input type="password" placeholder="Show Alert" @input="onInput" />
+<Input type="text" placeholder="Show Alert" @input="onInput" />
 <Input type="text" disabled placeholder="Disabled Input" />
 </div>
 :::
@@ -240,9 +266,10 @@ const onInput = () => alert('test');
 
 ### Events
 
-| Name            | Type | Description |
-| --------------- | ---- | ----------- |
-| All HTML events | `-`  | HTML events |
+| Name             | Type | Description     |
+| ---------------- | ---- | --------------- |
+| `input-debounce` | `-`  | Debounced input |
+| All HTML events  | `-`  | HTML events     |
 
 ### Model Value
 

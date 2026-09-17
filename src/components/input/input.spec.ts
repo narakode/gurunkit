@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import Input, { classList } from './input';
 import { formatCurrency, parseCurrency } from '../../utils';
@@ -236,5 +236,27 @@ describe('currency', () => {
     await wrapper.find('input').setValue(updateNumber);
 
     expect(wrapper.props('modelValue')).toEqual(parseCurrency(updateNumber));
+  });
+});
+
+describe('debounce', () => {
+  test('emits debounced input event', async () => {
+    vi.useFakeTimers();
+
+    const wrapper = mount(Input);
+
+    await wrapper.trigger('input');
+
+    expect(wrapper.emitted()).not.toHaveProperty('input-debounce');
+
+    vi.advanceTimersByTime(100);
+
+    await wrapper.trigger('input');
+
+    expect(wrapper.emitted()).not.toHaveProperty('input-debounce');
+
+    vi.advanceTimersByTime(300);
+
+    expect(wrapper.emitted()).toHaveProperty('input-debounce');
   });
 });
