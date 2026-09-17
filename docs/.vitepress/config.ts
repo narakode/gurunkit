@@ -73,6 +73,7 @@ export default defineConfig({
           { text: 'Pagination', link: '/components/pagination' },
           { text: 'Radio', link: '/components/radio' },
           { text: 'Select', link: '/components/select' },
+          { text: 'Skeleton', link: '/components/skeleton' },
           { text: 'Table', link: '/components/table' },
           { text: 'Widget', link: '/components/widget' },
         ],
