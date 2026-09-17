@@ -184,6 +184,48 @@ Loading
 </Button>
 :::
 
+### Icon Position
+
+The default icon position at in the `start` of the button, set it to `end` to position the icon in the end of the button.
+
+```vue
+<script setup>
+import { Button } from 'gurunkit';
+</script>
+
+<template>
+  <Button icon-position="end">
+    <template #icon>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+      >
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path
+          fill="currentColor"
+          d="M6.49 21.59c-.26 0-.515-.08-.735-.24c-.39-.28-.58-.75-.5-1.225l.94-5.49L2.21 10.75a1.23 1.23 0 0 1-.315-1.28c.15-.455.535-.78 1.01-.85l5.51-.8l2.465-4.99c.21-.43.64-.695 1.12-.695s.91.265 1.12.695l2.465 4.99l5.51.8a1.247 1.247 0 0 1 .695 2.13l-3.985 3.885l.94 5.485a1.25 1.25 0 0 1-1.815 1.32L12 18.85l-4.93 2.59a1.3 1.3 0 0 1-.585.145z"
+        />
+      </svg>
+    </template>
+    Star
+  </Button>
+</template>
+```
+
+::: raw
+<Button icon-position="end">
+<template #icon>
+<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+<path d="M0 0h24v24H0z" fill="none" />
+<path fill="currentColor" d="M6.49 21.59c-.26 0-.515-.08-.735-.24c-.39-.28-.58-.75-.5-1.225l.94-5.49L2.21 10.75a1.23 1.23 0 0 1-.315-1.28c.15-.455.535-.78 1.01-.85l5.51-.8l2.465-4.99c.21-.43.64-.695 1.12-.695s.91.265 1.12.695l2.465 4.99l5.51.8a1.247 1.247 0 0 1 .695 2.13l-3.985 3.885l.94 5.485a1.25 1.25 0 0 1-1.815 1.32L12 18.85l-4.93 2.59a1.3 1.3 0 0 1-.585.145z" />
+</svg>
+</template>
+Loading
+</Button>
+:::
+
 ## Custom Tag
 
 Set button tag using `tag` props. Accepts HTML tag name or Vue component.
@@ -244,14 +286,15 @@ const onClick = () => alert('test');
 
 ### Props
 
-| Name                | Type                                              | Required | Default   | Description          |
-| ------------------- | ------------------------------------------------- | -------- | --------- | -------------------- |
-| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Button color         |
-| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Button size          |
-| `variant`           | `solid`, `outline`                                | :x:      | `solid`   | Button variant       |
-| `loading`           | `boolean`                                         | :x:      | `false`   | Button loading state |
-| `tag`               | `string` or Vue component                         | :x:      | `null`    | Custom tag           |
-| All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes      |
+| Name                | Type                                              | Required | Default   | Description               |
+| ------------------- | ------------------------------------------------- | -------- | --------- | ------------------------- |
+| `color`             | `primary`, `light`, `success`, `warning`, `error` | :x:      | `primary` | Button color              |
+| `size`              | `sm`, `md`, `lg`                                  | :x:      | `md`      | Button size               |
+| `variant`           | `solid`, `outline`                                | :x:      | `solid`   | Button variant            |
+| `loading`           | `boolean`                                         | :x:      | `false`   | Button loading state      |
+| `tag`               | `string` or Vue component                         | :x:      | `null`    | Custom tag                |
+| `iconPosition`      | `start` or `end`                                  | :x:      | `left`    | Render icon slot position |
+| All HTML attributes | `-`                                               | :x:      | `-`       | HTML attributes           |
 
 ### Slots
 
