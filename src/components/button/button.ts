@@ -54,6 +54,7 @@ type ButtonProps = {
   tag?: string | Component;
   variant?: Variant;
   loading?: boolean;
+  iconPosition?: 'start' | 'end';
 };
 
 const Button: FunctionalComponent<ButtonProps> = (props, context) => {
@@ -75,10 +76,13 @@ const Button: FunctionalComponent<ButtonProps> = (props, context) => {
       default: () => [
         props.loading
           ? h(Spinner, { 'data-test': 'spinner' })
-          : context.slots.icon
+          : context.slots.icon && props.iconPosition === 'start'
             ? context.slots.icon()
             : null,
         context.slots.default ? context.slots.default() : null,
+        context.slots.icon && props.iconPosition === 'end'
+          ? context.slots.icon()
+          : null,
       ],
     },
   );
@@ -104,6 +108,10 @@ Button.props = {
   loading: {
     type: Boolean,
     default: false,
+  },
+  iconPosition: {
+    type: String as PropType<ButtonProps['iconPosition']>,
+    default: 'start',
   },
 };
 

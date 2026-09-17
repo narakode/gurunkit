@@ -226,6 +226,19 @@ describe('loading', () => {
 
       expect(wrapper.find('[data-test=icon]').exists()).toBe(true);
     });
+    test('renders icon slot at end position', () => {
+      const wrapper = mount(Button, {
+        slots: {
+          icon: '<span>icon</span>',
+          default: '<span>test</span>',
+        },
+        props: {
+          iconPosition: 'end',
+        },
+      });
+
+      expect(wrapper.find('button').findAll('span')[1].text()).toEqual('icon');
+    });
     test('hidden when loading', () => {
       const wrapper = mount(Button, {
         props: {
