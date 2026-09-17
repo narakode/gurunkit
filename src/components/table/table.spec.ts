@@ -115,23 +115,43 @@ describe('empty message', () => {
   });
 });
 
-test('renders item', () => {
-  const columns: TableColumn[] = [
-    { id: 'id', name: 'No' },
-    { id: 'name', name: 'Name', render: ({ item }) => h('p', item.name) },
-  ];
+describe('renders item', () => {
+  test('render function', () => {
+    const columns: TableColumn[] = [
+      { id: 'id', name: 'No' },
+      { id: 'name', name: 'Name', render: ({ item }) => h('p', item.name) },
+    ];
 
-  const wrapper = mount(Table, {
-    props: {
-      columns,
-      data: [{ id: '1', name: 'Test 1' }],
-    },
+    const wrapper = mount(Table, {
+      props: {
+        columns,
+        data: [{ id: '1', name: 'Test 1' }],
+      },
+    });
+
+    const td = wrapper.findAll('td');
+    const tdName = td[1];
+
+    expect(tdName.html().trim()).toContain('<p>Test 1</p>');
   });
+  test('value function', () => {
+    const columns: TableColumn[] = [
+      { id: 'id', name: 'No' },
+      { id: 'name', name: 'Name', value: ({ item }) => item.name },
+    ];
 
-  const td = wrapper.findAll('td');
-  const tdName = td[1];
+    const wrapper = mount(Table, {
+      props: {
+        columns,
+        data: [{ id: '1', name: 'Test 1' }],
+      },
+    });
 
-  expect(tdName.html().trim()).toContain('<p>Test 1</p>');
+    const td = wrapper.findAll('td');
+    const tdName = td[1];
+
+    expect(tdName.text()).toContain('Test 1');
+  });
 });
 test('wrapper overflow', () => {
   const wrapper = mount(Table);
