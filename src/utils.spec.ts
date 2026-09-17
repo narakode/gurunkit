@@ -1,5 +1,5 @@
-import { describe, expect, test } from 'vitest';
-import { formatCurrency, parseCurrency } from './utils';
+import { describe, expect, test, vi } from 'vitest';
+import { debounce, formatCurrency, parseCurrency } from './utils';
 
 describe('format currency', () => {
   test('formats number to currency', () => {
@@ -24,5 +24,24 @@ describe('parse currency', () => {
 
   test('parses leading zero numeric string', () => {
     expect(parseCurrency('0250,000')).toEqual('250000');
+  });
+});
+
+describe('debounce', () => {
+  test('calls debounced function', () => {
+    const mock = vi.fn();
+    const fn = debounce(mock, 300);
+
+    vi.useFakeTimers();
+
+    fn();
+
+    vi.advanceTimersByTime(100);
+
+    fn();
+
+    vi.advanceTimersByTime(300);
+
+    expect(mock).toHaveBeenCalledTimes(1);
   });
 });
