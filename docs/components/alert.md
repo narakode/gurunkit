@@ -1,6 +1,6 @@
 ---
 outline: deep
-description: Learn how to use Gurun Kit button component
+description: Learn how to use Gurun Kit alert component
 ---
 
 <script setup>
