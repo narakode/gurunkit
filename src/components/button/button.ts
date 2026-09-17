@@ -37,7 +37,8 @@ export const classList: {
     },
     light: {
       solid: 'bg-white text-gray-700 hover:bg-gray-100',
-      outline: 'border-gray-300 text-gray-900 hover:bg-gray-100',
+      outline:
+        'border-gray-300 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:text-gray-900',
     },
   },
   sizes: {
@@ -53,6 +54,7 @@ type ButtonProps = {
   tag?: string | Component;
   variant?: Variant;
   loading?: boolean;
+  iconPosition?: 'start' | 'end';
 };
 
 const Button: FunctionalComponent<ButtonProps> = (props, context) => {
@@ -70,14 +72,19 @@ const Button: FunctionalComponent<ButtonProps> = (props, context) => {
       ],
       ...inheritAttributes,
     },
-    [
-      props.loading
-        ? h(Spinner, { 'data-test': 'spinner' })
-        : context.slots.icon
+    {
+      default: () => [
+        props.loading
+          ? h(Spinner, { 'data-test': 'spinner' })
+          : context.slots.icon && props.iconPosition === 'start'
+            ? context.slots.icon()
+            : null,
+        context.slots.default ? context.slots.default() : null,
+        context.slots.icon && props.iconPosition === 'end'
           ? context.slots.icon()
           : null,
-      context.slots.default ? context.slots.default() : null,
-    ],
+      ],
+    },
   );
 };
 
@@ -101,6 +108,10 @@ Button.props = {
   loading: {
     type: Boolean,
     default: false,
+  },
+  iconPosition: {
+    type: String as PropType<ButtonProps['iconPosition']>,
+    default: 'start',
   },
 };
 

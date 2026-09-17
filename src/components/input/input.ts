@@ -1,6 +1,6 @@
 import { h, type FunctionalComponent, type PropType } from 'vue';
 import { type Color, type Size } from '../../common';
-import { formatCurrency, parseCurrency } from '../../utils';
+import { debounce, formatCurrency, parseCurrency } from '../../utils';
 
 export const classList: {
   base: string;
@@ -8,7 +8,7 @@ export const classList: {
   colors: Record<Color, Record<'base' | 'file', string>>;
   sizes: Record<Size, Record<'base' | 'input' | 'textarea' | 'file', string>>;
 } = {
-  base: 'border focus:outline-1',
+  base: 'border focus:outline-1 disabled:bg-gray-50',
   file: 'pl-0 file:bg-gray-100 file:h-full file:text-gray-900 file:border-r dark:file:bg-gray-700 dark:file:text-white',
   colors: {
     primary: {
@@ -63,6 +63,7 @@ type InputProps = {
 };
 type InputEvents = {
   'update:modelValue'(newValue: string): void;
+  'input-debounce'(): void;
 };
 
 const Input: FunctionalComponent<InputProps, InputEvents> = (
@@ -70,6 +71,8 @@ const Input: FunctionalComponent<InputProps, InputEvents> = (
   context,
 ) => {
   const { class: inheritClass, type, ...inheritAttributes } = context.attrs;
+
+  const emitInputDebounce = debounce(() => context.emit('input-debounce'), 300);
 
   return h(props.tag === 'textarea' ? 'textarea' : 'input', {
     type,
@@ -100,6 +103,8 @@ const Input: FunctionalComponent<InputProps, InputEvents> = (
         'update:modelValue',
         props.currency ? parseCurrency(value) : value,
       );
+
+      emitInputDebounce();
     },
   });
 };
@@ -120,5 +125,6 @@ Input.props = {
   },
   currency: Boolean,
 };
+Input.emits = ['update:modelValue', 'input-debounce'];
 
 export default Input;
